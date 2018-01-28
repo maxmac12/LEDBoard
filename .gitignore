@@ -1,0 +1,6 @@
+*.d
+*.o
+*.eep
+*.elf
+*.sizeok
+*.a
