@@ -88,7 +88,7 @@ void MaintenanceComm::sendData(const S8* ptrVal, const bool newLine, const bool 
     else
     {
         // no buffering desired; output immediately
-        Serial2.printf(newLine ? "%s\r\n" : "%s", ptrVal);
+        Serial2.printf(newLine ? "%s\n" : "%s", ptrVal);
     }
 }
 

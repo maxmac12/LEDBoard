@@ -28,7 +28,7 @@ AboutCommand::AboutCommand()
 
 ErrorCode AboutCommand::exec(const CStr subject, const CStr value1, const CStr value2)
 {
-    maintComm->sendData(MaintenanceComm::MAX_CONSOLE_LINE_LEN, "LEDBoard Software");
+    maintComm->sendData("LEDBoard Software\r\n");
 
     return (ER_SUCCESS);
 }

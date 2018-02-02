@@ -69,12 +69,12 @@ class Test_Adafruit : public Task
         U8 red(U32 c);
         U8 green(U32 c);
         U8 blue(U32 c);
-        U32 Wheel(S8 WheelPos, int stripId);
+        U32 Wheel(S8 WheelPos, U32 stripId);
         void rainbow(U8 wait);
         void rainbowCycle(U8 wait);
         void fullWhite(void);
-        void whiteOverRainbow(U8 wait, U8 whiteSpeed, U8 whiteLength );
-        void rainbowFade2White(U8 wait, int rainbowLoops, int whiteLoops);
+        void whiteOverRainbow(U8 wait, Msec whiteSpeed, U8 whiteLength );
+        void rainbowFade2White(U8 wait, U32 rainbowLoops, U32 whiteLoops);
         void pulseWhite(U8 wait);
         void colorWipe(U32 c, U8 wait);
         void ledsOff(void);

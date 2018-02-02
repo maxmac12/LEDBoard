@@ -53,9 +53,9 @@ Test_Adafruit::Test_Adafruit() :
     Task(TASK_LED_CTRL_PERIOD,
          TASK_LED_CTRL_NAME,
          TID_LED_CTRL),
-    ledMode((U8)LED_OFF)
+    ledMode(LED_OFF)
 {
-    for (int n = 0; n < NUM_LED_STRIPS; n++)
+    for (U32 n = 0; n < NUM_LED_STRIPS; n++)
     {
         strips[n] = new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, ledStripPins[n], NEO_GRB + NEO_KHZ800);
     }
@@ -65,7 +65,7 @@ Test_Adafruit::Test_Adafruit() :
 void Test_Adafruit::init(void)
 {
     // Initialize all pixels to 'off'
-    for (int n = 0; n < NUM_LED_STRIPS; n++)
+    for (U32 n = 0; n < NUM_LED_STRIPS; n++)
     {
         strips[n]->setBrightness(LED_BRIGHTNESS);
         strips[n]->begin();
@@ -76,6 +76,7 @@ void Test_Adafruit::init(void)
 
 void Test_Adafruit::exec(void)
 {
+    // TODO: Break each state up to minimize time in this task. Only update one strip per frame?
     switch (ledMode)
     {
         case LED_OFF:
@@ -95,7 +96,7 @@ void Test_Adafruit::exec(void)
             break;
 
         case COLOR_WIPE:
-            for (int n = 0; n < NUM_LED_STRIPS; n++)
+            for (U32 n = 0; n < NUM_LED_STRIPS; n++)
             {
                 colorWipe(strips[n]->Color(255, 0, 0), 255);    // Red
                 colorWipe(strips[n]->Color(0, 255, 0), 255);    // Green
@@ -131,9 +132,9 @@ void Test_Adafruit::setLedMode(LEDModes newMode)
 // Fill the dots one after the other with a color
 void Test_Adafruit::colorWipe(U32 c, U8 wait)
 {
-    for (int n = 0; n < NUM_LED_STRIPS; n++)
+    for (U32 n = 0; n < NUM_LED_STRIPS; n++)
     {
-        for (uint16_t j = 0; j < strips[n]->numPixels(); j++)
+        for (U16 j = 0; j < strips[n]->numPixels(); j++)
         {
             strips[n]->setPixelColor(j, c);
         }
@@ -148,7 +149,7 @@ void Test_Adafruit::colorWipe(U32 c, U8 wait)
 void Test_Adafruit::ledsOff(void)
 {
     // Initialize all pixels to 'off'
-    for (int n = 0; n < NUM_LED_STRIPS; n++)
+    for (U32 n = 0; n < NUM_LED_STRIPS; n++)
     {
         colorWipe(strips[n]->Color(0, 0, 0), 0);
         strips[n]->show();
@@ -158,17 +159,17 @@ void Test_Adafruit::ledsOff(void)
 
 void Test_Adafruit::pulseWhite(uint8_t wait)
 {
-    for (int j = 0; j < 256 ; j++)
+    for (U32 j = 0; j < 256 ; j++)
     {
-        for (int n = 0; n < NUM_LED_STRIPS; n++)
+        for (U32 n = 0; n < NUM_LED_STRIPS; n++)
         {
-            for (uint16_t i = 0; i < strips[n]->numPixels(); i++)
+            for (U16 i = 0; i < strips[n]->numPixels(); i++)
             {
                 strips[n]->setPixelColor(i, strips[n]->Color(0,0,0, neopix_gamma[j]));
             }
         }
 
-        for (int n = 0; n < NUM_LED_STRIPS; n++)
+        for (U32 n = 0; n < NUM_LED_STRIPS; n++)
         {
             strips[n]->show();
         }
@@ -176,17 +177,17 @@ void Test_Adafruit::pulseWhite(uint8_t wait)
         delay(wait);
     }
 
-    for (int j = 255; j >= 0 ; j--)
+    for (U32 j = 255; j >= 0 ; j--)
     {
-        for (int n = 0; n < NUM_LED_STRIPS; n++)
+        for (U32 n = 0; n < NUM_LED_STRIPS; n++)
         {
-            for (uint16_t i = 0; i < strips[n]->numPixels(); i++)
+            for (U16 i = 0; i < strips[n]->numPixels(); i++)
             {
                 strips[n]->setPixelColor(i, strips[n]->Color(0,0,0, neopix_gamma[j]));
             }
         }
 
-        for (int n = 0; n < NUM_LED_STRIPS; n++)
+        for (U32 n = 0; n < NUM_LED_STRIPS; n++)
         {
             strips[n]->show();
         }
@@ -196,22 +197,22 @@ void Test_Adafruit::pulseWhite(uint8_t wait)
 }
 
 
-void Test_Adafruit::rainbowFade2White(uint8_t wait, int rainbowLoops, int whiteLoops)
+void Test_Adafruit::rainbowFade2White(U8 wait, U32 rainbowLoops, U32 whiteLoops)
 {
     float fadeMax = 100.0;
-    int fadeVal = 0;
-    int redVal;
-    int greenVal;
-    int blueVal;
-    uint32_t wheelVal;
+    U32 fadeVal = 0;
+    U32 redVal;
+    U32 greenVal;
+    U32 blueVal;
+    U32 wheelVal;
 
-    for (int k = 0 ; k < rainbowLoops ; k ++)
+    for (U32 k = 0 ; k < rainbowLoops ; k ++)
     {
-        for (int j = 0; j < 256; j++) // 5 cycles of all colors on wheel
+        for (U32 j = 0; j < 256; j++) // 5 cycles of all colors on wheel
         {
-            for (int n = 0; n < NUM_LED_STRIPS; n++)
+            for (U32 n = 0; n < NUM_LED_STRIPS; n++)
             {
-                for (uint16_t i = 0; i < strips[n]->numPixels(); i++)
+                for (U16 i = 0; i < strips[n]->numPixels(); i++)
                 {
                     wheelVal = Wheel(((i * 256 / strips[n]->numPixels()) + j) & 255, n);
 
@@ -223,7 +224,7 @@ void Test_Adafruit::rainbowFade2White(uint8_t wait, int rainbowLoops, int whiteL
                 }
             }
 
-            for (int n = 0; n < NUM_LED_STRIPS; n++)
+            for (U32 n = 0; n < NUM_LED_STRIPS; n++)
             {
                 strips[n]->show();
             }
@@ -247,37 +248,37 @@ void Test_Adafruit::rainbowFade2White(uint8_t wait, int rainbowLoops, int whiteL
 
     delay(500);
 
-    for (int k = 0 ; k < whiteLoops ; k ++)
+    for (U32 k = 0 ; k < whiteLoops ; k ++)
     {
-        for (int j = 0; j < 256 ; j++)
+        for (U32 j = 0; j < 256 ; j++)
         {
-            for (int n = 0; n < NUM_LED_STRIPS; n++)
+            for (U32 n = 0; n < NUM_LED_STRIPS; n++)
             {
-                for (uint16_t i = 0; i < strips[n]->numPixels(); i++)
+                for (U16 i = 0; i < strips[n]->numPixels(); i++)
                 {
                     strips[n]->setPixelColor(i, strips[n]->Color(0, 0, 0, neopix_gamma[j]));
                 }
             }
 
-            for (int n = 0; n < NUM_LED_STRIPS; n++)
+            for (U32 n = 0; n < NUM_LED_STRIPS; n++)
             {
                 strips[n]->show();
             }
         }
 
-        delay(2000);
+        delay(500);
 
-        for (int j = 255; j >= 0 ; j--)
+        for (U32 j = 255; j >= 0 ; j--)
         {
-            for (int n = 0; n < NUM_LED_STRIPS; n++)
+            for (U32 n = 0; n < NUM_LED_STRIPS; n++)
             {
-                for (uint16_t i = 0; i < strips[n]->numPixels(); i++)
+                for (U16 i = 0; i < strips[n]->numPixels(); i++)
                 {
                     strips[n]->setPixelColor(i, strips[n]->Color(0, 0, 0, neopix_gamma[j]));
                 }
             }
 
-            for (int n = 0; n < NUM_LED_STRIPS; n++)
+            for (U32 n = 0; n < NUM_LED_STRIPS; n++)
             {
                 strips[n]->show();
             }
@@ -288,14 +289,14 @@ void Test_Adafruit::rainbowFade2White(uint8_t wait, int rainbowLoops, int whiteL
 }
 
 
-void Test_Adafruit::whiteOverRainbow(uint8_t wait, uint8_t whiteSpeed, uint8_t whiteLength )
+void Test_Adafruit::whiteOverRainbow(U8 wait, Msec whiteSpeed, U8 whiteLength )
 {
-    static const int LOOPS = 3;
-    static unsigned long lastTime = 0;
+    static const U32 LOOPS = 3;
+    static Msec lastTime = 0;
 
-    int head;
-    int tail = 0;
-    int loopNum = 0;
+    U8 head;
+    U8 tail = 0;
+    U8 loopNum = 0;
 
     if (whiteLength >= NUM_LEDS_PER_STRIP)
     {
@@ -344,7 +345,7 @@ void Test_Adafruit::whiteOverRainbow(uint8_t wait, uint8_t whiteSpeed, uint8_t w
             head %= NUM_LEDS_PER_STRIP;
             tail %= NUM_LEDS_PER_STRIP;
 
-            for (int n = 0; n < NUM_LED_STRIPS; n++)
+            for (U32 n = 0; n < NUM_LED_STRIPS; n++)
             {
                 strips[n]->show();
                 delay(wait);
@@ -356,15 +357,15 @@ void Test_Adafruit::whiteOverRainbow(uint8_t wait, uint8_t whiteSpeed, uint8_t w
 
 void Test_Adafruit::fullWhite(void)
 {
-    for (int n = 0; n < NUM_LED_STRIPS; n++)
+    for (U32 n = 0; n < NUM_LED_STRIPS; n++)
     {
-        for (uint16_t i = 0; i < strips[n]->numPixels(); i++)
+        for (U16 i = 0; i < strips[n]->numPixels(); i++)
         {
             strips[n]->setPixelColor(i, strips[n]->Color(0,0,0, 255));
         }
     }
 
-    for (int n = 0; n < NUM_LED_STRIPS; n++)
+    for (U32 n = 0; n < NUM_LED_STRIPS; n++)
     {
         strips[n]->show();
     }
@@ -374,17 +375,17 @@ void Test_Adafruit::fullWhite(void)
 // Slightly different, this makes the rainbow equally distributed throughout
 void Test_Adafruit::rainbowCycle(U8 wait)
 {
-    for (uint16_t j = 0; j < 256 * 5; j++)  // 5 cycles of all colors on wheel
+    for (U16 j = 0; j < 256 * 5; j++)  // 5 cycles of all colors on wheel
     {
-        for (int n = 0; n < NUM_LED_STRIPS; n++)
+        for (U32 n = 0; n < NUM_LED_STRIPS; n++)
         {
-            for (uint16_t i = 0; i < strips[n]->numPixels(); i++)
+            for (U16 i = 0; i < strips[n]->numPixels(); i++)
             {
                 strips[n]->setPixelColor(i, Wheel(((i * 256 / strips[n]->numPixels()) + j) & 255, n));
             }
         }
 
-        for (int n = 0; n < NUM_LED_STRIPS; n++)
+        for (U32 n = 0; n < NUM_LED_STRIPS; n++)
         {
             strips[n]->show();
             delay(wait);
@@ -395,17 +396,17 @@ void Test_Adafruit::rainbowCycle(U8 wait)
 
 void Test_Adafruit::rainbow(U8 wait)
 {
-    for (uint16_t j = 0; j < 256; j++)
+    for (U16 j = 0; j < 256; j++)
     {
-        for (int n = 0; n < NUM_LED_STRIPS; n++)
+        for (U32 n = 0; n < NUM_LED_STRIPS; n++)
         {
-            for (uint16_t i = 0; i < strips[n]->numPixels(); i++)
+            for (U16 i = 0; i < strips[n]->numPixels(); i++)
             {
                 strips[n]->setPixelColor(i, Wheel((i+j) & 255, n));
             }
         }
 
-        for (int n = 0; n < NUM_LED_STRIPS; n++)
+        for (U32 n = 0; n < NUM_LED_STRIPS; n++)
         {
             strips[n]->show();
             delay(wait);
@@ -416,7 +417,7 @@ void Test_Adafruit::rainbow(U8 wait)
 
 // Input a value 0 to 255 to get a color value.
 // The colours are a transition r - g - b - back to r.
-U32 Test_Adafruit::Wheel(S8 WheelPos, int stripId)
+U32 Test_Adafruit::Wheel(S8 WheelPos, U32 stripId)
 {
     WheelPos = 255 - WheelPos;
 

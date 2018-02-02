@@ -32,18 +32,20 @@ const S8 CYCLIC_ENGINE_NAME[MAX_NAME_LEN]  = "Cyclic Task Engine";
 
 enum QueueIDEnum
 {
-    QID_MAINT_RX  = 1,
-    QID_MAINT_TX  = 2,
+    QID_MAINT_RX = 0,
+    QID_MAINT_TX,
 
-    QID_NONE      = 3
+    QID_NONE
 };
 
 enum TaskIDEnum
 {
-    TID_CONSOLE_CTRL    = 1,
-    TID_MAINT_COMM      = 2,
-    TID_LED_CTRL        = 3,
-    TID_TASK_SCHEDULER  = 4
+    TID_TASK_SCHEDULER = 0,
+    TID_CONSOLE_CTRL,
+    TID_MAINT_COMM,
+    TID_LED_CTRL,
+
+    NUM_TASKS
 };
 
 //----------------------------------------------------------------------------

@@ -6,6 +6,9 @@
 #include "TestAdafruitNeopixel.hpp"
 #include "Queue.hpp"
 #include "StopWatch.hpp"
+#include "Task.hpp"
+#include "appconfig.hpp"
+#include "dataTypes.h"
 #include <core_pins.h>
 #include <pins_arduino.h>
 #include <wiring.h>
@@ -18,12 +21,20 @@
 //----------------------------------------------------------------------------
 //  Public Data
 //----------------------------------------------------------------------------
+Task* tasks[] =
+{
+    ledCtrl,
+    maintComm,
+    consoleCtrl,
+
+    NULL          // end of list - DO NOT REMOVE!!!
+};
 
 //----------------------------------------------------------------------------
 //  Private Data
 //----------------------------------------------------------------------------
 
-StopWatch* ledTimer = new StopWatch();
+StopWatch* ledTimer  = new StopWatch();  // LED Blink timer.
 
 static void blinkLED(void);
 
@@ -38,18 +49,33 @@ void setup(void)
     digitalWrite(LED_BUILTIN, HIGH);  // Turn LED ON
     ledTimer->start(LED_PERIOD);      // Initialize the LED timer
 
-    ledCtrl->init();
-    consoleCtrl->init();
-    maintComm->init();
+    // Initialize all tasks.
+    for (U32 i = 0; tasks[i] != NULL; i++)
+    {
+        tasks[i]->init();
+    }
+
+//    ledCtrl->init();
+//    consoleCtrl->init();
+//    maintComm->init();
 }
 
 
 void loop(void)
 {
-    blinkLED();
-    ledCtrl->exec();
-    maintComm->exec();
-    consoleCtrl->exec();
+    blinkLED();  // Blink on board LED
+
+    // Process all tasks.
+    for (U32 i = 0; tasks[i] != NULL; i++)
+    {
+        // Execute tasks that are ready to run. Skip faulted tasks.
+        // TODO: Check if task period has elapsed before executing task.
+        if (!tasks[i]->isFaulted())
+        {
+            // Execute the current task.
+            tasks[i]->exec();
+        }
+    }
 }
 
 //############################################################################
@@ -62,7 +88,7 @@ void loop(void)
 
 static void blinkLED(void)
 {
-    static uint8_t LED_STATE = HIGH;
+    static U8 LED_STATE = HIGH;
 
     if (ledTimer->timerHasExpired())
     {
