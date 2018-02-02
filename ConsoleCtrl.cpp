@@ -7,6 +7,7 @@
 #include "dataTypes.h"
 #include "stringUtils.h"
 #include "AboutCommand.hpp"
+#include "LedModeCommand.hpp"
 #include "CommonData.hpp"
 #include "MaintenanceComm.hpp"
 #include <stdio.h>
@@ -37,6 +38,7 @@ CommandList cmdList[] =
 {
     // *** ADD NEW COMMANDS HERE ***
     { "about", "AboutCommand", new AboutCommand() },
+    { "mode", "LedModeCommand", new LedModeCommand() },
 
     { NULL, NULL, NULL }    // end of list - DO NOT REMOVE!!!
 };

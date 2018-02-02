@@ -73,7 +73,7 @@ int drawingMemory[NUM_LEDS_PER_STRIP * 6];
 
 OctoWS2811 leds(NUM_LEDS_PER_STRIP, displayMemory, drawingMemory, CONFIG);
 
-static void colorWipe(int color, int wait);
+//static void colorWipe(int color, int wait);
 
 
 //void setup(void)
@@ -112,15 +112,15 @@ static void colorWipe(int color, int wait);
 //}
 
 
-static void colorWipe(int color, int wait)
-{
-  for (int i = 0; i < leds.numPixels(); i++)
-  {
-    leds.setPixel(i, color);
-    leds.show();
-    delayMicroseconds(wait);
-  }
-}
+//static void colorWipe(int color, int wait)
+//{
+//  for (int i = 0; i < leds.numPixels(); i++)
+//  {
+//    leds.setPixel(i, color);
+//    leds.show();
+//    delayMicroseconds(wait);
+//  }
+//}
 
 
 

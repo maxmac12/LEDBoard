@@ -2,8 +2,8 @@
 //  Included Files
 //----------------------------------------------------------------------------
 #include "TestAdafruitNeopixel.hpp"
-
 #include "Adafruit_NeoPixel.h"
+#include "appconfig.hpp"
 
 //----------------------------------------------------------------------------
 //  Local Defines
@@ -49,7 +49,11 @@ const U8 ledStripPins[NUM_LED_STRIPS] = { 2,     // LED Strip 1 pin
 //############################################################################
 
 
-Test_Adafruit::Test_Adafruit()
+Test_Adafruit::Test_Adafruit() :
+    Task(TASK_LED_CTRL_PERIOD,
+         TASK_LED_CTRL_NAME,
+         TID_LED_CTRL),
+    ledMode((U8)LED_OFF)
 {
     for (int n = 0; n < NUM_LED_STRIPS; n++)
     {
@@ -72,20 +76,48 @@ void Test_Adafruit::init(void)
 
 void Test_Adafruit::exec(void)
 {
-    // Some example procedures showing how to display to the pixels:
-    for (int n = 0; n < NUM_LED_STRIPS; n++)
+    switch (ledMode)
     {
-        colorWipe(strips[n]->Color(255, 0, 0), 255);    // Red
-        colorWipe(strips[n]->Color(0, 255, 0), 255);    // Green
-        colorWipe(strips[n]->Color(0, 0, 255), 255);    // Blue
-        colorWipe(strips[n]->Color(0, 0, 0, 255), 255); // White
-    }
+        case LED_OFF:
+            ledsOff();
+            break;
 
-    whiteOverRainbow(20, 75, 5);
-    pulseWhite(5);
-//    //fullWhite();
-//    //delay(2000);
-    rainbowFade2White(3, 3, 1);
+        case RAINBOW_CYCLE:
+            rainbowCycle(2);
+            break;
+
+        case WHITE_OVER_RAINBOW:
+            whiteOverRainbow(20, 75, 5);
+            break;
+
+        case RAINBOW_TO_WHITE:
+            rainbowFade2White(3, 3, 1);
+            break;
+
+        case COLOR_WIPE:
+            for (int n = 0; n < NUM_LED_STRIPS; n++)
+            {
+                colorWipe(strips[n]->Color(255, 0, 0), 255);    // Red
+                colorWipe(strips[n]->Color(0, 255, 0), 255);    // Green
+                colorWipe(strips[n]->Color(0, 0, 255), 255);    // Blue
+                colorWipe(strips[n]->Color(0, 0, 0, 255), 255); // White
+            }
+            break;
+
+        case PULSE_WHITE:
+            pulseWhite(5);
+            break;
+
+        default:
+            ledMode = LED_OFF;
+            break;
+    }
+}
+
+
+void Test_Adafruit::setLedMode(LEDModes newMode)
+{
+    ledMode = newMode;
 }
 
 //############################################################################
@@ -110,6 +142,17 @@ void Test_Adafruit::colorWipe(U32 c, U8 wait)
     }
 
     delay(wait);
+}
+
+
+void Test_Adafruit::ledsOff(void)
+{
+    // Initialize all pixels to 'off'
+    for (int n = 0; n < NUM_LED_STRIPS; n++)
+    {
+        colorWipe(strips[n]->Color(0, 0, 0), 0);
+        strips[n]->show();
+    }
 }
 
 

@@ -1,55 +1,68 @@
 //----------------------------------------------------------------------------
-//  Included Files
+//  Included Files 
 //----------------------------------------------------------------------------
-#include "ConsoleCtrl.hpp"
-#include "MaintenanceComm.hpp"
+#include "LedModeCommand.hpp"
 #include "TestAdafruitNeopixel.hpp"
-#include "Queue.hpp"
-#include "StopWatch.hpp"
-#include <core_pins.h>
-#include <pins_arduino.h>
-#include <wiring.h>
 
 //----------------------------------------------------------------------------
 //  Local Defines
 //----------------------------------------------------------------------------
-#define LED_PERIOD  1000  // 1 second
 
 //----------------------------------------------------------------------------
-//  Public Data
+//  Public Data 
 //----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
-//  Private Data
+//  Private Data 
 //----------------------------------------------------------------------------
-
-StopWatch* ledTimer = new StopWatch();
-
-static void blinkLED(void);
 
 //############################################################################
 //  Public Methods
 //############################################################################
 
-// TODO: Create basic task scheduler.
-void setup(void)
+LedModeCommand::LedModeCommand()
 {
-    pinMode(LED_BUILTIN, OUTPUT);     // Configure LED pin
-    digitalWrite(LED_BUILTIN, HIGH);  // Turn LED ON
-    ledTimer->start(LED_PERIOD);      // Initialize the LED timer
-
-    ledCtrl->init();
-    consoleCtrl->init();
-    maintComm->init();
+    // do nothing
 }
 
 
-void loop(void)
+ErrorCode LedModeCommand::exec(const CStr subject, const CStr value1, const CStr value2)
 {
-    blinkLED();
-    ledCtrl->exec();
-    maintComm->exec();
-    consoleCtrl->exec();
+    ErrorCode rtnErr = ER_SUCCESS;
+
+    if (subject != NULL)
+    {
+        if (strncmp(subject, "off", 4UL) == 0)    // JSF151.1 Exception
+        {
+            ledCtrl->setLedMode(LED_OFF);
+        }
+        else if (strncmp(subject, "rbwC", 5UL) == 0)
+        {
+            ledCtrl->setLedMode(RAINBOW_CYCLE);
+        }
+        else if (strncmp(subject, "wRbw", 5UL) == 0)
+        {
+            ledCtrl->setLedMode(WHITE_OVER_RAINBOW);
+        }
+        else if (strncmp(subject, "rbwW", 5UL) == 0)
+        {
+            ledCtrl->setLedMode(RAINBOW_TO_WHITE);
+        }
+        else if (strncmp(subject, "wipe", 5UL) == 0)
+        {
+            ledCtrl->setLedMode(COLOR_WIPE);
+        }
+        else if (strncmp(subject, "white", 6UL) == 0)
+        {
+            ledCtrl->setLedMode(PULSE_WHITE);
+        }
+        else
+        {
+            rtnErr = ER_FAIL;
+        }
+    }
+
+    return rtnErr;
 }
 
 //############################################################################
@@ -59,16 +72,3 @@ void loop(void)
 //############################################################################
 //  Private Methods
 //############################################################################
-
-static void blinkLED(void)
-{
-    static uint8_t LED_STATE = HIGH;
-
-    if (ledTimer->timerHasExpired())
-    {
-        // Flash on board LED every second
-        digitalWrite(13, LED_STATE);
-        LED_STATE = (HIGH == LED_STATE) ? LOW : HIGH;
-        ledTimer->start(LED_PERIOD);  // Reset timer
-    }
-}

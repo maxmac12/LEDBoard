@@ -5,6 +5,8 @@
 //  Included Files
 //----------------------------------------------------------------------------
 #include "Adafruit_NeoPixel.h"
+#include "Task.hpp"
+#include "Singleton.hpp"
 #include "dataTypes.h"
 
 //----------------------------------------------------------------------------
@@ -28,18 +30,29 @@
 //  Public Data Prototypes
 //----------------------------------------------------------------------------
 
+enum LEDModes
+{
+    LED_OFF,
+    RAINBOW_CYCLE,
+    WHITE_OVER_RAINBOW,
+    RAINBOW_TO_WHITE,
+    COLOR_WIPE,
+    PULSE_WHITE
+};
+
 //----------------------------------------------------------------------------
 //  Public Function Prototypes
 //----------------------------------------------------------------------------
 
-class Test_Adafruit
+class Test_Adafruit : public Task
 {
     public:
 
-        Test_Adafruit();
+        explicit Test_Adafruit();
 
         void init(void);
         void exec(void);
+        void setLedMode(LEDModes mode);
 
         // Unused and disabled.
         ~Test_Adafruit() {}
@@ -51,6 +64,7 @@ class Test_Adafruit
     private:
 
         Adafruit_NeoPixel* strips[NUM_LED_STRIPS];
+        LEDModes ledMode;
 
         U8 red(U32 c);
         U8 green(U32 c);
@@ -63,10 +77,13 @@ class Test_Adafruit
         void rainbowFade2White(U8 wait, int rainbowLoops, int whiteLoops);
         void pulseWhite(U8 wait);
         void colorWipe(U32 c, U8 wait);
+        void ledsOff(void);
 };
 
 //--------------------------------------------------------------------
 //  Global Definitions
 //--------------------------------------------------------------------
+
+#define ledCtrl Singleton<Test_Adafruit>::getInstance()
 
 #endif
