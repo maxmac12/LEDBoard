@@ -22,10 +22,9 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
 */
-
+#include "OctoWS2811.h"
 #include <string.h>
 #include <core_pins.h>
-#include "OctoWS2811.h"
 
 
 uint16_t OctoWS2811::stripLen;

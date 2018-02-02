@@ -37,9 +37,12 @@
   This test is useful for checking if your LED strips work, and which
   color config (WS2811_RGB, WS2811_GRB, etc) they require.
 */
+
 #include "OctoWS2811.h"
 #include <core_pins.h>
 #include <HardwareSerial.h>
+#include <pins_arduino.h>
+
 
 // More intense...
 /*
@@ -61,15 +64,14 @@
 #define ORANGE 0x100400
 #define WHITE  0x101010
 
-const int NUM_LED_STRIPS     = 8;
-const int NUM_LEDS_PER_STRIP = 29;
+const uint32_t NUM_LED_STRIPS     = 8;
+const uint32_t NUM_LEDS_PER_STRIP = 29;
+const uint8_t  CONFIG = WS2811_GRB | WS2811_800kHz;
 
-DMAMEM int displayMemory[NUM_LEDS_PER_STRIP * NUM_LED_STRIPS];
-int drawingMemory[NUM_LEDS_PER_STRIP * NUM_LED_STRIPS];
-unsigned long startTime = millis();
-int microsec;
+DMAMEM int displayMemory[NUM_LEDS_PER_STRIP * 6];
+int drawingMemory[NUM_LEDS_PER_STRIP * 6];
 
-OctoWS2811 leds(NUM_LEDS_PER_STRIP, displayMemory, drawingMemory, WS2811_GRB | WS2811_800kHz);
+OctoWS2811 leds(NUM_LEDS_PER_STRIP, displayMemory, drawingMemory, CONFIG);
 
 static void colorWipe(int color, int wait);
 
@@ -80,9 +82,7 @@ static void colorWipe(int color, int wait);
 //    Serial1.begin(115200);  // RX1/TX1 (USB)
 //    Serial2.begin(115200);  // RX2/TX2 (TTL)
 //
-//    microsec = 2000000 / leds.numPixels();  // Change a new LED strip every 2 seconds
-//
-//    pinMode(13, OUTPUT);  // Configure LED pin
+//    pinMode(LED_BUILTIN, OUTPUT);  // Configure LED pin
 //    leds.begin();
 //    leds.show();
 //}
@@ -91,21 +91,21 @@ static void colorWipe(int color, int wait);
 //void loop(void)
 //{
 //    static uint8_t LED_STATE = HIGH;
-//    unsigned long startTime = millis();
+//    uint32_t startTime = millis();
+//    int microsec = 2000000 / leds.numPixels();  // Change a new LED strip every 2 seconds
 //
 //    // Flash on board LED
-//    digitalWrite(13, LED_STATE);
+//    digitalWrite(LED_BUILTIN, LED_STATE);
 //    LED_STATE = (HIGH == LED_STATE) ? LOW : HIGH;
 //
 //    colorWipe(RED, microsec);
-//    delay(500);
 //    colorWipe(GREEN, microsec);
-////    colorWipe(BLUE, microsec);
-////    colorWipe(YELLOW, microsec);
-////    colorWipe(PINK, microsec);
-////    colorWipe(ORANGE, microsec);
-////    colorWipe(WHITE, microsec);
-//    delay(500);
+//    colorWipe(BLUE, microsec);
+//    colorWipe(YELLOW, microsec);
+//    colorWipe(PINK, microsec);
+//    colorWipe(ORANGE, microsec);
+//    colorWipe(WHITE, microsec);
+//
 //    // Print the frame time in msecs.
 //    Serial2.printf("Frame: %d msecs\r\n", millis() - startTime);
 //    Serial1.printf("ACK\r\n");
@@ -114,12 +114,12 @@ static void colorWipe(int color, int wait);
 
 static void colorWipe(int color, int wait)
 {
-  for (int i=0; i < leds.numPixels(); i++) {
+  for (int i = 0; i < leds.numPixels(); i++)
+  {
     leds.setPixel(i, color);
-
+    leds.show();
     delayMicroseconds(wait);
   }
-  leds.show();
 }
 
 
