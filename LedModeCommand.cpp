@@ -51,19 +51,19 @@ ErrorCode LedModeCommand::exec(const CStr subject, const CStr value1, const CStr
             ledCtrl->setLedMode(WHITE_OVER_RAINBOW);
             maintComm->sendData("LED Mode -> White over Rainbow");
         }
-        else if (strncmp(subject, "rbwW", 5UL) == 0)
-        {
-            ledCtrl->setLedMode(RAINBOW_TO_WHITE);
-            maintComm->sendData("LED Mode -> Rainbow to White");
-        }
         else if (strncmp(subject, "wipe", 5UL) == 0)
         {
             ledCtrl->setLedMode(COLOR_WIPE);
             maintComm->sendData("LED Mode -> Color Wipe");
         }
-        else if (strncmp(subject, "white", 6UL) == 0)
+        else if (strncmp(subject, "pwhite", 7UL) == 0)
         {
             ledCtrl->setLedMode(PULSE_WHITE);
+            maintComm->sendData("LED Mode -> Pulse White");
+        }
+        else if (strncmp(subject, "white", 6UL) == 0)
+        {
+            ledCtrl->setLedMode(WHITE);
             maintComm->sendData("LED Mode -> White");
         }
         else
@@ -72,8 +72,8 @@ ErrorCode LedModeCommand::exec(const CStr subject, const CStr value1, const CStr
             maintComm->sendData("   off\r\n");
             maintComm->sendData("   rbwC\r\n");
             maintComm->sendData("   wRbw\r\n");
-            maintComm->sendData("   rbwW\r\n");
             maintComm->sendData("   wipe\r\n");
+            maintComm->sendData("   pwhite\r\n");
             maintComm->sendData("   white\r\n");
         }
     }

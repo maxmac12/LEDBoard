@@ -32,12 +32,13 @@
 
 enum LEDModes
 {
+    IDLE,
     LED_OFF,
     RAINBOW_CYCLE,
     WHITE_OVER_RAINBOW,
-    RAINBOW_TO_WHITE,
-    COLOR_WIPE,
-    PULSE_WHITE
+    PULSE_WHITE,
+    WHITE,
+    COLOR_WIPE
 };
 
 //----------------------------------------------------------------------------
@@ -63,21 +64,20 @@ class LEDControl : public Task
 
     private:
 
-        Adafruit_NeoPixel* strips[NUM_LED_STRIPS];
         LEDModes ledMode;
 
-        U8 red(U32 c);
-        U8 green(U32 c);
-        U8 blue(U32 c);
+        U8 getRed(U32 c);
+        U8 getGreen(U32 c);
+        U8 getBlue(U32 c);
         U32 Wheel(S8 WheelPos, U32 stripId);
         void rainbow(U8 wait);
         void rainbowCycle(U8 wait);
         void fullWhite(void);
-        void whiteOverRainbow(U8 wait, Msec whiteSpeed, U8 whiteLength );
-        void rainbowFade2White(U8 wait, U32 rainbowLoops, U32 whiteLoops);
-        void pulseWhite(U8 wait);
-        void colorWipe(U32 c, U8 wait);
+        void whiteOverRainbow(Msec whiteSpeed, U8 whiteLength);
+        void pulseWhite(void);
+        void colorWipe(U32 c, U8 wait = 0);
         void ledsOff(void);
+        U32 getColor(U8 r, U8 g, U8 b);
 };
 
 //--------------------------------------------------------------------
