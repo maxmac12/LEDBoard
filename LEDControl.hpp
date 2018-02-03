@@ -50,6 +50,8 @@ class LEDControl : public Task
         LEDModes getMode(void);
         void setLedMode(LEDModes mode, U32 color = 0);
         void setBrightness(U32 brightness);
+        void setWhiteRainbowLength(U32 length);
+        void setWhiteRainbowSpeed(Msec speed);
         U8  getRed(U32 color);
         U8  getGreen(U32 color);
         U8  getBlue(U32 color);
@@ -75,7 +77,6 @@ class LEDControl : public Task
 
         void rainbow(U8 wait);
         void fullWhite(void);
-        void whiteOverRainbow(Msec whiteSpeed, U8 whiteLength);
         void pulseWhite(void);
         void colorWipe(U32 c, U8 wait = 0);
         void ledsOff(void);

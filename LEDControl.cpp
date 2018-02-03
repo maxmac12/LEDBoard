@@ -6,6 +6,7 @@
 #include "appconfig.hpp"
 #include "StateMachine.hpp"
 #include "SMRainbowCycle.hpp"
+#include "SMWhiteOverRainbow.hpp"
 
 //----------------------------------------------------------------------------
 //  Local Defines
@@ -44,7 +45,8 @@ Adafruit_NeoPixel* strips[NUM_LED_STRIPS] =
     new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 5,  NEO_GRB + NEO_KHZ800)
 };
 
-StateMachine* ptrRainbow = new SMRainbowCycle();  // TODO: Create an array of state machines.
+StateMachine* ptrRainbow      = new SMRainbowCycle();  // TODO: Create an array of state machines.
+StateMachine* ptrWhiteRainbow = new SMWhiteOverRainbow();
 
 //----------------------------------------------------------------------------
 //  Public Data
@@ -82,6 +84,7 @@ void LEDControl::init(void)
     }
 
     ptrRainbow->init();
+    ptrWhiteRainbow->init();
 }
 
 
@@ -92,6 +95,7 @@ void LEDControl::exec(void)
         // TODO: Add additional state machines.
         // Reset all state machines.
         ptrRainbow->reset();
+        ptrWhiteRainbow->reset();
         previousMode = currentMode;
     }
 
@@ -110,7 +114,7 @@ void LEDControl::exec(void)
             break;
 
         case WHITE_OVER_RAINBOW:
-            whiteOverRainbow(75, 5);
+            ptrWhiteRainbow->run();
             break;
 
         case COLOR:
@@ -140,7 +144,8 @@ void LEDControl::exec(void)
             break;
     }
 
-    if (RAINBOW_CYCLE != currentMode)
+    if ((RAINBOW_CYCLE != currentMode) &&
+        (WHITE_OVER_RAINBOW != currentMode))
     {
         currentMode = IDLE;  // Each state runs once. TODO: Split states into separate state machines.
     }
@@ -172,6 +177,24 @@ void LEDControl::setBrightness(U32 brightness)
     {
         strips[n]->setBrightness(currentBrightness);
         strips[n]->show();
+    }
+}
+
+
+void LEDControl::setWhiteRainbowLength(U32 length)
+{
+    if (NULL != ptrWhiteRainbow)
+    {
+        reinterpret_cast<SMWhiteOverRainbow*>(ptrWhiteRainbow)->setWhiteLength(length);
+    }
+}
+
+
+void LEDControl::setWhiteRainbowSpeed(Msec speed)
+{
+    if (NULL != ptrWhiteRainbow)
+    {
+        reinterpret_cast<SMWhiteOverRainbow*>(ptrWhiteRainbow)->setWhiteSpeed(speed);
     }
 }
 
@@ -326,71 +349,6 @@ void LEDControl::pulseWhite(void)
         }
 
         delay(10);
-    }
-}
-
-
-void LEDControl::whiteOverRainbow(Msec whiteSpeed, U8 whiteLength )
-{
-    static const U32 LOOPS = 3;
-    static Msec lastTime = 0;
-
-    U8 head;
-    U8 tail = 0;
-    U8 loopNum = 0;
-
-    if (whiteLength >= NUM_LEDS_PER_STRIP)
-    {
-        whiteLength = NUM_LEDS_PER_STRIP - 1;
-    }
-
-    while (true)
-    {
-        for (U16 j = 0; j < 256; j++)
-        {
-            for (int n = 0; n < NUM_LED_STRIPS; n++)
-            {
-                for (U16 i = 0; i < strips[n]->numPixels(); i++)
-                {
-                    if ((i >= tail && i <= head)   ||
-                        (tail > head && i >= tail) ||
-                        (tail > head && i <= head))
-                    {
-                        strips[n]->setPixelColor(i, getColor(255, 255, 255));
-                    }
-                    else
-                    {
-                        strips[n]->setPixelColor(i, Wheel(((i * 256 / strips[n]->numPixels()) + j) & 255, n));
-                    }
-                }
-
-                if ((millis() - lastTime) > whiteSpeed)
-                {
-                    head++;
-                    tail++;
-
-                    if (head == strips[n]->numPixels())
-                    {
-                        loopNum++;
-                    }
-
-                    lastTime = millis();
-                }
-
-                if (LOOPS == loopNum)
-                {
-                    return;
-                }
-            }
-
-            head %= NUM_LEDS_PER_STRIP;
-            tail %= NUM_LEDS_PER_STRIP;
-
-            for (S32 n = 0; n < NUM_LED_STRIPS; n++)
-            {
-                strips[n]->show();
-            }
-        }
     }
 }
 

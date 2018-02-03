@@ -1,12 +1,14 @@
 //----------------------------------------------------------------------------
 //  Included Files
 //----------------------------------------------------------------------------
-#include "SMRainbowCycle.hpp"
+#include "SMWhiteOverRainbow.hpp"
 #include "LEDControl.hpp"
 
 //----------------------------------------------------------------------------
 //  Local Defines
 //----------------------------------------------------------------------------
+#define DEFAULT_SPEED   50
+#define DEFAULT_LENGTH  4
 
 //----------------------------------------------------------------------------
 //  Public Data
@@ -20,29 +22,33 @@
 //  Public Methods
 //############################################################################
 
-SMRainbowCycle::SMRainbowCycle():
+SMWhiteOverRainbow::SMWhiteOverRainbow():
     ptrCurrentState(NULL),
     currentStrip(0),
-    wheelPosition(0)
+    wheelPosition(0),
+    whiteSpeed(DEFAULT_SPEED),
+    whiteLength(DEFAULT_LENGTH),
+    head(0),
+    tail(0)
 {
     // Initialize the pointers to the rainbow cycle state functions.
-    ptrStateFunc[IDLE_STATE]    = &SMRainbowCycle::idle;
-    ptrStateFunc[INITIAL_STATE] = &SMRainbowCycle::initialState;
-    ptrStateFunc[UPDATE_PIXELS] = &SMRainbowCycle::updatePixels;
-    ptrStateFunc[UPDATE_STRIPS] = &SMRainbowCycle::updateStrips;
+    ptrStateFunc[IDLE_STATE]    = &SMWhiteOverRainbow::idle;
+    ptrStateFunc[INITIAL_STATE] = &SMWhiteOverRainbow::initialState;
+    ptrStateFunc[UPDATE_PIXELS] = &SMWhiteOverRainbow::updatePixels;
+    ptrStateFunc[UPDATE_STRIPS] = &SMWhiteOverRainbow::updateStrips;
 
     // Set the initial rainbow cycle state.
     ptrCurrentState = ptrStateFunc[IDLE_STATE];
 }
 
 
-void SMRainbowCycle::init(void)
+void SMWhiteOverRainbow::init(void)
 {
     // Do nothing.
 }
 
 
-void SMRainbowCycle::run(void)
+void SMWhiteOverRainbow::run(void)
 {
     if (NULL != ptrCurrentState)
     {
@@ -52,9 +58,23 @@ void SMRainbowCycle::run(void)
 }
 
 
-void SMRainbowCycle::reset(void)
+void SMWhiteOverRainbow::reset(void)
 {
     ptrCurrentState = ptrStateFunc[IDLE];
+}
+
+
+void SMWhiteOverRainbow::setWhiteLength(U32 length)
+{
+    whiteLength = (length >= NUM_LEDS_PER_STRIP) ? NUM_LEDS_PER_STRIP - 1 : length;
+    reset();
+}
+
+
+void SMWhiteOverRainbow::setWhiteSpeed(Msec speed)
+{
+    whiteSpeed = speed;
+    reset();
 }
 
 //############################################################################
@@ -65,36 +85,58 @@ void SMRainbowCycle::reset(void)
 //  Private Methods
 //############################################################################
 
-void SMRainbowCycle::idle(void)
+void SMWhiteOverRainbow::idle(void)
 {
-    if (RAINBOW_CYCLE == ledCtrl->getMode())
+    if (WHITE_OVER_RAINBOW == ledCtrl->getMode())
     {
         ptrCurrentState = ptrStateFunc[INITIAL_STATE];
     }
 }
 
 
-void SMRainbowCycle::initialState(void)
+void SMWhiteOverRainbow::initialState(void)
 {
     // Begin updating the pixels starting with the first pixel on the first LED strip.
     currentStrip  = 0;
     wheelPosition = 0;
+    head          = whiteLength - 1;
+    tail          = 0;
+    stopWatch.start(whiteSpeed);
 
     ptrCurrentState = ptrStateFunc[UPDATE_PIXELS];
 }
 
 
-void SMRainbowCycle::updatePixels(void)
+void SMWhiteOverRainbow::updatePixels(void)
 {
     // Update one strip per cycle.
-    U32 color;
     U32 numPixels = ledCtrl->getNumPixels(currentStrip);
 
     for (U16 i = 0; i < numPixels; i++)
     {
-        color = ledCtrl->Wheel(((i * 256 / numPixels) + wheelPosition) & 255, currentStrip);
+        if ((i >= tail && i <= head)   ||
+            (tail > head && i >= tail) ||
+            (tail > head && i <= head))
+        {
+            // Set pixel to WHITE.
+            ledCtrl->setPixelColor(currentStrip,
+                                   i,
+                                   ledCtrl->getColor(255, 255, 255));
+        }
+        else
+        {
+            // Set pixel to the current color wheel color.
+            ledCtrl->setPixelColor(currentStrip,
+                                   i,
+                                   ledCtrl->Wheel(((i * 256 / numPixels) + wheelPosition) & 255, currentStrip));
+        }
+    }
 
-        ledCtrl->setPixelColor(currentStrip, i, color);
+    if (stopWatch.timerHasExpired())
+    {
+        head++;  // Expected to rollover.
+        tail++;  // Expected to rollover.
+        stopWatch.start(whiteSpeed);
     }
 
     if (++currentStrip >= NUM_LED_STRIPS)
@@ -105,9 +147,12 @@ void SMRainbowCycle::updatePixels(void)
 }
 
 
-void SMRainbowCycle::updateStrips(void)
+void SMWhiteOverRainbow::updateStrips(void)
 {
-    // Show all updated strips.
+    head %= NUM_LEDS_PER_STRIP;
+    tail %= NUM_LEDS_PER_STRIP;
+
+    // Show all updated strips
     for (S32 n = 0; n < NUM_LED_STRIPS; n++)
     {
         ledCtrl->updateStrip(n);

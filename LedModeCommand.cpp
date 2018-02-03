@@ -2,7 +2,6 @@
 //  Included Files 
 //----------------------------------------------------------------------------
 #include "LedModeCommand.hpp"
-
 #include "LEDControl.hpp"
 #include "MaintenanceComm.hpp"
 #include <WCharacter.h>
@@ -39,18 +38,32 @@ ErrorCode LedModeCommand::exec(const CStr subject, const CStr value1, const CStr
     {
         rtnErr = ER_SUCCESS;
 
-        if (strncmp(subject, "off", 4UL) == 0)    // JSF151.1 Exception
+        if (strncmp(subject, "off", 4UL) == 0)
         {
             ledCtrl->setLedMode(LED_OFF);
             maintComm->sendData("LED Mode -> OFF");
         }
-        else if (strncmp(subject, "rbwC", 5UL) == 0)
+        else if (strncmp(subject, "rainbow", 8UL) == 0)
         {
             ledCtrl->setLedMode(RAINBOW_CYCLE);
             maintComm->sendData("LED Mode -> Rainbow Cycle");
         }
-        else if (strncmp(subject, "wRbw", 5UL) == 0)
+        else if (strncmp(subject, "wrainbow", 9UL) == 0)
         {
+            // Check to see if first character is a valid number and not NUL (limit to 8 bit)
+            if (isAscii(*value1) && (strncmp(value1, NUL, 2UL) != 0))
+            {
+                // Convert options to integers.
+                U32 length = strtoul(value1, NULL, DEC);
+                ledCtrl->setWhiteRainbowLength(length);
+            }
+
+            if (isAscii(*value2) && (strncmp(value2, NUL, 2UL) != 0))
+            {
+                Msec speed = strtoul(value2, NULL, DEC);
+                ledCtrl->setWhiteRainbowSpeed(speed);
+            }
+
             ledCtrl->setLedMode(WHITE_OVER_RAINBOW);
             maintComm->sendData("LED Mode -> White over Rainbow");
         }
@@ -105,8 +118,8 @@ ErrorCode LedModeCommand::exec(const CStr subject, const CStr value1, const CStr
         {
             maintComm->sendData("Invalid LED mode. Acceptable modes:\r\n");
             maintComm->sendData("   off\r\n");
-            maintComm->sendData("   rbwC\r\n");
-            maintComm->sendData("   wRbw\r\n");
+            maintComm->sendData("   rainbow\r\n");
+            maintComm->sendData("   wrainbow\r\n");
             maintComm->sendData("   color [r] [g] [b]\r\n");
             maintComm->sendData("   bright [value]\r\n");
             maintComm->sendData("   wipe\r\n");
