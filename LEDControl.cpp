@@ -1,7 +1,8 @@
 //----------------------------------------------------------------------------
 //  Included Files
 //----------------------------------------------------------------------------
-#include "TestAdafruitNeopixel.hpp"
+#include "LEDControl.hpp"
+
 #include "Adafruit_NeoPixel.h"
 #include "appconfig.hpp"
 
@@ -49,7 +50,7 @@ const U8 ledStripPins[NUM_LED_STRIPS] = { 2,     // LED Strip 1 pin
 //############################################################################
 
 
-Test_Adafruit::Test_Adafruit() :
+LEDControl::LEDControl() :
     Task(TASK_LED_CTRL_PERIOD,
          TASK_LED_CTRL_NAME,
          TID_LED_CTRL),
@@ -62,7 +63,7 @@ Test_Adafruit::Test_Adafruit() :
 }
 
 
-void Test_Adafruit::init(void)
+void LEDControl::init(void)
 {
     // Initialize all pixels to 'off'
     for (U32 n = 0; n < NUM_LED_STRIPS; n++)
@@ -74,7 +75,7 @@ void Test_Adafruit::init(void)
 }
 
 
-void Test_Adafruit::exec(void)
+void LEDControl::exec(void)
 {
     // TODO: Break each state up to minimize time in this task. Only update one strip per frame?
     switch (ledMode)
@@ -116,7 +117,7 @@ void Test_Adafruit::exec(void)
 }
 
 
-void Test_Adafruit::setLedMode(LEDModes newMode)
+void LEDControl::setLedMode(LEDModes newMode)
 {
     ledMode = newMode;
 }
@@ -130,7 +131,7 @@ void Test_Adafruit::setLedMode(LEDModes newMode)
 //############################################################################
 
 // Fill the dots one after the other with a color
-void Test_Adafruit::colorWipe(U32 c, U8 wait)
+void LEDControl::colorWipe(U32 c, U8 wait)
 {
     for (U32 n = 0; n < NUM_LED_STRIPS; n++)
     {
@@ -146,7 +147,7 @@ void Test_Adafruit::colorWipe(U32 c, U8 wait)
 }
 
 
-void Test_Adafruit::ledsOff(void)
+void LEDControl::ledsOff(void)
 {
     // Initialize all pixels to 'off'
     for (U32 n = 0; n < NUM_LED_STRIPS; n++)
@@ -157,7 +158,7 @@ void Test_Adafruit::ledsOff(void)
 }
 
 
-void Test_Adafruit::pulseWhite(uint8_t wait)
+void LEDControl::pulseWhite(uint8_t wait)
 {
     for (U32 j = 0; j < 256 ; j++)
     {
@@ -197,7 +198,7 @@ void Test_Adafruit::pulseWhite(uint8_t wait)
 }
 
 
-void Test_Adafruit::rainbowFade2White(U8 wait, U32 rainbowLoops, U32 whiteLoops)
+void LEDControl::rainbowFade2White(U8 wait, U32 rainbowLoops, U32 whiteLoops)
 {
     float fadeMax = 100.0;
     U32 fadeVal = 0;
@@ -289,7 +290,7 @@ void Test_Adafruit::rainbowFade2White(U8 wait, U32 rainbowLoops, U32 whiteLoops)
 }
 
 
-void Test_Adafruit::whiteOverRainbow(U8 wait, Msec whiteSpeed, U8 whiteLength )
+void LEDControl::whiteOverRainbow(U8 wait, Msec whiteSpeed, U8 whiteLength )
 {
     static const U32 LOOPS = 3;
     static Msec lastTime = 0;
@@ -355,7 +356,7 @@ void Test_Adafruit::whiteOverRainbow(U8 wait, Msec whiteSpeed, U8 whiteLength )
 }
 
 
-void Test_Adafruit::fullWhite(void)
+void LEDControl::fullWhite(void)
 {
     for (U32 n = 0; n < NUM_LED_STRIPS; n++)
     {
@@ -373,7 +374,7 @@ void Test_Adafruit::fullWhite(void)
 
 
 // Slightly different, this makes the rainbow equally distributed throughout
-void Test_Adafruit::rainbowCycle(U8 wait)
+void LEDControl::rainbowCycle(U8 wait)
 {
     for (U16 j = 0; j < 256 * 5; j++)  // 5 cycles of all colors on wheel
     {
@@ -394,7 +395,7 @@ void Test_Adafruit::rainbowCycle(U8 wait)
 }
 
 
-void Test_Adafruit::rainbow(U8 wait)
+void LEDControl::rainbow(U8 wait)
 {
     for (U16 j = 0; j < 256; j++)
     {
@@ -417,7 +418,7 @@ void Test_Adafruit::rainbow(U8 wait)
 
 // Input a value 0 to 255 to get a color value.
 // The colours are a transition r - g - b - back to r.
-U32 Test_Adafruit::Wheel(S8 WheelPos, U32 stripId)
+U32 LEDControl::Wheel(S8 WheelPos, U32 stripId)
 {
     WheelPos = 255 - WheelPos;
 
@@ -437,19 +438,19 @@ U32 Test_Adafruit::Wheel(S8 WheelPos, U32 stripId)
 }
 
 
-U8 Test_Adafruit::red(U32 c)
+U8 LEDControl::red(U32 c)
 {
     return (c >> 16);
 }
 
 
-U8 Test_Adafruit::green(U32 c)
+U8 LEDControl::green(U32 c)
 {
     return (c >> 8);
 }
 
 
-U8 Test_Adafruit::blue(U32 c)
+U8 LEDControl::blue(U32 c)
 {
     return (c);
 }

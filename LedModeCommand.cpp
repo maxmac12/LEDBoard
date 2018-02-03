@@ -2,7 +2,8 @@
 //  Included Files 
 //----------------------------------------------------------------------------
 #include "LedModeCommand.hpp"
-#include "TestAdafruitNeopixel.hpp"
+
+#include "LEDControl.hpp"
 #include "MaintenanceComm.hpp"
 
 //----------------------------------------------------------------------------

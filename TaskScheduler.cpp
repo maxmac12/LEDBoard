@@ -3,7 +3,6 @@
 //----------------------------------------------------------------------------
 #include "ConsoleCtrl.hpp"
 #include "MaintenanceComm.hpp"
-#include "TestAdafruitNeopixel.hpp"
 #include "Queue.hpp"
 #include "StopWatch.hpp"
 #include "Task.hpp"
@@ -12,6 +11,7 @@
 #include <core_pins.h>
 #include <pins_arduino.h>
 #include <wiring.h>
+#include "LEDControl.hpp"
 
 //----------------------------------------------------------------------------
 //  Local Defines

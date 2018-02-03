@@ -44,20 +44,20 @@ enum LEDModes
 //  Public Function Prototypes
 //----------------------------------------------------------------------------
 
-class Test_Adafruit : public Task
+class LEDControl : public Task
 {
     public:
 
-        explicit Test_Adafruit();
+        explicit LEDControl();
 
         void init(void);
         void exec(void);
         void setLedMode(LEDModes mode);
 
         // Unused and disabled.
-        ~Test_Adafruit() {}
-        Test_Adafruit(const Test_Adafruit&);
-        Test_Adafruit& operator=(const Test_Adafruit&);
+        ~LEDControl() {}
+        LEDControl(const LEDControl&);
+        LEDControl& operator=(const LEDControl&);
 
     protected:
 
@@ -84,6 +84,6 @@ class Test_Adafruit : public Task
 //  Global Definitions
 //--------------------------------------------------------------------
 
-#define ledCtrl Singleton<Test_Adafruit>::getInstance()
+#define ledCtrl Singleton<LEDControl>::getInstance()
 
 #endif
