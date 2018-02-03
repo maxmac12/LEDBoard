@@ -4,3 +4,5 @@
 *.elf
 *.sizeok
 *.a
+TemplateHeader.txt
+TemplateSource.txt

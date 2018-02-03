@@ -4,18 +4,14 @@
 #include "LEDControl.hpp"
 #include "Adafruit_NeoPixel.h"
 #include "appconfig.hpp"
-
-#include "MaintenanceComm.hpp"  // TODO: Delete after debugging.
-#include "stdio.h"
+#include "StateMachine.hpp"
+#include "SMRainbowCycle.hpp"
 
 //----------------------------------------------------------------------------
 //  Local Defines
 //----------------------------------------------------------------------------
 
-#define NUM_LED_STRIPS      8
-#define NUM_LEDS_PER_STRIP  29
-#define MAX_LED_BRIGHTNESS  70  // Limit LED brightness to protect power supply.
-
+// TODO: Refactor to be a brightness slope instead of a WHITE slope.
 const S8 neopix_gamma[] = {
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,
@@ -34,7 +30,8 @@ const S8 neopix_gamma[] = {
   177,180,182,184,186,189,191,193,196,198,200,203,205,208,210,213,
   215,218,220,223,225,228,231,233,236,239,241,244,247,249,252,255 };
 
-Adafruit_NeoPixel* const strips[NUM_LED_STRIPS] =
+// Define and create all of the LED strips in the system.
+Adafruit_NeoPixel* strips[NUM_LED_STRIPS] =
 {
     // Add additional LED strips here.
     new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 2,  NEO_GRB + NEO_KHZ800),
@@ -46,6 +43,8 @@ Adafruit_NeoPixel* const strips[NUM_LED_STRIPS] =
     new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 21, NEO_GRB + NEO_KHZ800),
     new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 5,  NEO_GRB + NEO_KHZ800)
 };
+
+StateMachine* ptrRainbow = new SMRainbowCycle();  // TODO: Create an array of state machines.
 
 //----------------------------------------------------------------------------
 //  Public Data
@@ -63,9 +62,10 @@ LEDControl::LEDControl() :
     Task(TASK_LED_CTRL_PERIOD,
          TASK_LED_CTRL_NAME,
          TID_LED_CTRL),
-    ledMode(IDLE),
-    currBrightness(MAX_LED_BRIGHTNESS),
-    currColor(0)  // Off
+    currentMode(IDLE),
+    previousMode(IDLE),
+    currentBrightness(MAX_LED_BRIGHTNESS),
+    currentColor(0)  // Off
 {
     // Do nothing.
 }
@@ -76,17 +76,27 @@ void LEDControl::init(void)
     // Initialize all pixels to 'off'
     for (S32 n = 0; n < NUM_LED_STRIPS; n++)
     {
-        strips[n]->setBrightness(currBrightness);
+        strips[n]->setBrightness(currentBrightness);
         strips[n]->begin();
         strips[n]->show();
     }
+
+    ptrRainbow->init();
 }
 
 
 void LEDControl::exec(void)
 {
+    if (currentMode != previousMode)
+    {
+        // TODO: Add additional state machines.
+        // Reset all state machines.
+        ptrRainbow->reset();
+        previousMode = currentMode;
+    }
+
     // TODO: Break each state up to minimize time in this task. Only update one strip per frame?
-    switch (ledMode)
+    switch (currentMode)
     {
         case IDLE:
             break; // Do nothing.
@@ -96,7 +106,7 @@ void LEDControl::exec(void)
             break;
 
         case RAINBOW_CYCLE:
-            rainbowCycle(2);
+            ptrRainbow->run();
             break;
 
         case WHITE_OVER_RAINBOW:
@@ -104,7 +114,7 @@ void LEDControl::exec(void)
             break;
 
         case COLOR:
-            colorWipe(currColor);
+            colorWipe(currentColor);
             break;
 
         case COLOR_WIPE:
@@ -126,32 +136,41 @@ void LEDControl::exec(void)
             break;
 
         default:
-            ledMode = LED_OFF;
+            currentMode = LED_OFF;
             break;
     }
 
-    ledMode = IDLE;  // Each state runs once. TODO: Split states into separate state machines.
+    if (RAINBOW_CYCLE != currentMode)
+    {
+        currentMode = IDLE;  // Each state runs once. TODO: Split states into separate state machines.
+    }
+}
+
+
+LEDModes LEDControl::getMode(void)
+{
+    return currentMode;
 }
 
 
 void LEDControl::setLedMode(LEDModes newMode, U32 color)
 {
-    ledMode = newMode;
+    currentMode = newMode;
 
-    if (COLOR == ledMode)
+    if (COLOR == currentMode)
     {
-        currColor = color;
+        currentColor = color;
     }
 }
 
 
 void LEDControl::setBrightness(U32 brightness)
 {
-    currBrightness = (brightness > MAX_LED_BRIGHTNESS) ? MAX_LED_BRIGHTNESS : brightness;
+    currentBrightness = (brightness > MAX_LED_BRIGHTNESS) ? MAX_LED_BRIGHTNESS : brightness;
 
     for (S32 n = 0; n < NUM_LED_STRIPS; n++)
     {
-        strips[n]->setBrightness(currBrightness);
+        strips[n]->setBrightness(currentBrightness);
         strips[n]->show();
     }
 }
@@ -174,10 +193,61 @@ U8 LEDControl::getBlue(U32 color)
     return (color);
 }
 
+
 // Convert separate R,G,B into packed 32-bit RGB color.
 U32 LEDControl::getColor(U8 r, U8 g, U8 b)
 {
     return ((U32)r << 16) | ((U32)g <<  8) | b;
+}
+
+
+U32 LEDControl::getNumPixels(U32 stripId)
+{
+    return (stripId < NUM_LED_STRIPS) ? strips[stripId]->numPixels() : 0;
+}
+
+
+void LEDControl::setPixelColor(U32 stripId, U32 pixelId, U32 color)
+{
+    if (stripId < NUM_LED_STRIPS)
+    {
+        if (pixelId < strips[stripId]->numPixels())
+        {
+            strips[stripId]->setPixelColor(pixelId, color);
+        }
+    }
+
+}
+
+
+void LEDControl::updateStrip(U32 stripId)
+{
+    if (stripId < NUM_LED_STRIPS)
+    {
+        strips[stripId]->show();
+    }
+}
+
+
+// Input a value 0 to 255 to get a color value.
+// The colors are a transition r - g - b - back to r.
+U32 LEDControl::Wheel(S8 WheelPos, U32 stripId)
+{
+    WheelPos = 255 - WheelPos;
+
+    if (WheelPos < 85)
+    {
+        return strips[stripId]->Color(255 - WheelPos * 3, 0, WheelPos * 3, 0);
+    }
+
+    if (WheelPos < 170)
+    {
+        WheelPos -= 85;
+        return strips[stripId]->Color(0, WheelPos * 3, 255 - WheelPos * 3, 0);
+    }
+
+    WheelPos -= 170;
+    return strips[stripId]->Color(WheelPos * 3, 255 - WheelPos * 3, 0, 0);
 }
 
 //############################################################################
@@ -331,28 +401,6 @@ void LEDControl::fullWhite(void)
 }
 
 
-// Slightly different, this makes the rainbow equally distributed throughout
-void LEDControl::rainbowCycle(U8 wait)
-{
-    for (U16 j = 0; j < 256 * 5; j++)  // 5 cycles of all colors on wheel
-    {
-        for (S32 n = 0; n < NUM_LED_STRIPS; n++)
-        {
-            for (U16 i = 0; i < strips[n]->numPixels(); i++)
-            {
-                strips[n]->setPixelColor(i, Wheel(((i * 256 / strips[n]->numPixels()) + j) & 255, n));
-            }
-        }
-
-        for (S32 n = 0; n < NUM_LED_STRIPS; n++)
-        {
-            strips[n]->show();
-            delay(wait);
-        }
-    }
-}
-
-
 void LEDControl::rainbow(U8 wait)
 {
     for (U16 j = 0; j < 256; j++)
@@ -371,26 +419,4 @@ void LEDControl::rainbow(U8 wait)
             delay(wait);
         }
     }
-}
-
-
-// Input a value 0 to 255 to get a color value.
-// The colours are a transition r - g - b - back to r.
-U32 LEDControl::Wheel(S8 WheelPos, U32 stripId)
-{
-    WheelPos = 255 - WheelPos;
-
-    if (WheelPos < 85)
-    {
-        return strips[stripId]->Color(255 - WheelPos * 3, 0, WheelPos * 3, 0);
-    }
-
-    if (WheelPos < 170)
-    {
-        WheelPos -= 85;
-        return strips[stripId]->Color(0, WheelPos * 3, 255 - WheelPos * 3, 0);
-    }
-
-    WheelPos -= 170;
-    return strips[stripId]->Color(WheelPos * 3, 255 - WheelPos * 3, 0, 0);
 }
