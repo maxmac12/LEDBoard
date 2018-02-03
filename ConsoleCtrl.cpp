@@ -128,6 +128,7 @@ void ConsoleCtrl::processCommands(void)
         CStr subject = strnsep(&ptrBuf, " ", CommonData<S32>::MAX_NAME_LEN * 4UL, 2UL);  // subject
         CStr value1  = strnsep(&ptrBuf, " ", CommonData<S32>::MAX_NAME_LEN * 4UL, 2UL);  // 1st value
         CStr value2  = strnsep(&ptrBuf, " ", CommonData<S32>::MAX_NAME_LEN * 4UL, 2UL);  // 2nd value
+        CStr value3  = strnsep(&ptrBuf, " ", CommonData<S32>::MAX_NAME_LEN * 4UL, 2UL);  // 3rd value
 
         if (ptrHashCmds != NULL)
         {
@@ -139,7 +140,7 @@ void ConsoleCtrl::processCommands(void)
 
                 // execute the command if command is found
                 if (reinterpret_cast<Command*>(ptrData->get())->exec(
-                        subject, value1, value2) != ER_SUCCESS)
+                        subject, value1, value2, value3) != ER_SUCCESS)
                 {
                     maintComm->sendData("\r\nCommand could not be executed.");
                 }

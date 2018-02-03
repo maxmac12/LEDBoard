@@ -13,19 +13,6 @@
 //  Public Defines
 //----------------------------------------------------------------------------
 
-#define STRIP_1_PIN  2
-#define STRIP_2_PIN  14
-#define STRIP_3_PIN  7
-#define STRIP_4_PIN  8
-#define STRIP_5_PIN  6
-#define STRIP_6_PIN  20
-#define STRIP_7_PIN  21
-#define STRIP_8_PIN  5
-
-#define NUM_LED_STRIPS  8
-#define NUM_LEDS_PER_STRIP  29
-#define LED_BRIGHTNESS  50
-
 //----------------------------------------------------------------------------
 //  Public Data Prototypes
 //----------------------------------------------------------------------------
@@ -38,6 +25,7 @@ enum LEDModes
     WHITE_OVER_RAINBOW,
     PULSE_WHITE,
     WHITE,
+    COLOR,
     COLOR_WIPE
 };
 
@@ -53,7 +41,12 @@ class LEDControl : public Task
 
         void init(void);
         void exec(void);
-        void setLedMode(LEDModes mode);
+        void setLedMode(LEDModes mode, U32 color = 0);
+        void setBrightness(U32 brightness);
+        U8  getRed(U32 color);
+        U8  getGreen(U32 color);
+        U8  getBlue(U32 color);
+        U32 getColor(U8 r, U8 g, U8 b);
 
         // Unused and disabled.
         ~LEDControl() {}
@@ -65,10 +58,9 @@ class LEDControl : public Task
     private:
 
         LEDModes ledMode;
+        U32 currBrightness;
+        U32 currColor;
 
-        U8 getRed(U32 c);
-        U8 getGreen(U32 c);
-        U8 getBlue(U32 c);
         U32 Wheel(S8 WheelPos, U32 stripId);
         void rainbow(U8 wait);
         void rainbowCycle(U8 wait);
@@ -77,7 +69,6 @@ class LEDControl : public Task
         void pulseWhite(void);
         void colorWipe(U32 c, U8 wait = 0);
         void ledsOff(void);
-        U32 getColor(U8 r, U8 g, U8 b);
 };
 
 //--------------------------------------------------------------------

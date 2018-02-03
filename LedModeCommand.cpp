@@ -5,6 +5,9 @@
 
 #include "LEDControl.hpp"
 #include "MaintenanceComm.hpp"
+#include <WCharacter.h>
+#include <stdlib.h>
+#include <Print.h>
 
 //----------------------------------------------------------------------------
 //  Local Defines
@@ -28,7 +31,7 @@ LedModeCommand::LedModeCommand()
 }
 
 
-ErrorCode LedModeCommand::exec(const CStr subject, const CStr value1, const CStr value2)
+ErrorCode LedModeCommand::exec(const CStr subject, const CStr value1, const CStr value2, CStr value3)
 {
     ErrorCode rtnErr = ER_FAIL;
 
@@ -51,6 +54,38 @@ ErrorCode LedModeCommand::exec(const CStr subject, const CStr value1, const CStr
             ledCtrl->setLedMode(WHITE_OVER_RAINBOW);
             maintComm->sendData("LED Mode -> White over Rainbow");
         }
+        else if (strncmp(subject, "color", 6UL) == 0)
+        {
+            rtnErr = ER_FAIL;
+
+            // Check to see if first character is a valid number (limit to 8 bit)
+            if (isAscii(*value1) && isAscii(*value2) && isAscii(*value3))
+            {
+                // Convert options to integers.
+                U32 red   = strtoul(value1, NULL, DEC);
+                U32 green = strtoul(value2, NULL, DEC);
+                U32 blue  = strtoul(value3, NULL, DEC);
+
+                ledCtrl->setLedMode(COLOR, ledCtrl->getColor(red, green, blue));
+                maintComm->sendData("LED Mode -> Color");
+                rtnErr = ER_SUCCESS;
+            }
+        }
+        else if (strncmp(subject, "bright", 7UL) == 0)
+        {
+            rtnErr = ER_FAIL;
+
+            // Check to see if first character is a valid number (limit to 8 bit)
+            if (isAscii(*value1))
+            {
+                // Convert options to integers.
+                U32 brightness   = strtoul(value1, NULL, DEC);
+
+                ledCtrl->setBrightness(brightness);
+                maintComm->sendData("LED Brightness Updated");
+                rtnErr = ER_SUCCESS;
+            }
+        }
         else if (strncmp(subject, "wipe", 5UL) == 0)
         {
             ledCtrl->setLedMode(COLOR_WIPE);
@@ -72,6 +107,8 @@ ErrorCode LedModeCommand::exec(const CStr subject, const CStr value1, const CStr
             maintComm->sendData("   off\r\n");
             maintComm->sendData("   rbwC\r\n");
             maintComm->sendData("   wRbw\r\n");
+            maintComm->sendData("   color [r] [g] [b]\r\n");
+            maintComm->sendData("   bright [value]\r\n");
             maintComm->sendData("   wipe\r\n");
             maintComm->sendData("   pwhite\r\n");
             maintComm->sendData("   white\r\n");

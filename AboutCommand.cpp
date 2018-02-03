@@ -26,7 +26,7 @@ AboutCommand::AboutCommand()
 }
 
 
-ErrorCode AboutCommand::exec(const CStr subject, const CStr value1, const CStr value2)
+ErrorCode AboutCommand::exec(const CStr subject, const CStr value1, const CStr value2, const CStr value3)
 {
     maintComm->sendData("LEDBoard Software\r\n");
 

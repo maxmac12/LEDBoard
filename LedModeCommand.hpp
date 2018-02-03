@@ -26,7 +26,7 @@ class LedModeCommand : public Command
 
         explicit LedModeCommand();
 
-        ErrorCode exec(const CStr subject, const CStr value1, const CStr value2);
+        ErrorCode exec(const CStr subject, const CStr value1, const CStr value2, const CStr value3);
 
     protected:
 

@@ -12,6 +12,10 @@
 //  Local Defines
 //----------------------------------------------------------------------------
 
+#define NUM_LED_STRIPS      8
+#define NUM_LEDS_PER_STRIP  29
+#define MAX_LED_BRIGHTNESS  70  // Limit LED brightness to protect power supply.
+
 const S8 neopix_gamma[] = {
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,
@@ -55,12 +59,13 @@ Adafruit_NeoPixel* const strips[NUM_LED_STRIPS] =
 //  Public Methods
 //############################################################################
 
-
 LEDControl::LEDControl() :
     Task(TASK_LED_CTRL_PERIOD,
          TASK_LED_CTRL_NAME,
          TID_LED_CTRL),
-    ledMode(IDLE)
+    ledMode(IDLE),
+    currBrightness(MAX_LED_BRIGHTNESS),
+    currColor(0)  // Off
 {
     // Do nothing.
 }
@@ -69,9 +74,9 @@ LEDControl::LEDControl() :
 void LEDControl::init(void)
 {
     // Initialize all pixels to 'off'
-    for (U32 n = 0; n < NUM_LED_STRIPS; n++)
+    for (S32 n = 0; n < NUM_LED_STRIPS; n++)
     {
-        strips[n]->setBrightness(LED_BRIGHTNESS);
+        strips[n]->setBrightness(currBrightness);
         strips[n]->begin();
         strips[n]->show();
     }
@@ -98,8 +103,12 @@ void LEDControl::exec(void)
             whiteOverRainbow(75, 5);
             break;
 
+        case COLOR:
+            colorWipe(currColor);
+            break;
+
         case COLOR_WIPE:
-            for (U32 n = 0; n < NUM_LED_STRIPS; n++)
+            for (S32 n = 0; n < NUM_LED_STRIPS; n++)
             {
                 colorWipe(strips[n]->Color(255, 0, 0),     255);  // Red
                 colorWipe(strips[n]->Color(0, 255, 0),     255);  // Green
@@ -125,9 +134,50 @@ void LEDControl::exec(void)
 }
 
 
-void LEDControl::setLedMode(LEDModes newMode)
+void LEDControl::setLedMode(LEDModes newMode, U32 color)
 {
     ledMode = newMode;
+
+    if (COLOR == ledMode)
+    {
+        currColor = color;
+    }
+}
+
+
+void LEDControl::setBrightness(U32 brightness)
+{
+    currBrightness = (brightness > MAX_LED_BRIGHTNESS) ? MAX_LED_BRIGHTNESS : brightness;
+
+    for (S32 n = 0; n < NUM_LED_STRIPS; n++)
+    {
+        strips[n]->setBrightness(currBrightness);
+        strips[n]->show();
+    }
+}
+
+
+U8 LEDControl::getRed(U32 color)
+{
+    return (color >> 16);
+}
+
+
+U8 LEDControl::getGreen(U32 color)
+{
+    return (color >> 8);
+}
+
+
+U8 LEDControl::getBlue(U32 color)
+{
+    return (color);
+}
+
+// Convert separate R,G,B into packed 32-bit RGB color.
+U32 LEDControl::getColor(U8 r, U8 g, U8 b)
+{
+    return ((U32)r << 16) | ((U32)g <<  8) | b;
 }
 
 //############################################################################
@@ -150,7 +200,7 @@ void LEDControl::ledsOff(void)
 // Fill the dots one after the other with a color
 void LEDControl::colorWipe(U32 c, U8 wait)
 {
-    for (U32 n = 0; n < NUM_LED_STRIPS; n++)
+    for (S32 n = 0; n < NUM_LED_STRIPS; n++)
     {
         for (U16 j = 0; j < strips[n]->numPixels(); j++)
         {
@@ -166,15 +216,13 @@ void LEDControl::colorWipe(U32 c, U8 wait)
 
 void LEDControl::pulseWhite(void)
 {
-    S8 buf[32];
     U32 color = 0x00000000;  // OFF
-    maintComm->sendData("\rStart Pulse", true, true);
 
     for (S32 j = 0; j < 256 ; j++)
     {
         color = getColor(neopix_gamma[j], neopix_gamma[j], neopix_gamma[j]);
 
-        for (U32 n = 0; n < NUM_LED_STRIPS; n++)
+        for (S32 n = 0; n < NUM_LED_STRIPS; n++)
         {
             for (U16 i = 0; i < strips[n]->numPixels(); i++)
             {
@@ -182,24 +230,19 @@ void LEDControl::pulseWhite(void)
             }
         }
 
-        for (U32 n = 0; n < NUM_LED_STRIPS; n++)
+        for (S32 n = 0; n < NUM_LED_STRIPS; n++)
         {
             strips[n]->show();
         }
 
         delay(10);
     }
-
-    maintComm->sendData("\rMid Pulse", true, true);
 
     for (S32 j = 255; j >= 0 ; j--)
     {
         color = getColor(neopix_gamma[j], neopix_gamma[j], neopix_gamma[j]);
 
-        snprintf(buf, sizeof(buf), "\r0x%X", color);
-        maintComm->sendData(buf, true, true);
-
-        for (U32 n = 0; n < NUM_LED_STRIPS; n++)
+        for (S32 n = 0; n < NUM_LED_STRIPS; n++)
         {
             for (U16 i = 0; i < strips[n]->numPixels(); i++)
             {
@@ -207,16 +250,13 @@ void LEDControl::pulseWhite(void)
             }
         }
 
-        for (U32 n = 0; n < NUM_LED_STRIPS; n++)
+        for (S32 n = 0; n < NUM_LED_STRIPS; n++)
         {
             strips[n]->show();
         }
 
         delay(10);
     }
-
-    maintComm->sendData("\rEnd Pulse", true, true);
-
 }
 
 
@@ -236,17 +276,17 @@ void LEDControl::whiteOverRainbow(Msec whiteSpeed, U8 whiteLength )
 
     while (true)
     {
-        for (int j = 0; j < 256; j++)
+        for (U16 j = 0; j < 256; j++)
         {
             for (int n = 0; n < NUM_LED_STRIPS; n++)
             {
-                for (uint16_t i = 0; i < strips[n]->numPixels(); i++)
+                for (U16 i = 0; i < strips[n]->numPixels(); i++)
                 {
                     if ((i >= tail && i <= head)   ||
                         (tail > head && i >= tail) ||
                         (tail > head && i <= head))
                     {
-                        strips[n]->setPixelColor(i, strips[n]->Color(0,0,0, 255));
+                        strips[n]->setPixelColor(i, getColor(255, 255, 255));
                     }
                     else
                     {
@@ -276,7 +316,7 @@ void LEDControl::whiteOverRainbow(Msec whiteSpeed, U8 whiteLength )
             head %= NUM_LEDS_PER_STRIP;
             tail %= NUM_LEDS_PER_STRIP;
 
-            for (U32 n = 0; n < NUM_LED_STRIPS; n++)
+            for (S32 n = 0; n < NUM_LED_STRIPS; n++)
             {
                 strips[n]->show();
             }
@@ -287,7 +327,7 @@ void LEDControl::whiteOverRainbow(Msec whiteSpeed, U8 whiteLength )
 
 void LEDControl::fullWhite(void)
 {
-    colorWipe(getColor(255, 255, 200));  // Warm white.
+    colorWipe(getColor(255, 255, 150));  // Warm white.
 }
 
 
@@ -296,7 +336,7 @@ void LEDControl::rainbowCycle(U8 wait)
 {
     for (U16 j = 0; j < 256 * 5; j++)  // 5 cycles of all colors on wheel
     {
-        for (U32 n = 0; n < NUM_LED_STRIPS; n++)
+        for (S32 n = 0; n < NUM_LED_STRIPS; n++)
         {
             for (U16 i = 0; i < strips[n]->numPixels(); i++)
             {
@@ -304,7 +344,7 @@ void LEDControl::rainbowCycle(U8 wait)
             }
         }
 
-        for (U32 n = 0; n < NUM_LED_STRIPS; n++)
+        for (S32 n = 0; n < NUM_LED_STRIPS; n++)
         {
             strips[n]->show();
             delay(wait);
@@ -317,7 +357,7 @@ void LEDControl::rainbow(U8 wait)
 {
     for (U16 j = 0; j < 256; j++)
     {
-        for (U32 n = 0; n < NUM_LED_STRIPS; n++)
+        for (S32 n = 0; n < NUM_LED_STRIPS; n++)
         {
             for (U16 i = 0; i < strips[n]->numPixels(); i++)
             {
@@ -354,29 +394,3 @@ U32 LEDControl::Wheel(S8 WheelPos, U32 stripId)
     WheelPos -= 170;
     return strips[stripId]->Color(WheelPos * 3, 255 - WheelPos * 3, 0, 0);
 }
-
-
-U8 LEDControl::getRed(U32 c)
-{
-    return (c >> 16);
-}
-
-
-U8 LEDControl::getGreen(U32 c)
-{
-    return (c >> 8);
-}
-
-
-U8 LEDControl::getBlue(U32 c)
-{
-    return (c);
-}
-
-// Convert separate R,G,B into packed 32-bit RGB color.
-U32 LEDControl::getColor(U8 r, U8 g, U8 b)
-{
-    return ((U32)r << 16) | ((U32)g <<  8) | b;
-}
-
-

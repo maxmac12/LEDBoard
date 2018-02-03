@@ -26,7 +26,7 @@ class AboutCommand : public Command
 
         explicit AboutCommand();
 
-        ErrorCode exec(const CStr subject, const CStr value1, const CStr value2);
+        ErrorCode exec(const CStr subject, const CStr value1, const CStr value2, const CStr value3);
 
     protected:
 
