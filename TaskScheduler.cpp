@@ -2,16 +2,15 @@
 //  Included Files
 //----------------------------------------------------------------------------
 #include "ConsoleCtrl.hpp"
+#include "LEDControl.hpp"
 #include "MaintenanceComm.hpp"
-#include "Queue.hpp"
-#include "StopWatch.hpp"
 #include "Task.hpp"
+#include "StopWatch.hpp"
 #include "appconfig.hpp"
 #include "dataTypes.h"
 #include <core_pins.h>
 #include <pins_arduino.h>
 #include <wiring.h>
-#include "LEDControl.hpp"
 
 //----------------------------------------------------------------------------
 //  Local Defines
@@ -21,6 +20,12 @@
 //----------------------------------------------------------------------------
 //  Public Data
 //----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+//  Private Data
+//----------------------------------------------------------------------------
+
+// Add additional tasks here.
 Task* tasks[] =
 {
     ledCtrl,
@@ -30,10 +35,6 @@ Task* tasks[] =
     NULL          // end of list - DO NOT REMOVE!!!
 };
 
-//----------------------------------------------------------------------------
-//  Private Data
-//----------------------------------------------------------------------------
-
 StopWatch* ledTimer  = new StopWatch();  // LED Blink timer.
 
 static void blinkLED(void);
@@ -42,7 +43,6 @@ static void blinkLED(void);
 //  Public Methods
 //############################################################################
 
-// TODO: Create basic task scheduler.
 void setup(void)
 {
     pinMode(LED_BUILTIN, OUTPUT);     // Configure LED pin
@@ -54,10 +54,6 @@ void setup(void)
     {
         tasks[i]->init();
     }
-
-//    ledCtrl->init();
-//    consoleCtrl->init();
-//    maintComm->init();
 }
 
 

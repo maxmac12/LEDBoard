@@ -63,7 +63,7 @@ class Command
         //     [in] subject - Subject of the command.
         //     [in] value1 - The first value parameter of the command.
         //     [in] value2 - The second value parameter of the command.
-        //     [in] value3 - The second value parameter of the command.
+        //     [in] value3 - The third value parameter of the command.
         // 
         // Return:
         //     Dependent on implementation.
@@ -122,6 +122,7 @@ class Command
         //     [in] subject - Subject of the command.
         //     [in] value1 - The first value parameter of the command.
         //     [in] value2 - The second value parameter of the command.
+        //     [in] value3 - The third value parameter of the command.
         // 
         // Return:
         //     True if all input parameters are valid strings.
@@ -132,7 +133,8 @@ class Command
         //--------------------------------------------------------------------
         bool allParamsAreValid(const CStr subject,
                                const CStr value1,
-                               const CStr value2) const;
+                               const CStr value2,
+                               const CStr value3) const;
                                
     private:
             

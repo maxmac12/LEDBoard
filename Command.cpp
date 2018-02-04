@@ -44,9 +44,10 @@ bool Command::subjectAndValue1AreValid(const CStr subject,
 
 bool Command::allParamsAreValid(const CStr subject,
                                 const CStr value1,
-                                const CStr value2) const
+                                const CStr value2,
+                                const CStr value3) const
 {
-    return (subjectAndValue1AreValid(subject, value1) && (value2 != NULL));
+    return (subjectAndValue1AreValid(subject, value1) && (value2 != NULL) && (value3 != NULL));
 }
 
 //############################################################################

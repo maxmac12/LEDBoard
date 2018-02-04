@@ -1,5 +1,5 @@
-#ifndef SMRAINBOWCYCLE_H
-#define SMRAINBOWCYCLE_H
+#ifndef SMCOLORPULSE_H
+#define SMCOLORPULSE_H
 
 //----------------------------------------------------------------------------
 //  Included Files
@@ -18,15 +18,16 @@
 //  Public Function Prototypes
 //----------------------------------------------------------------------------
 
-class SMRainbowCycle : public StateMachine
+class SMColorPulse : public StateMachine
 {
     public:
 
-        explicit SMRainbowCycle();
+        explicit SMColorPulse();
 
         void init(void);
         void run(void);
         void reset(void);
+        void setPulseSpeed(Msec speed);
 
     protected:
 
@@ -36,18 +37,20 @@ class SMRainbowCycle : public StateMachine
         {
             IDLE_STATE,
             INITIAL_STATE,
-            UPDATE_PIXELS,
-            UPDATE_STRIPS,
+            FADE_IN_STATE,
+            FADE_OUT_STATE,
+            DELAY_STATE,
             NUM_STATES
         };
 
         void idle(void);
         void initialState(void);
-        void updatePixels(void);
-        void updateStrips(void);
+        void fadeIn(void);
+        void fadeOut(void);
+        void delay(void);
 
         // Define a function pointer type.
-        typedef void (SMRainbowCycle::*PtrStateFunc)(void);
+        typedef void (SMColorPulse::*PtrStateFunc)(void);
 
         // Pointer to the current state.
         PtrStateFunc ptrCurrentState;
@@ -55,13 +58,14 @@ class SMRainbowCycle : public StateMachine
         // An array of pointers to the state functions.
         PtrStateFunc ptrStateFunc[NUM_STATES];
 
-        U32 currentStrip;
-        U32 wheelPosition;
+        U8 brightness;
+        Msec pulseSpeed;
+        bool fadeInFlag;
 
         // Unused and disabled.
-        ~SMRainbowCycle() {}
-        SMRainbowCycle(const SMRainbowCycle&);
-        SMRainbowCycle& operator=(const SMRainbowCycle&);
+        ~SMColorPulse() {}
+        SMColorPulse(const SMColorPulse&);
+        SMColorPulse& operator=(const SMColorPulse&);
 };
 
 //--------------------------------------------------------------------

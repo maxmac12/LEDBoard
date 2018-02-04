@@ -54,7 +54,7 @@ void SMRainbowCycle::run(void)
 
 void SMRainbowCycle::reset(void)
 {
-    ptrCurrentState = ptrStateFunc[IDLE];
+    ptrCurrentState = ptrStateFunc[IDLE_STATE];
 }
 
 //############################################################################
@@ -67,7 +67,7 @@ void SMRainbowCycle::reset(void)
 
 void SMRainbowCycle::idle(void)
 {
-    if (RAINBOW_CYCLE == ledCtrl->getMode())
+    if (RAINBOW_CYCLE == ledCtrl->getLedMode())
     {
         ptrCurrentState = ptrStateFunc[INITIAL_STATE];
     }

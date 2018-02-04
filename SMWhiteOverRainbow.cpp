@@ -31,13 +31,13 @@ SMWhiteOverRainbow::SMWhiteOverRainbow():
     head(0),
     tail(0)
 {
-    // Initialize the pointers to the rainbow cycle state functions.
+    // Initialize the pointers to the white over rainbow cycle state functions.
     ptrStateFunc[IDLE_STATE]    = &SMWhiteOverRainbow::idle;
     ptrStateFunc[INITIAL_STATE] = &SMWhiteOverRainbow::initialState;
     ptrStateFunc[UPDATE_PIXELS] = &SMWhiteOverRainbow::updatePixels;
     ptrStateFunc[UPDATE_STRIPS] = &SMWhiteOverRainbow::updateStrips;
 
-    // Set the initial rainbow cycle state.
+    // Set the initial white over rainbow cycle state.
     ptrCurrentState = ptrStateFunc[IDLE_STATE];
 }
 
@@ -60,7 +60,7 @@ void SMWhiteOverRainbow::run(void)
 
 void SMWhiteOverRainbow::reset(void)
 {
-    ptrCurrentState = ptrStateFunc[IDLE];
+    ptrCurrentState = ptrStateFunc[IDLE_STATE];
 }
 
 
@@ -87,7 +87,7 @@ void SMWhiteOverRainbow::setWhiteSpeed(Msec speed)
 
 void SMWhiteOverRainbow::idle(void)
 {
-    if (WHITE_OVER_RAINBOW == ledCtrl->getMode())
+    if (WHITE_OVER_RAINBOW == ledCtrl->getLedMode())
     {
         ptrCurrentState = ptrStateFunc[INITIAL_STATE];
     }
@@ -121,7 +121,7 @@ void SMWhiteOverRainbow::updatePixels(void)
             // Set pixel to WHITE.
             ledCtrl->setPixelColor(currentStrip,
                                    i,
-                                   ledCtrl->getColor(255, 255, 255));
+                                   ledCtrl->getColorValue(255, 255, 255));
         }
         else
         {

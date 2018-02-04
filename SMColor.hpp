@@ -1,5 +1,5 @@
-#ifndef SMRAINBOWCYCLE_H
-#define SMRAINBOWCYCLE_H
+#ifndef SMCOLOR_H
+#define SMCOLOR_H
 
 //----------------------------------------------------------------------------
 //  Included Files
@@ -18,11 +18,11 @@
 //  Public Function Prototypes
 //----------------------------------------------------------------------------
 
-class SMRainbowCycle : public StateMachine
+class SMColor : public StateMachine
 {
     public:
 
-        explicit SMRainbowCycle();
+        explicit SMColor();
 
         void init(void);
         void run(void);
@@ -35,19 +35,15 @@ class SMRainbowCycle : public StateMachine
         enum States
         {
             IDLE_STATE,
-            INITIAL_STATE,
-            UPDATE_PIXELS,
-            UPDATE_STRIPS,
+            SET_COLOR_STATE,
             NUM_STATES
         };
 
         void idle(void);
-        void initialState(void);
-        void updatePixels(void);
-        void updateStrips(void);
+        void setColor(void);
 
         // Define a function pointer type.
-        typedef void (SMRainbowCycle::*PtrStateFunc)(void);
+        typedef void (SMColor::*PtrStateFunc)(void);
 
         // Pointer to the current state.
         PtrStateFunc ptrCurrentState;
@@ -55,13 +51,13 @@ class SMRainbowCycle : public StateMachine
         // An array of pointers to the state functions.
         PtrStateFunc ptrStateFunc[NUM_STATES];
 
-        U32 currentStrip;
-        U32 wheelPosition;
+        U32 currentColor;
+        bool runUntilColorChange;  // Allows the state machine to run the first execution of run() even if the color hasn't changed.
 
         // Unused and disabled.
-        ~SMRainbowCycle() {}
-        SMRainbowCycle(const SMRainbowCycle&);
-        SMRainbowCycle& operator=(const SMRainbowCycle&);
+        ~SMColor() {}
+        SMColor(const SMColor&);
+        SMColor& operator=(const SMColor&);
 };
 
 //--------------------------------------------------------------------
