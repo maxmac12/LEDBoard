@@ -22,7 +22,7 @@
 
 SMColorPulse::SMColorPulse():
     ptrCurrentState(NULL),
-    brightness(0),
+    brightness(1),
     pulseSpeed(50),  // Pulse Time = 2 * pulseSpeed * MAX_LED_BRIGHTNESS [msecs]
     fadeInFlag(true)
 {

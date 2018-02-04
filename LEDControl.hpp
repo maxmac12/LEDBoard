@@ -8,6 +8,7 @@
 #include "Task.hpp"
 #include "Singleton.hpp"
 #include "StateMachine.hpp"
+#include "StopWatch.hpp"
 #include "dataTypes.h"
 
 //----------------------------------------------------------------------------
@@ -74,13 +75,15 @@ class LEDControl : public Task
 
     private:
 
+        void readAnalogBrightness(void);
+        void rainbow(U8 wait);
+
         StateMachine* ptrLedStateMachines[NUM_LED_MODES];
         LEDModes currentMode;
         LEDModes previousMode;
         U8 currentBrightness;
         U32 currentColor;
-
-        void rainbow(U8 wait);
+        StopWatch* ptrStopWatch;
 };
 
 //----------------------------------------------------------------------------

@@ -13,6 +13,7 @@
 //----------------------------------------------------------------------------
 //  Local Defines
 //----------------------------------------------------------------------------
+#define ANALOG_READ_DELAY 40  // TODO: Update to get a better ADC average (128Hz, 32Hz, ...)
 
 //----------------------------------------------------------------------------
 //  Public Data
@@ -47,13 +48,16 @@ LEDControl::LEDControl() :
     currentMode(COLOR),
     previousMode(COLOR),
     currentBrightness(MAX_LED_BRIGHTNESS),
-    currentColor(0x00000000)  // Off
+    currentColor(0x00000000),  // Off
+    ptrStopWatch(new StopWatch())
 {
     // Create each LED mode state machine.
     ptrLedStateMachines[COLOR]              = new SMColor();
     ptrLedStateMachines[COLOR_PULSE]        = new SMColorPulse();
     ptrLedStateMachines[RAINBOW_CYCLE]      = new SMRainbowCycle();
     ptrLedStateMachines[WHITE_OVER_RAINBOW] = new SMWhiteOverRainbow();
+
+    ptrStopWatch->start(ANALOG_READ_DELAY);
 }
 
 
@@ -87,6 +91,9 @@ void LEDControl::exec(void)
 
     // Run the active LED mode state machine.
     ptrLedStateMachines[currentMode]->run();
+
+    // Read brightness ADC input.
+    readAnalogBrightness();
 }
 
 
@@ -263,6 +270,48 @@ U32 LEDControl::Wheel(S8 WheelPos, U32 stripId)
 //############################################################################
 //  Private Methods
 //############################################################################
+
+
+void LEDControl::readAnalogBrightness(void)
+{
+    // TODO: Implement an IIR filter for the ADC values. Currently just an average over 4 readings.
+    // TODO: Scale the readings to the MAX_BRIGHTNESS.
+    const U8 MAX_ADC_READS = 4;
+    static U8 numReadings = 0;
+    static U32 brightAdcTotal;
+
+    if (ptrStopWatch->timerHasExpired())
+    {
+        // ADC values are 10-bit (0 - 1023)
+        // Brightness values are between 0 - 255.
+        // Divide the ADC value by 4 to get a brightness value.
+        brightAdcTotal += (U32)analogRead(A9);
+
+        if (++numReadings >= MAX_ADC_READS)
+        {
+            // Get the average of the readings by dividing by 4 and
+            // scale readings down to 8-bit brightness value.
+            brightAdcTotal >>= 4;
+
+            // Color Pulse state machine controls the brightness when running.
+            // Add +/- 4 tolerance to ADC average.
+            if ((currentMode != COLOR_PULSE) &&
+               ((brightAdcTotal >= (currentBrightness + 2)) ||
+                (brightAdcTotal <= (currentBrightness - 2))))
+            {
+                setBrightness(brightAdcTotal);
+            }
+
+            // Reset ADC readings.
+            numReadings = 0;
+            brightAdcTotal = 0;
+        }
+
+        ptrStopWatch->start(ANALOG_READ_DELAY);
+    }
+
+}
+
 
 // TODO: Determine if this function can be deleted.
 void LEDControl::rainbow(U8 wait)

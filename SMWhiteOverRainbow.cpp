@@ -7,7 +7,7 @@
 //----------------------------------------------------------------------------
 //  Local Defines
 //----------------------------------------------------------------------------
-#define DEFAULT_SPEED   50
+#define DEFAULT_SPEED   20
 #define DEFAULT_LENGTH  4
 
 //----------------------------------------------------------------------------
@@ -111,6 +111,7 @@ void SMWhiteOverRainbow::updatePixels(void)
 {
     // Update one strip per cycle.
     U32 numPixels = ledCtrl->getNumPixels(currentStrip);
+    U32 color;
 
     for (U16 i = 0; i < numPixels; i++)
     {
@@ -119,17 +120,15 @@ void SMWhiteOverRainbow::updatePixels(void)
             (tail > head && i <= head))
         {
             // Set pixel to WHITE.
-            ledCtrl->setPixelColor(currentStrip,
-                                   i,
-                                   ledCtrl->getColorValue(255, 255, 255));
+            color = 0xFFFFFFFF;
         }
         else
         {
             // Set pixel to the current color wheel color.
-            ledCtrl->setPixelColor(currentStrip,
-                                   i,
-                                   ledCtrl->Wheel(((i * 256 / numPixels) + wheelPosition) & 255, currentStrip));
+            color = ledCtrl->Wheel(((i * 256 / numPixels) + wheelPosition) & 255, currentStrip);
         }
+
+        ledCtrl->setPixelColor(currentStrip, i, color);
     }
 
     if (stopWatch.timerHasExpired())
