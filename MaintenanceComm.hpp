@@ -10,9 +10,17 @@
 #include "Singleton.hpp"
 #include "Task.hpp"
 
+#include <HardwareSerial.h>
+#include <pins_arduino.h>
+
 //----------------------------------------------------------------------------
 //  Public Defines
 //----------------------------------------------------------------------------
+
+#define COM_PORT   Serial5
+#define COM_BAUD   115200
+#define COM_RX_PIN A15
+#define COM_TX_PIN A14
 
 static const U8 CARRIAGE_RETURN = 0x0D;     // Carriage return.
 static const U8 LINE_FEED       = 0x0A;     // Line Feed.

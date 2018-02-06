@@ -41,12 +41,12 @@ MaintenanceComm::MaintenanceComm() :
 
 void MaintenanceComm::init(void)
 {
-    Serial2.begin(115200);
-    Serial2.setRX(9);
-    Serial2.setTX(10);
+    COM_PORT.begin(COM_BAUD);
+    COM_PORT.setRX(COM_RX_PIN);
+    COM_PORT.setTX(COM_TX_PIN);
 
-    while(!Serial2);
-    Serial2.println("Maintenance Port Initiated");
+    while(!COM_PORT);
+    COM_PORT.println("Maintenance Port Initiated");
 }
 
 
@@ -88,7 +88,7 @@ void MaintenanceComm::sendData(const S8* ptrVal, const bool newLine, const bool 
     else
     {
         // no buffering desired; output immediately
-        Serial2.printf(newLine ? "%s\n" : "%s", ptrVal);
+        COM_PORT.printf(newLine ? "%s\n" : "%s", ptrVal);
     }
 }
 
@@ -136,7 +136,7 @@ void MaintenanceComm::send(void)
         }
         else
         {
-            Serial2.printf("%s", txBuf);
+            COM_PORT.printf("%s", txBuf);
         }
     }
 }
@@ -152,9 +152,9 @@ void MaintenanceComm::receive(void)
     while (!readFinished)
     {
         // Check if there are bytes in the receive buffer.
-        if (Serial2.available() > 0)
+        if (COM_PORT.available() > 0)
         {
-            byte = Serial2.read();
+            byte = COM_PORT.read();
 
             // look for carriage return, line feed, or max line length
             if ((CARRIAGE_RETURN == byte) ||
@@ -184,7 +184,7 @@ void MaintenanceComm::receive(void)
 
                     for (U8 key = 0; key < sizeof(keystrokes); key++)
                     {
-                        Serial2.print((char)keystrokes[key]);
+                        COM_PORT.print((char)keystrokes[key]);
                     }
                 }
             }
@@ -194,7 +194,7 @@ void MaintenanceComm::receive(void)
                 rxBuf[currLineLoc++] = byte;
 
                 // echo the input
-                Serial2.print((char)byte);
+                COM_PORT.print((char)byte);
             }
         }
         else
