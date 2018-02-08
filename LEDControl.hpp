@@ -18,12 +18,15 @@
 #define NUM_LED_STRIPS      8
 #define NUM_LEDS_PER_STRIP  29
 #define MAX_LED_BRIGHTNESS  100  // [1 (min)- 255 (max] Limit LED brightness to protect power supply.
-#define MIN_LED_BRIGHTNESS  1    // Adafruit Neopixel library has issues with brightness of 0.
+#define MIN_LED_BRIGHTNESS  1    // TODO: Determine if Adafruit Neopixel library has issues with brightness of 0.
 
 //----------------------------------------------------------------------------
 //  Public Data Prototypes
 //----------------------------------------------------------------------------
 
+// The following enumerations indicate the different LED modes.
+// This list must begin with zero (0) and be in sequential order
+// in order for the momentary switch to properly cycle through modes.
 enum LEDModes
 {
     COLOR = 0,
@@ -65,6 +68,7 @@ class LEDControl : public Task
         void updateStrip(U32 stripId);
         void updateAllStrips(void);
         U32 Wheel(S8 WheelPos, U32 stripId);
+        void turnLedsOff(void);
 
         // Unused and disabled.
         ~LEDControl() {}
@@ -76,6 +80,7 @@ class LEDControl : public Task
     private:
 
         void readAnalogBrightness(void);
+        void readMomentarySwitch(void);
         void rainbow(U8 wait);
 
         StateMachine* ptrLedStateMachines[NUM_LED_MODES];
@@ -83,7 +88,8 @@ class LEDControl : public Task
         LEDModes previousMode;
         U8 currentBrightness;
         U32 currentColor;
-        StopWatch* ptrStopWatch;
+        StopWatch* ptrBrightnessTimer;
+        StopWatch* ptrMomSwitchDebounce;
 };
 
 //----------------------------------------------------------------------------

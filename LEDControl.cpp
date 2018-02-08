@@ -10,10 +10,19 @@
 #include "SMRainbowCycle.hpp"
 #include "SMWhiteOverRainbow.hpp"
 
+#include "MaintenanceComm.hpp"
+
 //----------------------------------------------------------------------------
 //  Local Defines
 //----------------------------------------------------------------------------
-#define ANALOG_READ_DELAY 40  // TODO: Update to get a better ADC average (128Hz, 32Hz, ...)
+#define MOM_SW_PIN       A0  // Momentary switch pin.
+#define MOM_SW_DEBOUNCE  40  // Debounce time (Msec) for momentary switch.
+
+#define BRIGHTNESS_PIN        A1  // Brightness potentiometer pin.
+#define BRIGHTNESS_TOLERANCE  2   // +/- tolerance of change for brightness.
+#define BRIGHTNESS_FLOOR      5   // Set brightness to minimum when less than this value.
+
+#define ANALOG_READ_DELAY  60  // TODO: Update to get a better ADC average (128Hz, 32Hz, ...)
 
 //----------------------------------------------------------------------------
 //  Public Data
@@ -49,7 +58,8 @@ LEDControl::LEDControl() :
     previousMode(COLOR),
     currentBrightness(MAX_LED_BRIGHTNESS),
     currentColor(0x00000000),  // Off
-    ptrStopWatch(new StopWatch())
+    ptrBrightnessTimer(new StopWatch()),
+    ptrMomSwitchDebounce(new StopWatch())
 {
     // Create each LED mode state machine.
     ptrLedStateMachines[COLOR]              = new SMColor();
@@ -57,7 +67,7 @@ LEDControl::LEDControl() :
     ptrLedStateMachines[RAINBOW_CYCLE]      = new SMRainbowCycle();
     ptrLedStateMachines[WHITE_OVER_RAINBOW] = new SMWhiteOverRainbow();
 
-    ptrStopWatch->start(ANALOG_READ_DELAY);
+    ptrBrightnessTimer->start(ANALOG_READ_DELAY);
 }
 
 
@@ -76,6 +86,9 @@ void LEDControl::init(void)
     {
         ptrLedStateMachines[i]->init();
     }
+
+    // Configure momentary switch pin.
+    pinMode(MOM_SW_PIN, INPUT_PULLUP);
 }
 
 
@@ -94,6 +107,9 @@ void LEDControl::exec(void)
 
     // Read brightness ADC input.
     readAnalogBrightness();
+
+    // Read the momentary switch input.
+    readMomentarySwitch();
 }
 
 
@@ -263,6 +279,22 @@ U32 LEDControl::Wheel(S8 WheelPos, U32 stripId)
     return strips[stripId]->Color(WheelPos * 3, 255 - WheelPos * 3, 0, 0);
 }
 
+
+void LEDControl::turnLedsOff(void)
+{
+    for (S32 i = 0; i < NUM_LED_STRIPS; i++)
+    {
+        U16 numPixels = ledCtrl->getNumPixels(i);
+
+        for (U16 j = 0; j < numPixels; j++)
+        {
+            ledCtrl->setPixelColor(i, j, 0x00000000);
+        }
+
+        ledCtrl->updateStrip(i);
+    }
+}
+
 //############################################################################
 //  Protected Methods
 //############################################################################
@@ -280,12 +312,12 @@ void LEDControl::readAnalogBrightness(void)
     static U8 numReadings = 0;
     static U32 brightAdcTotal;
 
-    if (ptrStopWatch->timerHasExpired())
+    if (ptrBrightnessTimer->timerHasExpired())
     {
         // ADC values are 10-bit (0 - 1023)
         // Brightness values are between 0 - 255.
         // Divide the ADC value by 4 to get a brightness value.
-        brightAdcTotal += (U32)analogRead(A9);
+        brightAdcTotal += (U32)analogRead(BRIGHTNESS_PIN);
 
         if (++numReadings >= MAX_ADC_READS)
         {
@@ -296,10 +328,19 @@ void LEDControl::readAnalogBrightness(void)
             // Color Pulse state machine controls the brightness when running.
             // Add +/- 4 tolerance to ADC average.
             if ((currentMode != COLOR_PULSE) &&
-               ((brightAdcTotal >= (currentBrightness + 2)) ||
-                (brightAdcTotal <= (currentBrightness - 2))))
+               ((brightAdcTotal >= (currentBrightness + BRIGHTNESS_TOLERANCE)) ||
+                (brightAdcTotal <= (currentBrightness - BRIGHTNESS_TOLERANCE))))
             {
-                setBrightness(brightAdcTotal);
+                if (brightAdcTotal < BRIGHTNESS_FLOOR)
+                {
+                    // Turn LEDs OFF.
+                    turnLedsOff();
+                }
+                else
+                {
+                    // Set the brightness based on the ADC reading.
+                    setBrightness(brightAdcTotal);
+                }
             }
 
             // Reset ADC readings.
@@ -307,9 +348,52 @@ void LEDControl::readAnalogBrightness(void)
             brightAdcTotal = 0;
         }
 
-        ptrStopWatch->start(ANALOG_READ_DELAY);
+        ptrBrightnessTimer->start(ANALOG_READ_DELAY);
     }
 
+}
+
+
+void LEDControl::readMomentarySwitch(void)
+{
+    static bool debounceInProgress = false;  // Flag indicating if the switch is being debounced.
+    static U8 lastSwState          = HIGH;   // Momentary switch is GND-Active.
+
+    U8 currSwState = digitalRead(MOM_SW_PIN);
+
+    // Check if switch state has changed.
+    if (currSwState != lastSwState)
+    {
+        // Switch state has changed. Begin debounce.
+        ptrMomSwitchDebounce->start(MOM_SW_DEBOUNCE);
+        debounceInProgress = true;
+    }
+
+    // Check if the switch has been debounced.
+    if ((ptrMomSwitchDebounce->timerHasExpired()) &&
+        (debounceInProgress))
+    {
+        // Switch debounce complete.
+        debounceInProgress = false;
+
+        // Switch state has been debounced.
+        if (LOW == currSwState)
+        {
+            // Switch is active. Cycle through the different LED modes.
+            if ((LEDModes)(currentMode + 1) >= NUM_LED_MODES)
+            {
+                // Rollover to the beginning of the LED mode list.
+                setLedMode((LEDModes)(0));
+            }
+            else
+            {
+                // Increment to the next LED mode.
+                setLedMode((LEDModes)(currentMode + 1));
+            }
+        }
+    }
+
+    lastSwState = currSwState;
 }
 
 

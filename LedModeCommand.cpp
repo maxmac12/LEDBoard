@@ -42,8 +42,7 @@ ErrorCode LedModeCommand::exec(const CStr subject, const CStr value1, const CStr
 
         if (strncmp(subject, "off", 4UL) == 0)
         {
-            ledCtrl->setLedMode(COLOR);
-            ledCtrl->setCurrentColor(0, 0, 0);
+            ledCtrl->turnLedsOff();
             maintComm->sendData("LEDs OFF");
         }
         else if (strncmp(subject, "rainbow", 8UL) == 0)
