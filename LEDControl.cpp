@@ -36,14 +36,14 @@
 Adafruit_NeoPixel* strips[NUM_LED_STRIPS] =
 {
     // Add additional LED strips here.
-    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 2,  NEO_GRB + NEO_KHZ800),
-    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 14, NEO_GRB + NEO_KHZ800),
-    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 7,  NEO_GRB + NEO_KHZ800),
-    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 8,  NEO_GRB + NEO_KHZ800),
-    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 6,  NEO_GRB + NEO_KHZ800),
-    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 20, NEO_GRB + NEO_KHZ800),
-    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 21, NEO_GRB + NEO_KHZ800),
-    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 5,  NEO_GRB + NEO_KHZ800)
+    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 2, NEO_GRB + NEO_KHZ800),
+    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 3, NEO_GRB + NEO_KHZ800),
+    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 4, NEO_GRB + NEO_KHZ800),
+    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 5, NEO_GRB + NEO_KHZ800),
+    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 6, NEO_GRB + NEO_KHZ800),
+    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 7, NEO_GRB + NEO_KHZ800),
+    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 8, NEO_GRB + NEO_KHZ800),
+    new Adafruit_NeoPixel(NUM_LEDS_PER_STRIP, 9, NEO_GRB + NEO_KHZ800)
 };
 
 //############################################################################
