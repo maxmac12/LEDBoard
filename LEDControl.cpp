@@ -45,8 +45,7 @@ Adafruit_NeoPixel* strips[NUM_LED_STRIPS] =
 //############################################################################
 
 LEDControl::LEDControl() :
-    currentMode(OFF),
-    previousMode(OFF),
+    mode(OFF),
     whiteRainbowLength(DEFAULT_WHITE_RAINBOW_LENGTH),
     whiteRainbowSpeed(DEFAULT_WHITE_RAINBOW_SPEED),
     colorPulseSpeed(DEFAULT_COLOR_PULSE_SPEED),
@@ -71,16 +70,16 @@ void LEDControl::init(void)
 
 LEDModes LEDControl::getLedMode(void)
 {
-    return currentMode;
+    return mode;
 }
 
 
 void LEDControl::setLedMode(LEDModes newMode)
 {
-    currentMode = newMode;
+    mode = newMode;
 
     // Relay a message to the comm port to indicate LED mode change.
-    switch (currentMode)
+    switch (mode)
     {
         case OFF:
             maintComm->sendData("LED Mode -> OFF\r\n");

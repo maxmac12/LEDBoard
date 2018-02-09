@@ -90,8 +90,7 @@ class LEDControl
         void readMomentarySwitch(void);
         void rainbow(U8 wait);
 
-        LEDModes currentMode;
-        LEDModes previousMode;
+        LEDModes mode;
         U32 whiteRainbowLength;
         Msec whiteRainbowSpeed;
         Msec colorPulseSpeed;

@@ -4,5 +4,6 @@
 *.elf
 *.sizeok
 *.a
+*.hex
 TemplateHeader.txt
 TemplateSource.txt

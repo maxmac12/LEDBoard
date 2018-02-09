@@ -51,9 +51,6 @@ class SMColor : public StateMachine
         // An array of pointers to the state functions.
         PtrStateFunc ptrStateFunc[NUM_STATES];
 
-        U32 currentColor;
-        bool runUntilColorChange;  // Allows the state machine to run the first execution of run() even if the color hasn't changed.
-
         // Unused and disabled.
         ~SMColor() {}
         SMColor(const SMColor&);

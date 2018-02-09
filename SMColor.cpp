@@ -21,9 +21,7 @@
 //############################################################################
 
 SMColor::SMColor():
-    ptrCurrentState(NULL),
-    currentColor(0x00000000),  // OFF
-    runUntilColorChange(true)
+    ptrCurrentState(NULL)
 {
     // Initialize the pointers to color state functions.
     ptrStateFunc[IDLE_STATE]      = &SMColor::idle;
@@ -65,16 +63,8 @@ void SMColor::reset(void)
 
 void SMColor::idle(void)
 {
-    if ((COLOR == ledCtrl->getLedMode()) &&
-       ((currentColor != ledCtrl->getCurrentColor()) || runUntilColorChange))
+    if (COLOR == ledCtrl->getLedMode())
     {
-        // This block allows the state machine to run until a change in color occurs
-        // and is needed
-        if (currentColor != ledCtrl->getCurrentColor())
-        {
-            runUntilColorChange = false;
-        }
-
         ptrCurrentState = ptrStateFunc[SET_COLOR_STATE];
     }
 }
@@ -82,15 +72,13 @@ void SMColor::idle(void)
 
 void SMColor::setColor(void)
 {
-    currentColor = ledCtrl->getCurrentColor();
-
     for (S32 i = 0; i < NUM_LED_STRIPS; i++)
     {
         U16 numPixels = ledCtrl->getNumPixels(i);
 
         for (U16 j = 0; j < numPixels; j++)
         {
-            ledCtrl->setPixelColor(i, j, currentColor);
+            ledCtrl->setPixelColor(i, j, ledCtrl->getCurrentColor());
         }
 
         ledCtrl->updateStrip(i);
