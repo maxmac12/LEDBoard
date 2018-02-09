@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------
 //  Included Files
 //----------------------------------------------------------------------------
-#include "SMColor.hpp"
+#include "SMWhite.hpp"
 #include "LEDControl.hpp"
 
 //----------------------------------------------------------------------------
@@ -20,27 +20,24 @@
 //  Public Methods
 //############################################################################
 
-SMColor::SMColor():
-    ptrCurrentState(NULL),
-    currentColor(0x00000000),  // OFF
-    runUntilColorChange(true)
+SMWhite::SMWhite()
 {
     // Initialize the pointers to color state functions.
-    ptrStateFunc[IDLE_STATE]      = &SMColor::idle;
-    ptrStateFunc[SET_COLOR_STATE] = &SMColor::setColor;
+    ptrStateFunc[IDLE_STATE]  = &SMWhite::idle;
+    ptrStateFunc[WHITE_STATE] = &SMWhite::setWhiteLight;
 
     // Set the initial color state.
     ptrCurrentState = ptrStateFunc[IDLE_STATE];
 }
 
 
-void SMColor::init(void)
+void SMWhite::init(void)
 {
     // Do nothing.
 }
 
 
-void SMColor::run(void)
+void SMWhite::run(void)
 {
     if (NULL != ptrCurrentState)
     {
@@ -50,7 +47,7 @@ void SMColor::run(void)
 }
 
 
-void SMColor::reset(void)
+void SMWhite::reset(void)
 {
     ptrCurrentState = ptrStateFunc[IDLE_STATE];
 }
@@ -63,34 +60,25 @@ void SMColor::reset(void)
 //  Private Methods
 //############################################################################
 
-void SMColor::idle(void)
+void SMWhite::idle(void)
 {
-    if ((COLOR == ledCtrl->getLedMode()) &&
-       ((currentColor != ledCtrl->getCurrentColor()) || runUntilColorChange))
+    if (WHITE == ledCtrl->getLedMode())
     {
-        // This block allows the state machine to run until a change in color occurs
-        // and is needed
-        if (currentColor != ledCtrl->getCurrentColor())
-        {
-            runUntilColorChange = false;
-        }
-
-        ptrCurrentState = ptrStateFunc[SET_COLOR_STATE];
+        ptrCurrentState = ptrStateFunc[WHITE_STATE];
     }
 }
 
 
-void SMColor::setColor(void)
+void SMWhite::setWhiteLight(void)
 {
-    currentColor = ledCtrl->getCurrentColor();
-
     for (S32 i = 0; i < NUM_LED_STRIPS; i++)
     {
         U16 numPixels = ledCtrl->getNumPixels(i);
 
         for (U16 j = 0; j < numPixels; j++)
         {
-            ledCtrl->setPixelColor(i, j, currentColor);
+            // Set a warm white light color.
+            ledCtrl->setPixelColor(i, j, ledCtrl->getColorValue(255, 255, 125));
         }
 
         ledCtrl->updateStrip(i);

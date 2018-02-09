@@ -7,7 +7,9 @@
 #include "StateMachine.hpp"
 #include "SMColor.hpp"
 #include "SMColorPulse.hpp"
+#include "SMOff.hpp"
 #include "SMRainbowCycle.hpp"
+#include "SMWhite.hpp"
 #include "SMWhiteOverRainbow.hpp"
 
 #include "MaintenanceComm.hpp"
@@ -20,7 +22,7 @@
 
 #define BRIGHTNESS_PIN        A1  // Brightness potentiometer pin.
 #define BRIGHTNESS_TOLERANCE  2   // +/- tolerance of change for brightness.
-#define BRIGHTNESS_FLOOR      5   // Set brightness to minimum when less than this value.
+#define BRIGHTNESS_FLOOR      2   // Set brightness to minimum when less than this value.
 
 #define ANALOG_READ_DELAY  60  // TODO: Update to get a better ADC average (128Hz, 32Hz, ...)
 
@@ -54,14 +56,16 @@ LEDControl::LEDControl() :
     Task(TASK_LED_CTRL_PERIOD,
          TASK_LED_CTRL_NAME,
          TID_LED_CTRL),
-    currentMode(COLOR),
-    previousMode(COLOR),
+    currentMode(OFF),
+    previousMode(OFF),
     currentBrightness(MAX_LED_BRIGHTNESS),
     currentColor(0x00000000),  // Off
     ptrBrightnessTimer(new StopWatch()),
     ptrMomSwitchDebounce(new StopWatch())
 {
     // Create each LED mode state machine.
+    ptrLedStateMachines[OFF]                = new SMOff();
+    ptrLedStateMachines[WHITE]              = new SMWhite();
     ptrLedStateMachines[COLOR]              = new SMColor();
     ptrLedStateMachines[COLOR_PULSE]        = new SMColorPulse();
     ptrLedStateMachines[RAINBOW_CYCLE]      = new SMRainbowCycle();
@@ -122,6 +126,41 @@ LEDModes LEDControl::getLedMode(void)
 void LEDControl::setLedMode(LEDModes newMode)
 {
     currentMode = newMode;
+
+    // Relay a message to the comm port to indicate LED mode change.
+    switch (currentMode)
+    {
+        case OFF:
+            maintComm->sendData("LED Mode -> OFF\r\n");
+            break;
+
+        case WHITE:
+            maintComm->sendData("LED Mode -> White\r\n");
+            break;
+
+        case COLOR:
+            S8 buf[MaintenanceComm::MAX_CONSOLE_LINE_LEN];  // Buffer for formatting strings.
+            U8 red, green, blue;
+            getColorChannels(currentColor, red, green, blue);
+            snprintf(buf, MaintenanceComm::MAX_CONSOLE_LINE_LEN, "LED Mode -> Color (r: %d, g: %d, b: %d)\r\n", red, green, blue);
+            maintComm->sendData(buf);
+            break;
+
+        case COLOR_PULSE:
+            maintComm->sendData("LED Mode -> Pulse Color\r\n");
+            break;
+
+        case RAINBOW_CYCLE:
+            maintComm->sendData("LED Mode -> Rainbow Cycle\r\n");
+            break;
+
+        case WHITE_OVER_RAINBOW:
+            maintComm->sendData("LED Mode -> White Over Rainbow\r\n");
+            break;
+
+        default:
+            break;  // Do nothing.
+    }
 }
 
 

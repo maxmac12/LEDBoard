@@ -29,7 +29,9 @@
 // in order for the momentary switch to properly cycle through modes.
 enum LEDModes
 {
-    COLOR = 0,
+    OFF = 0,
+    WHITE,
+    COLOR,
     COLOR_PULSE,
     RAINBOW_CYCLE,
     WHITE_OVER_RAINBOW,
