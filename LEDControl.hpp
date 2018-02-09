@@ -86,8 +86,6 @@ class LEDControl
 
     private:
 
-        void readAnalogBrightness(void);
-        void readMomentarySwitch(void);
         void rainbow(U8 wait);
 
         LEDModes mode;

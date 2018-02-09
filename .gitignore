@@ -4,6 +4,6 @@
 *.elf
 *.sizeok
 *.a
-*.hex
+build-teensy36/
 TemplateHeader.txt
 TemplateSource.txt

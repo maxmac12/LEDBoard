@@ -27,7 +27,6 @@ class SMColorPulse : public StateMachine
         void init(void);
         void run(void);
         void reset(void);
-        void setPulseSpeed(Msec speed);
 
     protected:
 
@@ -59,7 +58,6 @@ class SMColorPulse : public StateMachine
         PtrStateFunc ptrStateFunc[NUM_STATES];
 
         U8 brightness;
-        Msec pulseSpeed;
         bool fadeInFlag;
 
         // Unused and disabled.

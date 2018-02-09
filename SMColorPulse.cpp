@@ -23,7 +23,6 @@
 SMColorPulse::SMColorPulse():
     ptrCurrentState(NULL),
     brightness(MIN_LED_BRIGHTNESS),
-    pulseSpeed(50),  // Pulse Time = 2 * pulseSpeed * MAX_LED_BRIGHTNESS [msecs]
     fadeInFlag(true)
 {
     // Initialize the pointers to the color pulse state functions.
@@ -60,11 +59,6 @@ void SMColorPulse::reset(void)
 }
 
 
-void SMColorPulse::setPulseSpeed(Msec speed)
-{
-    pulseSpeed = speed;
-}
-
 //############################################################################
 //  Protected Methods
 //############################################################################
@@ -86,7 +80,7 @@ void SMColorPulse::initialState(void)
 {
     brightness = 1;
     fadeInFlag = true;
-    stopWatch.start(pulseSpeed);
+    stopWatch.start(ledCtrl->getPulseSpeed());
 
     ptrCurrentState = ptrStateFunc[FADE_IN_STATE];
 }
@@ -120,7 +114,7 @@ void SMColorPulse::delay(void)
     {
         ledCtrl->setBrightness(brightness);
         ledCtrl->updateAllStrips();
-        stopWatch.start(pulseSpeed);
+        stopWatch.start(ledCtrl->getPulseSpeed());
 
         if (fadeInFlag)
         {
