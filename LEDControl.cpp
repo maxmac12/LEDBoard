@@ -4,14 +4,6 @@
 #include "LEDControl.hpp"
 #include "Adafruit_NeoPixel.h"
 #include "appconfig.hpp"
-#include "StateMachine.hpp"
-#include "SMColor.hpp"
-#include "SMColorPulse.hpp"
-#include "SMOff.hpp"
-#include "SMRainbowCycle.hpp"
-#include "SMWhite.hpp"
-#include "SMWhiteOverRainbow.hpp"
-
 #include "MaintenanceComm.hpp"
 
 //----------------------------------------------------------------------------
@@ -53,25 +45,15 @@ Adafruit_NeoPixel* strips[NUM_LED_STRIPS] =
 //############################################################################
 
 LEDControl::LEDControl() :
-    Task(TASK_LED_CTRL_PERIOD,
-         TASK_LED_CTRL_NAME,
-         TID_LED_CTRL),
     currentMode(OFF),
     previousMode(OFF),
+    whiteRainbowLength(DEFAULT_WHITE_RAINBOW_LENGTH),
+    whiteRainbowSpeed(DEFAULT_WHITE_RAINBOW_SPEED),
+    colorPulseSpeed(DEFAULT_COLOR_PULSE_SPEED),
     currentBrightness(MAX_LED_BRIGHTNESS),
-    currentColor(0x00000000),  // Off
-    ptrBrightnessTimer(new StopWatch()),
-    ptrMomSwitchDebounce(new StopWatch())
+    currentColor(0x00000000)
 {
-    // Create each LED mode state machine.
-    ptrLedStateMachines[OFF]                = new SMOff();
-    ptrLedStateMachines[WHITE]              = new SMWhite();
-    ptrLedStateMachines[COLOR]              = new SMColor();
-    ptrLedStateMachines[COLOR_PULSE]        = new SMColorPulse();
-    ptrLedStateMachines[RAINBOW_CYCLE]      = new SMRainbowCycle();
-    ptrLedStateMachines[WHITE_OVER_RAINBOW] = new SMWhiteOverRainbow();
-
-    ptrBrightnessTimer->start(ANALOG_READ_DELAY);
+    // Do nothing.
 }
 
 
@@ -84,36 +66,6 @@ void LEDControl::init(void)
         strips[i]->begin();
         strips[i]->show();
     }
-
-    // Initialize all LED state machines.
-    for (U32 i = 0; i < NUM_LED_MODES; i++)
-    {
-        ptrLedStateMachines[i]->init();
-    }
-
-    // Configure momentary switch pin.
-    pinMode(MOM_SW_PIN, INPUT_PULLUP);
-}
-
-
-void LEDControl::exec(void)
-{
-    // Check if the LED mode has changed.
-    if (currentMode != previousMode)
-    {
-        // State changed. Reset the current active
-        ptrLedStateMachines[previousMode]->reset();
-        previousMode = currentMode;
-    }
-
-    // Run the active LED mode state machine.
-    ptrLedStateMachines[currentMode]->run();
-
-    // Read brightness ADC input.
-    readAnalogBrightness();
-
-    // Read the momentary switch input.
-    readMomentarySwitch();
 }
 
 
@@ -187,24 +139,48 @@ void LEDControl::setBrightness(U8 brightness)
 }
 
 
+U8 LEDControl::getBrightness(void)
+{
+    return currentBrightness;
+}
+
+
 void LEDControl::setWhiteRainbowLength(U32 length)
 {
-    // TODO: Create a better interface.
-    reinterpret_cast<SMWhiteOverRainbow*>(ptrLedStateMachines[WHITE_OVER_RAINBOW])->setWhiteLength(length);
+    // TODO: Need to reset state machine for this to take effect.
+    whiteRainbowLength = (length >= NUM_LEDS_PER_STRIP) ? NUM_LEDS_PER_STRIP - 1 : length;
+}
+
+
+U32 LEDControl::getWhiteRainbowLength(void)
+{
+    return whiteRainbowLength;
 }
 
 
 void LEDControl::setWhiteRainbowSpeed(Msec speed)
 {
-    // TODO: Create a better interface.
-        reinterpret_cast<SMWhiteOverRainbow*>(ptrLedStateMachines[WHITE_OVER_RAINBOW])->setWhiteSpeed(speed);
+    // TODO: Need to reset state machine for this to take effect.
+    whiteRainbowSpeed = speed;
+}
+
+
+Msec LEDControl::getWhiteRainbowSpeed(void)
+{
+    return whiteRainbowSpeed;
 }
 
 
 void LEDControl::setPulseSpeed(Msec speed)
 {
-    // TODO: Create a better interface.
-    reinterpret_cast<SMColorPulse*>(ptrLedStateMachines[COLOR_PULSE])->setPulseSpeed(speed);
+    // TODO: Need to reset state machine for this to take effect.
+    colorPulseSpeed = speed;
+}
+
+
+Msec LEDControl::getPulseSpeed(void)
+{
+    return colorPulseSpeed;
 }
 
 
@@ -341,100 +317,6 @@ void LEDControl::turnLedsOff(void)
 //############################################################################
 //  Private Methods
 //############################################################################
-
-
-void LEDControl::readAnalogBrightness(void)
-{
-    // TODO: Implement an IIR filter for the ADC values. Currently just an average over 4 readings.
-    // TODO: Scale the readings to the MAX_BRIGHTNESS.
-    const U8 MAX_ADC_READS = 4;
-    static U8 numReadings = 0;
-    static U32 brightAdcTotal;
-
-    if (ptrBrightnessTimer->timerHasExpired())
-    {
-        // ADC values are 10-bit (0 - 1023)
-        // Brightness values are between 0 - 255.
-        // Divide the ADC value by 4 to get a brightness value.
-        brightAdcTotal += (U32)analogRead(BRIGHTNESS_PIN);
-
-        if (++numReadings >= MAX_ADC_READS)
-        {
-            // Get the average of the readings by dividing by 4 and
-            // scale readings down to 8-bit brightness value.
-            brightAdcTotal >>= 4;
-
-            // Color Pulse state machine controls the brightness when running.
-            // Add +/- 4 tolerance to ADC average.
-            if ((currentMode != COLOR_PULSE) &&
-               ((brightAdcTotal >= (currentBrightness + BRIGHTNESS_TOLERANCE)) ||
-                (brightAdcTotal <= (currentBrightness - BRIGHTNESS_TOLERANCE))))
-            {
-                if (brightAdcTotal < BRIGHTNESS_FLOOR)
-                {
-                    // Turn LEDs OFF.
-                    turnLedsOff();
-                }
-                else
-                {
-                    // Set the brightness based on the ADC reading.
-                    setBrightness(brightAdcTotal);
-                }
-            }
-
-            // Reset ADC readings.
-            numReadings = 0;
-            brightAdcTotal = 0;
-        }
-
-        ptrBrightnessTimer->start(ANALOG_READ_DELAY);
-    }
-
-}
-
-
-void LEDControl::readMomentarySwitch(void)
-{
-    static bool debounceInProgress = false;  // Flag indicating if the switch is being debounced.
-    static U8 lastSwState          = HIGH;   // Momentary switch is GND-Active.
-
-    U8 currSwState = digitalRead(MOM_SW_PIN);
-
-    // Check if switch state has changed.
-    if (currSwState != lastSwState)
-    {
-        // Switch state has changed. Begin debounce.
-        ptrMomSwitchDebounce->start(MOM_SW_DEBOUNCE);
-        debounceInProgress = true;
-    }
-
-    // Check if the switch has been debounced.
-    if ((ptrMomSwitchDebounce->timerHasExpired()) &&
-        (debounceInProgress))
-    {
-        // Switch debounce complete.
-        debounceInProgress = false;
-
-        // Switch state has been debounced.
-        if (LOW == currSwState)
-        {
-            // Switch is active. Cycle through the different LED modes.
-            if ((LEDModes)(currentMode + 1) >= NUM_LED_MODES)
-            {
-                // Rollover to the beginning of the LED mode list.
-                setLedMode((LEDModes)(0));
-            }
-            else
-            {
-                // Increment to the next LED mode.
-                setLedMode((LEDModes)(currentMode + 1));
-            }
-        }
-    }
-
-    lastSwState = currSwState;
-}
-
 
 // TODO: Determine if this function can be deleted.
 void LEDControl::rainbow(U8 wait)

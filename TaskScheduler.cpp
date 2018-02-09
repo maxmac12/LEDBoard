@@ -3,6 +3,7 @@
 //----------------------------------------------------------------------------
 #include "ConsoleCtrl.hpp"
 #include "LEDControl.hpp"
+#include "LEDModeControl.hpp"
 #include "MaintenanceComm.hpp"
 #include "Task.hpp"
 #include "StopWatch.hpp"
@@ -28,7 +29,7 @@
 // Add additional tasks here.
 Task* tasks[] =
 {
-    ledCtrl,
+    ledModeCtrl,
     maintComm,
     consoleCtrl,
 
@@ -45,6 +46,8 @@ static void blinkLED(void);
 
 void setup(void)
 {
+    ledCtrl->init();
+
     pinMode(LED_BUILTIN, OUTPUT);     // Configure LED pin
     digitalWrite(LED_BUILTIN, HIGH);  // Turn LED ON
     ledTimer->start(LED_PERIOD);      // Initialize the LED timer

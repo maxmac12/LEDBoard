@@ -1,14 +1,11 @@
-#ifndef TESTADAFRUIT_H
-#define TESTADAFRUIT_H
+#ifndef LEDCONTROL_H
+#define LEDCONTROL_H
 
 //----------------------------------------------------------------------------
 //  Included Files
 //----------------------------------------------------------------------------
 #include "Adafruit_NeoPixel.h"
-#include "Task.hpp"
 #include "Singleton.hpp"
-#include "StateMachine.hpp"
-#include "StopWatch.hpp"
 #include "dataTypes.h"
 
 //----------------------------------------------------------------------------
@@ -19,6 +16,11 @@
 #define NUM_LEDS_PER_STRIP  29
 #define MAX_LED_BRIGHTNESS  100  // [1 (min)- 255 (max] Limit LED brightness to protect power supply.
 #define MIN_LED_BRIGHTNESS  1    // TODO: Determine if Adafruit Neopixel library has issues with brightness of 0.
+
+#define DEFAULT_WHITE_RAINBOW_SPEED   20
+#define DEFAULT_WHITE_RAINBOW_LENGTH  4
+
+#define DEFAULT_COLOR_PULSE_SPEED  20  // Pulse Time = 2 * pulseSpeed * MAX_LED_BRIGHTNESS [msecs]
 
 //----------------------------------------------------------------------------
 //  Public Data Prototypes
@@ -43,20 +45,23 @@ enum LEDModes
 //  Public Function Prototypes
 //----------------------------------------------------------------------------
 
-class LEDControl : public Task
+class LEDControl
 {
     public:
 
         explicit LEDControl();
 
         void init(void);
-        void exec(void);
         LEDModes getLedMode(void);
         void setLedMode(LEDModes mode);
         void setBrightness(U8 brightness);
+        U8 getBrightness(void);
         void setWhiteRainbowLength(U32 length);
+        U32 getWhiteRainbowLength(void);
         void setWhiteRainbowSpeed(Msec speed);
+        Msec getWhiteRainbowSpeed(void);
         void setPulseSpeed(Msec speed);
+        Msec getPulseSpeed(void);
         U8  getRedChannel(U32 color);
         U8  getGreenChannel(U32 color);
         U8  getBlueChannel(U32 color);
@@ -85,13 +90,13 @@ class LEDControl : public Task
         void readMomentarySwitch(void);
         void rainbow(U8 wait);
 
-        StateMachine* ptrLedStateMachines[NUM_LED_MODES];
         LEDModes currentMode;
         LEDModes previousMode;
+        U32 whiteRainbowLength;
+        Msec whiteRainbowSpeed;
+        Msec colorPulseSpeed;
         U8 currentBrightness;
         U32 currentColor;
-        StopWatch* ptrBrightnessTimer;
-        StopWatch* ptrMomSwitchDebounce;
 };
 
 //----------------------------------------------------------------------------
