@@ -95,6 +95,27 @@ void Task::disableTask(const ErrorCode errCode)
     taskIsFaulted = true;
 }
 
+
+void Task::pre(void)
+{
+    // start timing the task
+    ptrStopWatch->start(period);
+}
+
+
+void Task::post(void)
+{
+    // record metrics
+    lastElapsedTime = ptrStopWatch->stop();
+    maxExecTime = (lastElapsedTime > maxExecTime) ? lastElapsedTime : maxExecTime;
+
+    // check to see if time budget was exceeded
+    if (lastElapsedTime >= period)
+    {
+        ++numExecTimeExceeds;
+    }
+}
+
 //############################################################################
 //  Private Methods
 //############################################################################

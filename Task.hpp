@@ -4,6 +4,7 @@
 //----------------------------------------------------------------------------
 //  Included Files
 //----------------------------------------------------------------------------
+//#include "TaskScheduler.hpp"
 #include "error.hpp"
 #include "StopWatch.hpp"
 #include "appconfig.hpp"
@@ -23,6 +24,8 @@
 
 class Task
 {
+    friend class TaskScheduler;
+
     public:
 
         explicit Task(const Msec taskPeriod,
@@ -47,6 +50,8 @@ class Task
     protected:
 
         void disableTask(const ErrorCode errCode = ER_FAIL);
+        void pre(void);
+        void post(void);
 
         Msec period;              // Period of task execution (ms).
         Msec lastElapsedTime;     // Elapsed time of last execution.

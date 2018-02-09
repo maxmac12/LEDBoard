@@ -8,6 +8,7 @@
 #include "stringUtils.h"
 #include "AboutCommand.hpp"
 #include "LedModeCommand.hpp"
+#include "StatCommand.hpp"
 #include "CommonData.hpp"
 #include "MaintenanceComm.hpp"
 #include <stdio.h>
@@ -39,6 +40,7 @@ CommandList cmdList[] =
     // *** ADD NEW COMMANDS HERE ***
     { "about", "AboutCommand", new AboutCommand() },
     { "mode", "LedModeCommand", new LedModeCommand() },
+    { "stat", "StatCommand", new StatCommand() },
 
     { NULL, NULL, NULL }    // end of list - DO NOT REMOVE!!!
 };

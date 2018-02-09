@@ -1,22 +1,14 @@
 //----------------------------------------------------------------------------
 //  Included Files
 //----------------------------------------------------------------------------
-#include "ConsoleCtrl.hpp"
-#include "LEDControl.hpp"
-#include "MaintenanceComm.hpp"
-#include "Task.hpp"
-#include "StopWatch.hpp"
-#include "appconfig.hpp"
+#include "TaskScheduler.hpp"
 #include "dataTypes.h"
 #include <core_pins.h>
 #include <pins_arduino.h>
-#include <wiring.h>
-#include "LedModeControl.hpp"
 
 //----------------------------------------------------------------------------
 //  Local Defines
 //----------------------------------------------------------------------------
-#define LED_PERIOD  1000  // 1 second
 
 //----------------------------------------------------------------------------
 //  Public Data
@@ -26,55 +18,81 @@
 //  Private Data
 //----------------------------------------------------------------------------
 
-// Add additional tasks here.
-Task* tasks[] =
-{
-    ledModeCtrl,
-    maintComm,
-    consoleCtrl,
+/////////////////////////////////////////////////////////
+// ADD TASKS HERE. Unused task slots must be NULL.
+/////////////////////////////////////////////////////////
+//tasks[] =
+//{
+//    ledModeCtrl,
+//    maintComm,
+//    consoleCtrl,
+//
+//    NULL
+//};
 
-    NULL          // end of list - DO NOT REMOVE!!!
-};
-
-StopWatch* ledTimer  = new StopWatch();  // LED Blink timer.
-
-static void blinkLED(void);
 
 //############################################################################
 //  Public Methods
 //############################################################################
 
-void setup(void)
+TaskScheduler::TaskScheduler() :
+    numTasks(0),
+    ledTimer(new StopWatch())
 {
-    ledCtrl->init();
-
-    pinMode(LED_BUILTIN, OUTPUT);     // Configure LED pin
-    digitalWrite(LED_BUILTIN, HIGH);  // Turn LED ON
-    ledTimer->start(LED_PERIOD);      // Initialize the LED timer
-
-    // Initialize all tasks.
-    for (U32 i = 0; tasks[i] != NULL; i++)
-    {
-        tasks[i]->init();
-    }
+    // Do nothing.
 }
 
 
-void loop(void)
+void TaskScheduler::init(void)
 {
-    blinkLED();  // Blink on board LED
+    // Configure the LED heart beat.
+    pinMode(LED_BUILTIN, OUTPUT);     // Configure LED pin
+    digitalWrite(LED_BUILTIN, HIGH);  // Turn LED ON
+    ledTimer->start(LED_PERIOD);      // Initialize the LED timer
+}
 
-    // Process all tasks.
-    for (U32 i = 0; tasks[i] != NULL; i++)
+
+void TaskScheduler::exec(void)
+{
+    // Execute all tasks.
+    for (U32 i = 0; i < numTasks; i++)
     {
-        // Execute tasks that are ready to run. Skip faulted tasks.
-        // TODO: Check if task period has elapsed before executing task.
-        if (!tasks[i]->isFaulted())
+        if (tasks[i] != NULL)
         {
-            // Execute the current task.
-            tasks[i]->exec();
+            if (!tasks[i]->isFaulted())
+            {
+                // Execute the current task.
+                tasks[i]->pre();
+                tasks[i]->exec();
+                tasks[i]->post();
+            }
         }
     }
+
+    // Blink the on board LED to indicate the software is still running.
+    heartBeatLED();
+}
+
+
+ErrorCode TaskScheduler::addTask(Task* ptrTask)
+{
+    ErrorCode err = (numTasks < MAX_TASKS) ? ER_SUCCESS : ER_SYS_TOO_MANY_TASKS;
+
+    if (err == ER_SUCCESS)
+    {
+        // Add the task and then initialize it.
+        tasks[numTasks] = ptrTask;
+        tasks[numTasks]->init();
+        numTasks++;
+    }
+
+    return (err);
+}
+
+
+U32 TaskScheduler::getNumTasks(void)
+{
+    return numTasks;
 }
 
 //############################################################################
@@ -85,7 +103,7 @@ void loop(void)
 //  Private Methods
 //############################################################################
 
-static void blinkLED(void)
+void TaskScheduler::heartBeatLED(void)
 {
     static U8 LED_STATE = HIGH;
 
