@@ -97,8 +97,6 @@ void SMRainbowCycle::updatePixels(void)
         ledCtrl->setPixelColor(currentStrip, i, color);
     }
 
-    ledCtrl->setCurrentColor(color);
-
     if (++currentStrip >= NUM_LED_STRIPS)
     {
         currentStrip = 0;
