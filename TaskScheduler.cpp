@@ -3,7 +3,6 @@
 //----------------------------------------------------------------------------
 #include "ConsoleCtrl.hpp"
 #include "LEDControl.hpp"
-#include "LEDModeControl.hpp"
 #include "MaintenanceComm.hpp"
 #include "Task.hpp"
 #include "StopWatch.hpp"
@@ -12,6 +11,7 @@
 #include <core_pins.h>
 #include <pins_arduino.h>
 #include <wiring.h>
+#include "LedModeControl.hpp"
 
 //----------------------------------------------------------------------------
 //  Local Defines

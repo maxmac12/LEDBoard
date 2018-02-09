@@ -1,7 +1,6 @@
 //----------------------------------------------------------------------------
 //  Included Files
 //----------------------------------------------------------------------------
-#include "LEDModeControl.hpp"
 #include "LEDControl.hpp"
 #include "appconfig.hpp"
 #include "StateMachine.hpp"
@@ -13,6 +12,7 @@
 #include "SMWhiteOverRainbow.hpp"
 #include "MaintenanceComm.hpp"
 #include <core_pins.h>
+#include "LedModeControl.hpp"
 
 //----------------------------------------------------------------------------
 //  Local Defines
@@ -37,7 +37,7 @@
 //  Public Methods
 //############################################################################
 
-LEDModeControl::LEDModeControl() :
+LedModeControl::LedModeControl() :
     Task(TASK_LED_MODE_CTRL_PERIOD,
          TASK_LED_MODE_CTRL_NAME,
          TID_LED_MODE_CTRL),
@@ -56,7 +56,7 @@ LEDModeControl::LEDModeControl() :
 }
 
 
-void LEDModeControl::init(void)
+void LedModeControl::init(void)
 {
     // Initialize all LED state machines.
     for (U32 i = 0; i < NUM_LED_MODES; i++)
@@ -69,7 +69,7 @@ void LEDModeControl::init(void)
 }
 
 
-void LEDModeControl::exec(void)
+void LedModeControl::exec(void)
 {
     static LEDModes currentMode = OFF;
 
@@ -103,7 +103,7 @@ void LEDModeControl::exec(void)
 //############################################################################
 
 
-void LEDModeControl::readAnalogBrightness(void)
+void LedModeControl::readAnalogBrightness(void)
 {
     // TODO: Implement an IIR filter for the ADC values. Currently just an average over 4 readings.
     // TODO: Scale the readings to the MAX_BRIGHTNESS.
@@ -147,7 +147,7 @@ void LEDModeControl::readAnalogBrightness(void)
 }
 
 
-void LEDModeControl::readMomentarySwitch(void)
+void LedModeControl::readMomentarySwitch(void)
 {
     static bool debounceInProgress = false;  // Flag indicating if the switch is being debounced.
     static U8 lastSwState          = HIGH;   // Momentary switch is GND-Active.

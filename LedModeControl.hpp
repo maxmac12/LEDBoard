@@ -22,19 +22,19 @@
 //  Public Function Prototypes
 //----------------------------------------------------------------------------
 
-class LEDModeControl : public Task
+class LedModeControl : public Task
 {
     public:
 
-        explicit LEDModeControl();
+        explicit LedModeControl();
 
         void init(void);
         void exec(void);
 
         // Unused and disabled.
-        ~LEDModeControl() {}
-        LEDModeControl(const LEDModeControl&);
-        LEDModeControl& operator=(const LEDModeControl&);
+        ~LedModeControl() {}
+        LedModeControl(const LedModeControl&);
+        LedModeControl& operator=(const LedModeControl&);
 
     protected:
 
@@ -52,6 +52,6 @@ class LEDModeControl : public Task
 //  Global Definitions
 //----------------------------------------------------------------------------
 
-#define ledModeCtrl Singleton<LEDModeControl>::getInstance()
+#define ledModeCtrl Singleton<LedModeControl>::getInstance()
 
 #endif
