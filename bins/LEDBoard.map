@@ -115,13 +115,13 @@ c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\li
 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_dvmd_tls.o)
                               c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_aeabi_uldivmod.o) (__aeabi_ldiv0)
 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-malloc.o)
-                              C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans2.ltrans.o (malloc)
+                              C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans2.ltrans.o (malloc)
 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-snprintf.o)
-                              C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans3.ltrans.o (snprintf)
+                              C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans2.ltrans.o (snprintf)
 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-strncpy.o)
-                              C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans2.ltrans.o (strncpy)
+                              C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans2.ltrans.o (strncpy)
 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-vsnprintf.o)
-                              C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans5.ltrans.o (vsnprintf)
+                              C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans2.ltrans.o (vsnprintf)
 
 Allocating common symbols
 Common symbol       size              file
@@ -146,37 +146,38 @@ Discarded input sections
  .ARM.attributes
                 0x00000000       0x20 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
  .text          0x00000000        0x0 common/stringUtils.o (symbol from plugin)
- .data          0x00000000        0x0 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans3.ltrans.o
- .bss           0x00000000        0x0 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans3.ltrans.o
- .text          0x00000000        0x0 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans6.ltrans.o
- .text          0x00000000        0x0 teensy3/usb_serial.o (symbol from plugin)
+ .data          0x00000000        0x0 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans4.ltrans.o
+ .data          0x00000000        0x0 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans5.ltrans.o
+ .bss           0x00000000        0x0 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans5.ltrans.o
+ .text          0x00000000        0x0 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans6.ltrans.o
  .text          0x00000000        0x0 teensy3/touch.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/math_helper.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/usb_joystick.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/analog.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/serial2.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/serial3.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/serial4.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/usb_dev.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/mk20dx128.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/serial5.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/analog.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/usb_mouse.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/usb_dev.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/serial1.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/usb_desc.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/usb_joystick.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/pins_teensy.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/usb_mem.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/serial6_lpuart.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/eeprom.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/serial6.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/nonstd.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/usb_rawhid.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/usb_touch.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/pins_teensy.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/ser_print.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/usb_desc.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/nonstd.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/usb_touch.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/usb_rawhid.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/math_helper.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/usb_serial.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/usb_midi.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/serial6.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/keylayouts.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/usb_keyboard.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/usb_seremu.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/serial4.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/usb_mtp.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/usb_mouse.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/serial3.o (symbol from plugin)
  .text          0x00000000        0x0 mainExec.o (symbol from plugin)
  .gnu.linkonce.t._ZN9SingletonI14LedModeControlE11getInstanceEv
                 0x00000000        0x0 mainExec.o (symbol from plugin)
@@ -199,8 +200,8 @@ Discarded input sections
  .gnu.linkonce.t._ZN9SingletonI13TaskSchedulerE11ptrInstanceE
                 0x00000000        0x0 mainExec.o (symbol from plugin)
  .text          0x00000000        0x0 common/CommonData.o (symbol from plugin)
- .text          0x00000000        0x0 common/StopWatch.o (symbol from plugin)
  .text          0x00000000        0x0 common/Queue.o (symbol from plugin)
+ .text          0x00000000        0x0 common/StopWatch.o (symbol from plugin)
  .text          0x00000000        0x0 common/MemoryBlock.o (symbol from plugin)
  .text          0x00000000        0x0 common/HashTable.o (symbol from plugin)
  .text          0x00000000        0x0 console/StatCommand.o (symbol from plugin)
@@ -432,7 +433,25 @@ Discarded input sections
                 0x00000000        0x0 teensy3/HardwareSerial5.o (symbol from plugin)
  .gnu.linkonce.t._ZTV15HardwareSerial5
                 0x00000000        0x0 teensy3/HardwareSerial5.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/WMath.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
+ .gnu.linkonce.t._ZN16usb_serial_class5clearEv
+                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
+ .gnu.linkonce.t._ZN16usb_serial_class4peekEv
+                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
+ .gnu.linkonce.t._ZN16usb_serial_class4readEv
+                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
+ .gnu.linkonce.t._ZN16usb_serial_class9availableEv
+                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
+ .gnu.linkonce.t._ZN16usb_serial_class5flushEv
+                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
+ .gnu.linkonce.t._ZN16usb_serial_class17availableForWriteEv
+                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
+ .gnu.linkonce.t._ZN16usb_serial_class5writeEPKhj
+                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
+ .gnu.linkonce.t._ZN16usb_serial_class5writeEh
+                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
+ .gnu.linkonce.t._ZTV16usb_serial_class
+                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/EventResponder.o (symbol from plugin)
  .gnu.linkonce.t._ZN14EventResponder17disableInterruptsEv
                 0x00000000        0x0 teensy3/EventResponder.o (symbol from plugin)
@@ -445,14 +464,53 @@ Discarded input sections
  .gnu.linkonce.t._ZN14EventResponder12triggerEventEiPv
                 0x00000000        0x0 teensy3/EventResponder.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/avr_emulation.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/yield.o (symbol from plugin)
- .gnu.linkonce.t._ZN14EventResponder17disableInterruptsEv
-                0x00000000        0x0 teensy3/yield.o (symbol from plugin)
- .gnu.linkonce.t._ZN14EventResponder16enableInterruptsEb
-                0x00000000        0x0 teensy3/yield.o (symbol from plugin)
- .gnu.linkonce.t._ZN14EventResponder12runFromYieldEv
-                0x00000000        0x0 teensy3/yield.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/IntervalTimer.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial25writeEm
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial25writeEl
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial25writeEj
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial25writeEi
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial29write9bitEm
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial25writeEh
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial25writeEPKc
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial25writeEPKhj
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial25clearEv
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial29attachCtsEh
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial29attachRtsEh
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial25setTXEhb
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial25setRXEh
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial217transmitterEnableEh
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial23endEv
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial25beginEm
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial25beginEmm
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial24peekEv
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial24readEv
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial29availableEv
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial25flushEv
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial217availableForWriteEv
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .gnu.linkonce.t._ZTV15HardwareSerial2
+                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/HardwareSerial4.o (symbol from plugin)
  .gnu.linkonce.t._ZN15HardwareSerial45writeEm
                 0x00000000        0x0 teensy3/HardwareSerial4.o (symbol from plugin)
@@ -500,16 +558,7 @@ Discarded input sections
                 0x00000000        0x0 teensy3/HardwareSerial4.o (symbol from plugin)
  .gnu.linkonce.t._ZTV15HardwareSerial4
                 0x00000000        0x0 teensy3/HardwareSerial4.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/usb_audio.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/DMAChannel.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/usb_flightsim.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/WString.o (symbol from plugin)
- .gnu.linkonce.t._ZN6String4copyEPK19__FlashStringHelper
-                0x00000000        0x0 teensy3/WString.o (symbol from plugin)
- .gnu.linkonce.t._ZN6String6appendEPK19__FlashStringHelper
-                0x00000000        0x0 teensy3/WString.o (symbol from plugin)
- .gnu.linkonce.t._ZN6String6appendEh
-                0x00000000        0x0 teensy3/WString.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/WMath.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/Tone.o (symbol from plugin)
  .gnu.linkonce.t._ZN13IntervalTimerD5Ev
                 0x00000000        0x0 teensy3/Tone.o (symbol from plugin)
@@ -563,7 +612,17 @@ Discarded input sections
  .gnu.linkonce.t._ZTV15HardwareSerial6
                 0x00000000        0x0 teensy3/HardwareSerial6.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/main.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/DMAChannel.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/AudioStream.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/IntervalTimer.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/WString.o (symbol from plugin)
+ .gnu.linkonce.t._ZN6String4copyEPK19__FlashStringHelper
+                0x00000000        0x0 teensy3/WString.o (symbol from plugin)
+ .gnu.linkonce.t._ZN6String6appendEPK19__FlashStringHelper
+                0x00000000        0x0 teensy3/WString.o (symbol from plugin)
+ .gnu.linkonce.t._ZN6String6appendEh
+                0x00000000        0x0 teensy3/WString.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/usb_audio.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/IPAddress.o (symbol from plugin)
  .gnu.linkonce.t._ZN5Print5printEhi
                 0x00000000        0x0 teensy3/IPAddress.o (symbol from plugin)
@@ -583,56 +642,8 @@ Discarded input sections
                 0x00000000        0x0 teensy3/IPAddress.o (symbol from plugin)
  .gnu.linkonce.t._ZTV9Printable
                 0x00000000        0x0 teensy3/IPAddress.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .gnu.linkonce.t._ZN6StringpLEc
-                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .gnu.linkonce.t._ZN14HardwareSerial4peekEv
-                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .gnu.linkonce.t._ZN14HardwareSerial4readEv
-                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial24peekEv
-                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial24readEv
-                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial34peekEv
-                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial34readEv
-                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial44peekEv
-                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial44readEv
-                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial54peekEv
-                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial54readEv
-                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial64peekEv
-                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial64readEv
-                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .gnu.linkonce.t._ZN16usb_serial_class4readEv
-                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .gnu.linkonce.t._ZN16usb_serial_class4peekEv
-                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
- .gnu.linkonce.t._ZN16usb_serial_class5clearEv
-                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
- .gnu.linkonce.t._ZN16usb_serial_class4peekEv
-                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
- .gnu.linkonce.t._ZN16usb_serial_class4readEv
-                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
- .gnu.linkonce.t._ZN16usb_serial_class9availableEv
-                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
- .gnu.linkonce.t._ZN16usb_serial_class5flushEv
-                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
- .gnu.linkonce.t._ZN16usb_serial_class17availableForWriteEv
-                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
- .gnu.linkonce.t._ZN16usb_serial_class5writeEPKhj
-                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
- .gnu.linkonce.t._ZN16usb_serial_class5writeEh
-                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
- .gnu.linkonce.t._ZTV16usb_serial_class
-                0x00000000        0x0 teensy3/usb_inst.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/new.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/usb_flightsim.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/Print.o (symbol from plugin)
  .gnu.linkonce.t._ZN5Print17availableForWriteEv
                 0x00000000        0x0 teensy3/Print.o (symbol from plugin)
@@ -640,53 +651,13 @@ Discarded input sections
                 0x00000000        0x0 teensy3/Print.o (symbol from plugin)
  .gnu.linkonce.t._ZN5Print5writeEPKc
                 0x00000000        0x0 teensy3/Print.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial25writeEm
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial25writeEl
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial25writeEj
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial25writeEi
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial29write9bitEm
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial25writeEh
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial25writeEPKc
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial25writeEPKhj
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial25clearEv
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial29attachCtsEh
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial29attachRtsEh
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial25setTXEhb
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial25setRXEh
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial217transmitterEnableEh
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial23endEv
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial25beginEm
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial25beginEmm
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial24peekEv
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial24readEv
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial29availableEv
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial25flushEv
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZN15HardwareSerial217availableForWriteEv
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
- .gnu.linkonce.t._ZTV15HardwareSerial2
-                0x00000000        0x0 teensy3/HardwareSerial2.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/yield.o (symbol from plugin)
+ .gnu.linkonce.t._ZN14EventResponder17disableInterruptsEv
+                0x00000000        0x0 teensy3/yield.o (symbol from plugin)
+ .gnu.linkonce.t._ZN14EventResponder16enableInterruptsEb
+                0x00000000        0x0 teensy3/yield.o (symbol from plugin)
+ .gnu.linkonce.t._ZN14EventResponder12runFromYieldEv
+                0x00000000        0x0 teensy3/yield.o (symbol from plugin)
  .text          0x00000000        0x0 teensy3/HardwareSerial3.o (symbol from plugin)
  .gnu.linkonce.t._ZN15HardwareSerial35writeEm
                 0x00000000        0x0 teensy3/HardwareSerial3.o (symbol from plugin)
@@ -791,7 +762,37 @@ Discarded input sections
                 0x00000000        0x0 teensy3/HardwareSerial1.o (symbol from plugin)
  .gnu.linkonce.t._ZTV14HardwareSerial
                 0x00000000        0x0 teensy3/HardwareSerial1.o (symbol from plugin)
- .text          0x00000000        0x0 teensy3/new.o (symbol from plugin)
+ .text          0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
+ .gnu.linkonce.t._ZN6StringpLEc
+                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
+ .gnu.linkonce.t._ZN14HardwareSerial4peekEv
+                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
+ .gnu.linkonce.t._ZN14HardwareSerial4readEv
+                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial24peekEv
+                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial24readEv
+                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial34peekEv
+                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial34readEv
+                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial44peekEv
+                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial44readEv
+                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial54peekEv
+                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial54readEv
+                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial64peekEv
+                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
+ .gnu.linkonce.t._ZN15HardwareSerial64readEv
+                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
+ .gnu.linkonce.t._ZN16usb_serial_class4readEv
+                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
+ .gnu.linkonce.t._ZN16usb_serial_class4peekEv
+                0x00000000        0x0 teensy3/Stream.o (symbol from plugin)
  .data          0x00000000        0x0 teensy3/memcpy-armv7m.o
  .bss           0x00000000        0x0 teensy3/memcpy-armv7m.o
  .data          0x00000000        0x0 teensy3/memset.o
@@ -1149,45 +1150,45 @@ LOAD c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/f
 LOAD c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
 LOAD c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
 LOAD common/stringUtils.o
-LOAD C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans0.ltrans.o
-LOAD C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans1.ltrans.o
-LOAD C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans2.ltrans.o
-LOAD C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans3.ltrans.o
-LOAD C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans4.ltrans.o
-LOAD C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans5.ltrans.o
-LOAD C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans6.ltrans.o
-LOAD teensy3/usb_serial.o
+LOAD C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans0.ltrans.o
+LOAD C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans1.ltrans.o
+LOAD C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans2.ltrans.o
+LOAD C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans3.ltrans.o
+LOAD C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans4.ltrans.o
+LOAD C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans5.ltrans.o
+LOAD C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans6.ltrans.o
 LOAD teensy3/touch.o
-LOAD teensy3/math_helper.o
+LOAD teensy3/usb_joystick.o
+LOAD teensy3/analog.o
 LOAD teensy3/serial2.o
-LOAD teensy3/serial3.o
-LOAD teensy3/serial4.o
-LOAD teensy3/usb_dev.o
 LOAD teensy3/mk20dx128.o
 LOAD teensy3/serial5.o
-LOAD teensy3/analog.o
+LOAD teensy3/usb_mouse.o
+LOAD teensy3/usb_dev.o
 LOAD teensy3/serial1.o
-LOAD teensy3/usb_desc.o
-LOAD teensy3/usb_joystick.o
+LOAD teensy3/pins_teensy.o
 LOAD teensy3/usb_mem.o
 LOAD teensy3/serial6_lpuart.o
 LOAD teensy3/eeprom.o
-LOAD teensy3/serial6.o
-LOAD teensy3/nonstd.o
-LOAD teensy3/usb_rawhid.o
-LOAD teensy3/usb_touch.o
-LOAD teensy3/pins_teensy.o
 LOAD teensy3/ser_print.o
+LOAD teensy3/usb_desc.o
+LOAD teensy3/nonstd.o
+LOAD teensy3/usb_touch.o
+LOAD teensy3/usb_rawhid.o
+LOAD teensy3/math_helper.o
+LOAD teensy3/usb_serial.o
 LOAD teensy3/usb_midi.o
+LOAD teensy3/serial6.o
 LOAD teensy3/keylayouts.o
 LOAD teensy3/usb_keyboard.o
 LOAD teensy3/usb_seremu.o
+LOAD teensy3/serial4.o
 LOAD teensy3/usb_mtp.o
-LOAD teensy3/usb_mouse.o
+LOAD teensy3/serial3.o
 LOAD mainExec.o
 LOAD common/CommonData.o
-LOAD common/StopWatch.o
 LOAD common/Queue.o
+LOAD common/StopWatch.o
 LOAD common/MemoryBlock.o
 LOAD common/HashTable.o
 LOAD console/StatCommand.o
@@ -1209,28 +1210,28 @@ LOAD mode/SMWhiteOverRainbow.o
 LOAD scheduler/TaskScheduler.o
 LOAD scheduler/Task.o
 LOAD teensy3/HardwareSerial5.o
-LOAD teensy3/WMath.o
+LOAD teensy3/usb_inst.o
 LOAD teensy3/EventResponder.o
 LOAD teensy3/avr_emulation.o
-LOAD teensy3/yield.o
-LOAD teensy3/IntervalTimer.o
+LOAD teensy3/HardwareSerial2.o
 LOAD teensy3/HardwareSerial4.o
-LOAD teensy3/usb_audio.o
-LOAD teensy3/DMAChannel.o
-LOAD teensy3/usb_flightsim.o
-LOAD teensy3/WString.o
+LOAD teensy3/WMath.o
 LOAD teensy3/Tone.o
 LOAD teensy3/HardwareSerial6.o
 LOAD teensy3/main.o
+LOAD teensy3/DMAChannel.o
 LOAD teensy3/AudioStream.o
+LOAD teensy3/IntervalTimer.o
+LOAD teensy3/WString.o
+LOAD teensy3/usb_audio.o
 LOAD teensy3/IPAddress.o
-LOAD teensy3/Stream.o
-LOAD teensy3/usb_inst.o
+LOAD teensy3/new.o
+LOAD teensy3/usb_flightsim.o
 LOAD teensy3/Print.o
-LOAD teensy3/HardwareSerial2.o
+LOAD teensy3/yield.o
 LOAD teensy3/HardwareSerial3.o
 LOAD teensy3/HardwareSerial1.o
-LOAD teensy3/new.o
+LOAD teensy3/Stream.o
 LOAD teensy3/memcpy-armv7m.o
 LOAD teensy3/memset.o
 LOAD c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libm.a
@@ -1243,716 +1244,714 @@ END GROUP
 LOAD c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtend.o
 LOAD c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtn.o
 
-.text           0x00000000     0x8f44
+.text           0x00000000     0x90dc
                 0x00000000                . = 0x0
  *(.vectors)
- .vectors       0x00000000      0x1d0 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans5.ltrans.o
+ .vectors       0x00000000      0x1d0 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans2.ltrans.o
                 0x00000000                _VectorsFlash
  *(.startup*)
- .startup       0x000001d0      0x218 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans4.ltrans.o
+ .startup       0x000001d0      0x218 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans0.ltrans.o
                 0x000001d0                ResetHandler
                 0x00000400                . = 0x400
  *fill*         0x000003e8       0x18 ff
  *(.flashconfig*)
- .flashconfig   0x00000400       0x10 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans4.ltrans.o
+ .flashconfig   0x00000400       0x10 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans0.ltrans.o
                 0x00000400                flashconfigbytes
  *(.text*)
  .text          0x00000410       0x5c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
- .text          0x0000046c      0x778 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans0.ltrans.o
-                0x0000046e                pit3_isr
-                0x00000484                pit2_isr
-                0x00000498                pit1_isr
-                0x000004ac                pit0_isr
-                0x0000051c                systick_isr
-                0x00000584                pendablesrvreq_isr
-                0x000005b4                HardwareSerial5::write(int)
-                0x000005b4                HardwareSerial5::write(long)
-                0x000005bc                HardwareSerial5::write(unsigned int)
-                0x000005bc                HardwareSerial5::write(unsigned long)
-                0x000005c4                HardwareSerial5::availableForWrite()
-                0x000005e0                HardwareSerial5::clear()
-                0x000005f8                HardwareSerial5::peek()
-                0x00000620                HardwareSerial5::attachCts(unsigned char)
-                0x00000660                HardwareSerial5::attachRts(unsigned char)
-                0x000006b4                HardwareSerial5::setRX(unsigned char)
-                0x000006b6                SMWhiteOverRainbow::reset()
-                0x000006c4                SMWhiteOverRainbow::run()
-                0x000006e4                SMColorPulse::init()
-                0x000006e4                SMWhite::init()
-                0x000006e4                SMWhiteOverRainbow::init()
-                0x000006e4                SMOff::init()
-                0x000006e4                SMRainbowCycle::init()
-                0x000006e4                SMColor::init()
-                0x000006e6                SMOff::reset()
-                0x000006e6                SMWhite::reset()
-                0x000006e6                SMColor::reset()
-                0x000006f4                SMOff::run()
-                0x00000714                SMColor::run()
-                0x00000734                HardwareSerial5::available()
-                0x00000738                HardwareSerial5::write9bit(unsigned long)
-                0x00000744                HardwareSerial5::write(char const*)
-                0x0000075c                HardwareSerial5::read()
-                0x00000760                HardwareSerial5::setTX(unsigned char, bool)
-                0x00000768                HardwareSerial5::transmitterEnable(unsigned char)
-                0x000007b8                HardwareSerial5::begin(unsigned long, unsigned long)
-                0x00000834                HardwareSerial5::begin(unsigned long)
-                0x00000848                SMWhiteOverRainbow::updateStrips()
-                0x0000089c                SMWhiteOverRainbow::idle()
-                0x000008ba                SMOff::idle()
-                0x000008d6                SMColor::idle()
-                0x000008f4                SMWhiteOverRainbow::initialState()
-                0x00000924                SMWhiteOverRainbow::updatePixels()
-                0x000009e4                SMOff::turnLedsOff()
-                0x00000a3c                SMColor::setColor()
-                0x00000a98                SMWhiteOverRainbow::~SMWhiteOverRainbow()
-                0x00000aa4                SMOff::~SMOff()
-                0x00000ab0                IntervalTimer::~IntervalTimer()
-                0x00000ab0                IntervalTimer::~IntervalTimer() [clone .lto_priv.75]
-                0x00000af0                yield
-                0x00000b70                HardwareSerial5::flush()
-                0x00000b88                HardwareSerial5::end()
-                0x00000be0                SMWhiteOverRainbow::~SMWhiteOverRainbow() [clone .lto_priv.65]
-                0x00000be0                SMWhiteOverRainbow::~SMWhiteOverRainbow() [clone .lto_priv.77]
-                0x00000be2                SMOff::~SMOff() [clone .lto_priv.82]
-                0x00000be2                SMOff::~SMOff() [clone .lto_priv.70]
- .text          0x00000be4      0x7b8 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans1.ltrans.o
-                0x00000be4                SMWhite::run()
-                0x00000c04                LedModeControl::init()
-                0x00000c38                SMRainbowCycle::initialState()
-                0x00000c4c                SMRainbowCycle::reset()
-                0x00000c5a                SMRainbowCycle::run()
-                0x00000c7a                SMColorPulse::fadeOut()
-                0x00000c9e                SMColorPulse::fadeIn()
-                0x00000cc2                SMColorPulse::reset()
-                0x00000cd0                SMColorPulse::run()
-                0x00000cf2                SMColor::~SMColor()
-                0x00000cfe                SMWhite::~SMWhite()
-                0x00000d0a                LedModeControl::~LedModeControl()
-                0x00000d16                SMRainbowCycle::~SMRainbowCycle()
-                0x00000d22                SMColorPulse::~SMColorPulse()
-                0x00000d3a                SMWhite::idle()
-                0x00000d58                SMRainbowCycle::updateStrips()
-                0x00000d8a                SMRainbowCycle::idle()
-                0x00000da8                SMColorPulse::idle()
-                0x00000dc6                SMWhite::setWhiteLight()
-                0x00000e24                SMColorPulse::initialState()
-                0x00000e4e                LedModeControl::exec()
-                0x00001098                SMRainbowCycle::updatePixels()
-                0x0000110c                HardwareSerial5::write(unsigned char)
-                0x000011e8                HardwareSerial5::write(unsigned char const*, unsigned int)
-                0x00001230                SMColor::~SMColor() [clone .lto_priv.80]
-                0x00001230                SMColor::~SMColor() [clone .lto_priv.68]
-                0x00001232                SMWhite::~SMWhite() [clone .lto_priv.81]
-                0x00001232                SMWhite::~SMWhite() [clone .lto_priv.69]
-                0x00001234                LedModeControl::~LedModeControl() [clone .lto_priv.76]
-                0x00001234                LedModeControl::~LedModeControl() [clone .lto_priv.64]
-                0x00001236                SMRainbowCycle::~SMRainbowCycle() [clone .lto_priv.66]
-                0x00001236                SMRainbowCycle::~SMRainbowCycle() [clone .lto_priv.78]
-                0x00001238                SMColorPulse::~SMColorPulse() [clone .lto_priv.79]
-                0x00001238                SMColorPulse::~SMColorPulse() [clone .lto_priv.67]
-                0x0000123a                Adafruit_NeoPixel::setBrightness(unsigned char)
-                0x00001286                Adafruit_NeoPixel::show()
-                0x00001340                SMColorPulse::delay()
- .text          0x0000139c      0xa58 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans2.ltrans.o
-                0x0000139c                lpuart0_status_isr
-                0x0000143c                uart0_status_isr
-                0x0000150c                uart4_status_isr
-                0x000015dc                ConsoleCtrl::~ConsoleCtrl()
-                0x000015e8                AboutCommand::~AboutCommand()
-                0x000015f4                StatCommand::~StatCommand()
-                0x00001600                ConsoleCtrl::~ConsoleCtrl() [clone .lto_priv.71]
-                0x00001600                ConsoleCtrl::~ConsoleCtrl() [clone .lto_priv.83]
-                0x00001602                AboutCommand::~AboutCommand() [clone .lto_priv.72]
-                0x00001602                AboutCommand::~AboutCommand() [clone .lto_priv.84]
-                0x00001604                StatCommand::~StatCommand() [clone .lto_priv.74]
-                0x00001604                StatCommand::~StatCommand() [clone .lto_priv.86]
-                0x00001606                Queue::push(void const*)
-                0x00001640                StopWatch::timerHasExpired() const
-                0x00001668                StopWatch::start(unsigned int)
-                0x00001680                Singleton<TaskScheduler>::getInstance()
-                0x000016b4                Singleton<LEDControl>::getInstance()
-                0x000016e4                Singleton<MaintenanceComm>::getInstance()
-                0x00001784                ConsoleCtrl::init()
-                0x00001854                AboutCommand::exec(char*, char*, char*, char*)
-                0x0000186c                StatCommand::exec(char*, char*, char*, char*)
-                0x00001908                digitalWrite.part.0
-                0x00001944                micros
-                0x000019ae                _init_Teensyduino_internal_
-                0x00001c70                usb_free
-                0x00001d2c                usb_malloc
-                0x00001d68                serial5_getchar
-                0x00001dbc                serial5_available
-                0x00001ddc                serial5_write
- .text          0x00001df4      0x4f8 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans3.ltrans.o
-                0x00001df4                LedModeCommand::~LedModeCommand()
-                0x00001e00                LEDControl::setPixelColor(unsigned int, unsigned int, unsigned int) [clone .part.1]
-                0x00001e74                LEDControl::Wheel(char, unsigned int)
-                0x00001ec2                LEDControl::updateStrip(unsigned int)
-                0x00001ed8                LEDControl::setBrightness(unsigned char)
-                0x00001f14                LEDControl::setLedMode(LEDModes)
-                0x00001fa0                LedModeCommand::exec(char*, char*, char*, char*)
-                0x0000218c                LedModeCommand::~LedModeCommand() [clone .lto_priv.73]
-                0x0000218c                LedModeCommand::~LedModeCommand() [clone .lto_priv.85]
-                0x0000218e                HashTable<int>::findPos(char*) const
-                0x000021fe                ConsoleCtrl::exec()
- .text          0x000022ec      0xa78 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans4.ltrans.o
-                0x000022ec                __cxa_pure_virtual
-                0x00002328                uart3_status_isr
-                0x000023bc                uart2_status_isr
-                0x00002454                uart1_status_isr
-                0x00002524                usb_isr
-                0x00002b54                memmanage_fault_isr
-                0x00002b54                bus_fault_isr
-                0x00002b54                hard_fault_isr
-                0x00002b54                usage_fault_isr
-                0x00002b54                fault_isr
-                0x00002b88                tpm1_isr
-                0x00002b88                porte_isr
-                0x00002b88                portb_isr
-                0x00002b88                spi1_isr
-                0x00002b88                enet_error_isr
-                0x00002b88                mcm_isr
-                0x00002b88                portd_isr
-                0x00002b88                randnum_isr
-                0x00002b88                i2c0_isr
-                0x00002b88                watchdog_isr
-                0x00002b88                i2c1_isr
-                0x00002b88                dma_ch11_isr
-                0x00002b88                i2c2_isr
-                0x00002b88                dma_ch4_isr
-                0x00002b88                dma_ch7_isr
-                0x00002b88                lptmr_isr
-                0x00002b88                can1_bus_off_isr
-                0x00002b88                ftm2_isr
-                0x00002b88                dma_ch9_isr
-                0x00002b88                i2c3_isr
-                0x00002b88                can1_error_isr
-                0x00002b88                can0_wakeup_isr
-                0x00002b88                dma_error_isr
-                0x00002b88                tpm2_isr
-                0x00002b88                can1_rx_warn_isr
-                0x00002b88                cmp3_isr
-                0x00002b88                svcall_isr
-                0x00002b88                dma_ch15_isr
-                0x00002b88                uart1_error_isr
-                0x00002b88                usbhs_phy_isr
-                0x00002b88                unused_isr
-                0x00002b88                wakeup_isr
-                0x00002b88                spi0_isr
-                0x00002b88                dma_ch3_isr
-                0x00002b88                flash_error_isr
-                0x00002b88                rtc_seconds_isr
-                0x00002b88                pdb_isr
-                0x00002b88                dma_ch0_isr
-                0x00002b88                dac1_isr
-                0x00002b88                dma_ch14_isr
-                0x00002b88                rtc_alarm_isr
-                0x00002b88                dma_ch2_isr
-                0x00002b88                ftm1_isr
-                0x00002b88                dma_ch13_isr
-                0x00002b88                uart2_error_isr
-                0x00002b88                dma_ch8_isr
-                0x00002b88                usb_charge_isr
-                0x00002b88                cmt_isr
-                0x00002b88                usbhs_isr
-                0x00002b88                ftm3_isr
-                0x00002b88                tsi0_isr
-                0x00002b88                dma_ch6_isr
-                0x00002b88                spi2_isr
-                0x00002b88                can0_bus_off_isr
-                0x00002b88                flash_cmd_isr
-                0x00002b88                uart3_error_isr
-                0x00002b88                porta_isr
-                0x00002b88                low_voltage_isr
-                0x00002b88                can0_error_isr
-                0x00002b88                dma_ch12_isr
-                0x00002b88                can1_wakeup_isr
-                0x00002b88                enet_rx_isr
-                0x00002b88                portc_isr
-                0x00002b88                adc0_isr
-                0x00002b88                debugmonitor_isr
-                0x00002b88                cmp1_isr
-                0x00002b88                ftm0_isr
-                0x00002b88                i2s0_rx_isr
-                0x00002b88                uart4_error_isr
-                0x00002b88                can0_message_isr
-                0x00002b88                can1_message_isr
-                0x00002b88                nmi_isr
-                0x00002b88                sdhc_isr
-                0x00002b88                dma_ch10_isr
-                0x00002b88                uart0_error_isr
-                0x00002b88                enet_timer_isr
-                0x00002b88                i2s0_tx_isr
-                0x00002b88                adc1_isr
-                0x00002b88                cmp0_isr
-                0x00002b88                dac0_isr
-                0x00002b88                can1_tx_warn_isr
-                0x00002b88                cmp2_isr
-                0x00002b88                mcg_isr
-                0x00002b88                dma_ch1_isr
-                0x00002b88                dma_ch5_isr
-                0x00002b88                can0_rx_warn_isr
-                0x00002b88                can0_tx_warn_isr
-                0x00002b88                enet_tx_isr
-                0x00002b8e                serial5_putchar
-                0x00002c5c                serial5_set_tx
-                0x00002cac                serial5_begin
-                0x00002d34                abort
-                0x00002d36                _exit
-                0x00002d38                _sbrk
- .text          0x00002d64      0x254 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans5.ltrans.o
-                0x00002d64                IPAddress::printTo(Print&) const
-                0x00002dcc                software_isr
-                0x00002e00                strnsep.constprop.58
-                0x00002e36                usb_tx.constprop.57
-                0x00002e98                Task::Task(unsigned int, char const*, TaskIDEnum) [clone .constprop.46]
-                0x00002edc                MaintenanceComm::sendData(char const*, bool, bool) [clone .part.1] [clone .constprop.39]
-                0x00002f58                MaintenanceComm::sendData(int, char const*, ...) [clone .constprop.38]
-                0x00002f88                Print::printf(char const*, ...) [clone .constprop.32]
-                0x00002fa8                _write
- .text.startup  0x00002fb8      0x1f4 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans5.ltrans.o
-                0x00002fb8                Adafruit_NeoPixel::Adafruit_NeoPixel(unsigned short, unsigned char, unsigned short) [clone .constprop.22]
-                0x0000302c                main
- .text.startup  0x000031ac      0x388 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans6.ltrans.o
- .text          0x00003534      0x134 teensy3/memcpy-armv7m.o
-                0x00003534                memcpy
- .text          0x00003668       0x44 teensy3/memset.o
-                0x00003668                memset
+ .text          0x0000046c      0xe4c C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans0.ltrans.o
+                0x0000046c                uart0_status_isr
+                0x0000057c                uart4_status_isr
+                0x0000064c                __cxa_pure_virtual
+                0x0000064e                uart1_status_isr
+                0x000009e4                usb_isr
+                0x00001018                hard_fault_isr
+                0x00001018                memmanage_fault_isr
+                0x00001018                bus_fault_isr
+                0x00001018                usage_fault_isr
+                0x00001018                fault_isr
+                0x0000104c                tpm1_isr
+                0x0000104c                porte_isr
+                0x0000104c                portb_isr
+                0x0000104c                spi1_isr
+                0x0000104c                mcm_isr
+                0x0000104c                tpm2_isr
+                0x0000104c                enet_error_isr
+                0x0000104c                randnum_isr
+                0x0000104c                portd_isr
+                0x0000104c                watchdog_isr
+                0x0000104c                i2c1_isr
+                0x0000104c                dma_ch11_isr
+                0x0000104c                i2c2_isr
+                0x0000104c                dma_ch4_isr
+                0x0000104c                dma_ch7_isr
+                0x0000104c                lptmr_isr
+                0x0000104c                can1_bus_off_isr
+                0x0000104c                ftm2_isr
+                0x0000104c                dma_ch9_isr
+                0x0000104c                i2c3_isr
+                0x0000104c                can1_error_isr
+                0x0000104c                can0_wakeup_isr
+                0x0000104c                flash_cmd_isr
+                0x0000104c                cmp3_isr
+                0x0000104c                wakeup_isr
+                0x0000104c                svcall_isr
+                0x0000104c                dma_ch15_isr
+                0x0000104c                i2c0_isr
+                0x0000104c                usbhs_phy_isr
+                0x0000104c                unused_isr
+                0x0000104c                cmp2_isr
+                0x0000104c                spi0_isr
+                0x0000104c                dma_ch3_isr
+                0x0000104c                flash_error_isr
+                0x0000104c                dma_error_isr
+                0x0000104c                rtc_seconds_isr
+                0x0000104c                pdb_isr
+                0x0000104c                can1_rx_warn_isr
+                0x0000104c                dac1_isr
+                0x0000104c                dma_ch14_isr
+                0x0000104c                rtc_alarm_isr
+                0x0000104c                dma_ch2_isr
+                0x0000104c                ftm1_isr
+                0x0000104c                dma_ch13_isr
+                0x0000104c                uart2_error_isr
+                0x0000104c                dma_ch0_isr
+                0x0000104c                usb_charge_isr
+                0x0000104c                cmt_isr
+                0x0000104c                usbhs_isr
+                0x0000104c                ftm3_isr
+                0x0000104c                tsi0_isr
+                0x0000104c                dma_ch8_isr
+                0x0000104c                spi2_isr
+                0x0000104c                can0_bus_off_isr
+                0x0000104c                dma_ch6_isr
+                0x0000104c                can0_tx_warn_isr
+                0x0000104c                uart3_error_isr
+                0x0000104c                porta_isr
+                0x0000104c                low_voltage_isr
+                0x0000104c                can0_error_isr
+                0x0000104c                dma_ch12_isr
+                0x0000104c                can1_wakeup_isr
+                0x0000104c                enet_rx_isr
+                0x0000104c                portc_isr
+                0x0000104c                uart1_error_isr
+                0x0000104c                debugmonitor_isr
+                0x0000104c                cmp1_isr
+                0x0000104c                ftm0_isr
+                0x0000104c                i2s0_rx_isr
+                0x0000104c                uart4_error_isr
+                0x0000104c                can0_message_isr
+                0x0000104c                can1_message_isr
+                0x0000104c                nmi_isr
+                0x0000104c                sdhc_isr
+                0x0000104c                dma_ch10_isr
+                0x0000104c                uart0_error_isr
+                0x0000104c                enet_timer_isr
+                0x0000104c                i2s0_tx_isr
+                0x0000104c                adc1_isr
+                0x0000104c                cmp0_isr
+                0x0000104c                dac0_isr
+                0x0000104c                can1_tx_warn_isr
+                0x0000104c                adc0_isr
+                0x0000104c                can0_rx_warn_isr
+                0x0000104c                mcg_isr
+                0x0000104c                dma_ch1_isr
+                0x0000104c                dma_ch5_isr
+                0x0000104c                enet_tx_isr
+                0x00001052                serial5_getchar
+                0x000010a4                serial5_available
+                0x000010c4                serial5_putchar
+                0x0000119c                serial5_write
+                0x000011b2                serial5_set_tx
+                0x00001200                serial5_begin
+                0x00001288                abort
+                0x0000128a                _exit
+                0x0000128c                _sbrk
+ .text          0x000012b8      0x7dc C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans1.ltrans.o
+                0x000012b8                LedModeControl::init()
+                0x000012ec                SMRainbowCycle::initialState()
+                0x00001300                SMRainbowCycle::reset()
+                0x0000130e                SMRainbowCycle::run()
+                0x0000132e                SMColorPulse::fadeOut()
+                0x00001352                SMColorPulse::fadeIn()
+                0x00001376                SMColorPulse::reset()
+                0x00001384                SMColorPulse::run()
+                0x000013a6                SMRainbowCycle::idle()
+                0x000013c4                SMColorPulse::idle()
+                0x000013e2                SMColorPulse::initialState()
+                0x0000140c                LedModeControl::exec()
+                0x00001658                LedModeControl::~LedModeControl()
+                0x00001664                SMRainbowCycle::~SMRainbowCycle()
+                0x00001670                SMColorPulse::~SMColorPulse()
+                0x00001688                HardwareSerial5::write(unsigned char)
+                0x00001764                HardwareSerial5::write(unsigned char const*, unsigned int)
+                0x000017ac                LedModeControl::~LedModeControl() [clone .lto_priv.76]
+                0x000017ac                LedModeControl::~LedModeControl() [clone .lto_priv.64]
+                0x000017ae                SMRainbowCycle::~SMRainbowCycle() [clone .lto_priv.66]
+                0x000017ae                SMRainbowCycle::~SMRainbowCycle() [clone .lto_priv.78]
+                0x000017b0                SMColorPulse::~SMColorPulse() [clone .lto_priv.79]
+                0x000017b0                SMColorPulse::~SMColorPulse() [clone .lto_priv.67]
+                0x000017b2                Adafruit_NeoPixel::setBrightness(unsigned char)
+                0x000017fe                Adafruit_NeoPixel::show()
+                0x000018b8                SMColorPulse::delay()
+                0x00001914                LEDControl::setPixelColor(unsigned int, unsigned int, unsigned int) [clone .part.1]
+                0x00001988                LEDControl::Wheel(char, unsigned int)
+                0x000019d6                SMRainbowCycle::updatePixels()
+                0x00001a4c                LEDControl::updateStrip(unsigned int)
+                0x00001a60                SMRainbowCycle::updateStrips()
+ .text          0x00001a94      0x3cc C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans2.ltrans.o
+                0x00001a94                IPAddress::printTo(Print&) const
+                0x00001afe                pit3_isr
+                0x00001b14                pit2_isr
+                0x00001b28                pit1_isr
+                0x00001b3c                pit0_isr
+                0x00001b50                software_isr
+                0x00001b84                systick_isr
+                0x00001be8                strnsep.constprop.58
+                0x00001c1e                usb_tx.constprop.55
+                0x00001c80                Task::Task(unsigned int, char const*, TaskIDEnum) [clone .constprop.46]
+                0x00001cc4                MaintenanceComm::sendData(char const*, bool, bool) [clone .part.1] [clone .constprop.39]
+                0x00001d40                MaintenanceComm::sendData(int, char const*, ...) [clone .constprop.38]
+                0x00001d70                Print::printf(char const*, ...) [clone .constprop.32]
+                0x00001d90                yield
+                0x00001e10                _write
+                0x00001e1e                IntervalTimer::~IntervalTimer()
+                0x00001e1e                IntervalTimer::~IntervalTimer() [clone .lto_priv.75]
+ .text.startup  0x00001e60      0x1f8 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans2.ltrans.o
+                0x00001e60                Adafruit_NeoPixel::Adafruit_NeoPixel(unsigned short, unsigned char, unsigned short) [clone .constprop.22]
+                0x00001ed4                main
+ .text          0x00002058      0x728 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans3.ltrans.o
+                0x00002058                uart2_status_isr
+                0x000020ec                uart3_status_isr
+                0x00002184                lpuart0_status_isr
+                0x00002228                ConsoleCtrl::~ConsoleCtrl()
+                0x00002234                AboutCommand::~AboutCommand()
+                0x00002240                StatCommand::~StatCommand()
+                0x0000224c                ConsoleCtrl::~ConsoleCtrl() [clone .lto_priv.71]
+                0x0000224c                ConsoleCtrl::~ConsoleCtrl() [clone .lto_priv.83]
+                0x0000224e                AboutCommand::~AboutCommand() [clone .lto_priv.84]
+                0x0000224e                AboutCommand::~AboutCommand() [clone .lto_priv.72]
+                0x00002250                StatCommand::~StatCommand() [clone .lto_priv.74]
+                0x00002250                StatCommand::~StatCommand() [clone .lto_priv.86]
+                0x00002252                StopWatch::timerHasExpired() const
+                0x00002278                StopWatch::start(unsigned int)
+                0x00002290                Queue::push(void const*)
+                0x000022ca                Singleton<TaskScheduler>::getInstance()
+                0x000022fc                Singleton<LEDControl>::getInstance()
+                0x0000232c                Singleton<MaintenanceComm>::getInstance()
+                0x000023cc                ConsoleCtrl::init()
+                0x0000249c                AboutCommand::exec(char*, char*, char*, char*)
+                0x00002544                StatCommand::exec(char*, char*, char*, char*)
+                0x000025e0                usb_free
+                0x0000269c                usb_malloc
+                0x000026d8                digitalWrite.part.0
+                0x00002714                micros
+                0x00002754                delay
+ .text          0x00002780      0x6b8 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans4.ltrans.o
+                0x00002780                pendablesrvreq_isr
+                0x000027b0                HardwareSerial5::write(long)
+                0x000027b0                HardwareSerial5::write(int)
+                0x000027b8                HardwareSerial5::write(unsigned long)
+                0x000027b8                HardwareSerial5::write(unsigned int)
+                0x000027c0                HardwareSerial5::availableForWrite()
+                0x000027dc                HardwareSerial5::clear()
+                0x000027f4                HardwareSerial5::peek()
+                0x0000281c                HardwareSerial5::attachCts(unsigned char)
+                0x0000285c                HardwareSerial5::attachRts(unsigned char)
+                0x000028b0                HardwareSerial5::setRX(unsigned char)
+                0x000028b2                SMWhiteOverRainbow::reset()
+                0x000028c0                SMWhiteOverRainbow::run()
+                0x000028e0                SMColorPulse::init()
+                0x000028e0                SMOff::init()
+                0x000028e0                SMColor::init()
+                0x000028e0                SMWhite::init()
+                0x000028e0                SMWhiteOverRainbow::init()
+                0x000028e0                SMRainbowCycle::init()
+                0x000028e2                SMColor::reset()
+                0x000028e2                SMOff::reset()
+                0x000028e2                SMWhite::reset()
+                0x000028f0                SMOff::run()
+                0x00002910                SMColor::run()
+                0x00002930                SMWhite::run()
+                0x00002950                HardwareSerial5::write9bit(unsigned long)
+                0x0000295c                HardwareSerial5::write(char const*)
+                0x00002974                HardwareSerial5::flush()
+                0x0000298c                HardwareSerial5::end()
+                0x000029e4                HardwareSerial5::read()
+                0x000029e8                HardwareSerial5::available()
+                0x000029ec                HardwareSerial5::setTX(unsigned char, bool)
+                0x000029f4                HardwareSerial5::transmitterEnable(unsigned char)
+                0x00002a44                HardwareSerial5::begin(unsigned long, unsigned long)
+                0x00002ac0                HardwareSerial5::begin(unsigned long)
+                0x00002ad4                SMWhiteOverRainbow::updateStrips()
+                0x00002b28                SMWhiteOverRainbow::idle()
+                0x00002b46                SMOff::idle()
+                0x00002b62                SMColor::idle()
+                0x00002b80                SMWhite::idle()
+                0x00002b9e                SMWhiteOverRainbow::initialState()
+                0x00002bce                SMWhiteOverRainbow::updatePixels()
+                0x00002c90                SMOff::turnLedsOff()
+                0x00002ce8                SMColor::setColor()
+                0x00002d44                SMWhite::setWhiteLight()
+                0x00002da4                SMOff::~SMOff()
+                0x00002db0                SMWhiteOverRainbow::~SMWhiteOverRainbow()
+                0x00002dbc                SMColor::~SMColor()
+                0x00002dc8                SMWhite::~SMWhite()
+                0x00002dd4                MillisTimer::addToActiveList()
+                0x00002e30                SMWhiteOverRainbow::~SMWhiteOverRainbow() [clone .lto_priv.77]
+                0x00002e30                SMWhiteOverRainbow::~SMWhiteOverRainbow() [clone .lto_priv.65]
+                0x00002e32                SMOff::~SMOff() [clone .lto_priv.70]
+                0x00002e32                SMOff::~SMOff() [clone .lto_priv.82]
+                0x00002e34                SMColor::~SMColor() [clone .lto_priv.68]
+                0x00002e34                SMColor::~SMColor() [clone .lto_priv.80]
+                0x00002e36                SMWhite::~SMWhite() [clone .lto_priv.69]
+                0x00002e36                SMWhite::~SMWhite() [clone .lto_priv.81]
+ .text          0x00002e38      0x420 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans5.ltrans.o
+                0x00002e38                LedModeCommand::~LedModeCommand()
+                0x00002e44                LEDControl::setBrightness(unsigned char)
+                0x00002e80                LEDControl::setLedMode(LEDModes)
+                0x00002f0c                LedModeCommand::exec(char*, char*, char*, char*)
+                0x000030f8                LedModeCommand::~LedModeCommand() [clone .lto_priv.85]
+                0x000030f8                LedModeCommand::~LedModeCommand() [clone .lto_priv.73]
+                0x000030fa                HashTable<int>::findPos(char*) const
+                0x0000316a                ConsoleCtrl::exec()
+ .text.startup  0x00003258      0x388 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans6.ltrans.o
+ .text          0x000035e0      0x134 teensy3/memcpy-armv7m.o
+                0x000035e0                memcpy
+ .text          0x00003714       0x44 teensy3/memset.o
+                0x00003714                memset
  .text.__aeabi_atexit
-                0x000036ac        0xc c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-aeabi_atexit.o)
-                0x000036ac                __aeabi_atexit
+                0x00003758        0xc c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-aeabi_atexit.o)
+                0x00003758                __aeabi_atexit
  .text.__cxa_atexit
-                0x000036b8        0xc c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-cxa_atexit.o)
-                0x000036b8                __cxa_atexit
- .text.__errno  0x000036c4        0xc c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-errno.o)
-                0x000036c4                __errno
+                0x00003764        0xc c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-cxa_atexit.o)
+                0x00003764                __cxa_atexit
+ .text.__errno  0x00003770        0xc c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-errno.o)
+                0x00003770                __errno
  .text.__libc_init_array
-                0x000036d0       0x50 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-init.o)
-                0x000036d0                __libc_init_array
- .text.strnlen  0x00003720       0x34 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-strnlen.o)
-                0x00003720                strnlen
+                0x0000377c       0x50 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-init.o)
+                0x0000377c                __libc_init_array
+ .text.strnlen  0x000037cc       0x34 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-strnlen.o)
+                0x000037cc                strnlen
  .text._strtoul_l.isra.0
-                0x00003754      0x168 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-strtoul.o)
- .text.strtoul  0x000038bc       0x2c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-strtoul.o)
-                0x000038bc                strtoul
+                0x00003800      0x168 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-strtoul.o)
+ .text.strtoul  0x00003968       0x2c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-strtoul.o)
+                0x00003968                strtoul
  .text._vdprintf_r
-                0x000038e8       0x4c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-vdprintf.o)
-                0x000038e8                _vdprintf_r
+                0x00003994       0x4c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-vdprintf.o)
+                0x00003994                _vdprintf_r
  .text.vdprintf
-                0x00003934       0x18 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-vdprintf.o)
-                0x00003934                vdprintf
+                0x000039e0       0x18 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-vdprintf.o)
+                0x000039e0                vdprintf
  .text._write_r
-                0x0000394c       0x2c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-writer.o)
-                0x0000394c                _write_r
+                0x000039f8       0x2c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-writer.o)
+                0x000039f8                _write_r
  .text.__register_exitproc
-                0x00003978       0xa4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-__atexit.o)
-                0x00003978                __register_exitproc
+                0x00003a24       0xa4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-__atexit.o)
+                0x00003a24                __register_exitproc
  .text.startup.register_fini
-                0x00003a1c       0x14 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-__call_atexit.o)
- .text.atexit   0x00003a30        0xc c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-atexit.o)
-                0x00003a30                atexit
+                0x00003ac8       0x14 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-__call_atexit.o)
+ .text.atexit   0x00003adc        0xc c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-atexit.o)
+                0x00003adc                atexit
  .text.__libc_fini_array
-                0x00003a3c       0x28 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-fini.o)
-                0x00003a3c                __libc_fini_array
+                0x00003ae8       0x28 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-fini.o)
+                0x00003ae8                __libc_fini_array
  .text._malloc_trim_r
-                0x00003a64       0x9c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-freer.o)
-                0x00003a64                _malloc_trim_r
- .text._free_r  0x00003b00      0x1d0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-freer.o)
-                0x00003b00                _free_r
+                0x00003b10       0x9c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-freer.o)
+                0x00003b10                _malloc_trim_r
+ .text._free_r  0x00003bac      0x1d0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-freer.o)
+                0x00003bac                _free_r
  .text.__locale_ctype_ptr_l
-                0x00003cd0        0x8 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-locale.o)
-                0x00003cd0                __locale_ctype_ptr_l
+                0x00003d7c        0x8 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-locale.o)
+                0x00003d7c                __locale_ctype_ptr_l
  .text._localeconv_r
-                0x00003cd8       0x1c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-localeconv.o)
-                0x00003cd8                _localeconv_r
+                0x00003d84       0x1c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-localeconv.o)
+                0x00003d84                _localeconv_r
  .text._malloc_r
-                0x00003cf4      0x570 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
-                0x00003cf4                _malloc_r
+                0x00003da0      0x570 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
+                0x00003da0                _malloc_r
  .text.__ascii_mbtowc
-                0x00004264       0x2c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mbtowc_r.o)
-                0x00004264                __ascii_mbtowc
+                0x00004310       0x2c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mbtowc_r.o)
+                0x00004310                __ascii_mbtowc
  .text.__malloc_lock
-                0x00004290        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mlock.o)
-                0x00004290                __malloc_lock
+                0x0000433c        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mlock.o)
+                0x0000433c                __malloc_lock
  .text.__malloc_unlock
-                0x00004294        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mlock.o)
-                0x00004294                __malloc_unlock
- .text._Balloc  0x00004298       0x4c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
-                0x00004298                _Balloc
- .text._Bfree   0x000042e4       0x14 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
-                0x000042e4                _Bfree
+                0x00004340        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mlock.o)
+                0x00004340                __malloc_unlock
+ .text._Balloc  0x00004344       0x4c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
+                0x00004344                _Balloc
+ .text._Bfree   0x00004390       0x14 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
+                0x00004390                _Bfree
  .text.__multadd
-                0x000042f8       0x80 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
-                0x000042f8                __multadd
+                0x000043a4       0x80 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
+                0x000043a4                __multadd
  .text.__hi0bits
-                0x00004378       0x40 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
-                0x00004378                __hi0bits
+                0x00004424       0x40 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
+                0x00004424                __hi0bits
  .text.__lo0bits
-                0x000043b8       0x5c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
-                0x000043b8                __lo0bits
- .text.__i2b    0x00004414       0x14 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
-                0x00004414                __i2b
+                0x00004464       0x5c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
+                0x00004464                __lo0bits
+ .text.__i2b    0x000044c0       0x14 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
+                0x000044c0                __i2b
  .text.__multiply
-                0x00004428      0x130 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
-                0x00004428                __multiply
+                0x000044d4      0x130 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
+                0x000044d4                __multiply
  .text.__pow5mult
-                0x00004558       0xa0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
-                0x00004558                __pow5mult
+                0x00004604       0xa0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
+                0x00004604                __pow5mult
  .text.__lshift
-                0x000045f8       0xb0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
-                0x000045f8                __lshift
- .text.__mcmp   0x000046a8       0x44 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
-                0x000046a8                __mcmp
- .text.__mdiff  0x000046ec      0x114 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
-                0x000046ec                __mdiff
- .text.__d2b    0x00004800       0xbc c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
-                0x00004800                __d2b
+                0x000046a4       0xb0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
+                0x000046a4                __lshift
+ .text.__mcmp   0x00004754       0x44 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
+                0x00004754                __mcmp
+ .text.__mdiff  0x00004798      0x114 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
+                0x00004798                __mdiff
+ .text.__d2b    0x000048ac       0xbc c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
+                0x000048ac                __d2b
  .text._realloc_r
-                0x000048bc      0x3e0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-reallocr.o)
-                0x000048bc                _realloc_r
- .text._sbrk_r  0x00004c9c       0x24 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-sbrkr.o)
-                0x00004c9c                _sbrk_r
- .text          0x00004cc0       0xdc c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-strlen.o)
-                0x00004cc0                strlen
- .text.strncmp  0x00004d9c       0xa0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-strncmp.o)
-                0x00004d9c                strncmp
+                0x00004968      0x3e0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-reallocr.o)
+                0x00004968                _realloc_r
+ .text._sbrk_r  0x00004d48       0x24 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-sbrkr.o)
+                0x00004d48                _sbrk_r
+ *fill*         0x00004d6c       0x14 ff
+ .text          0x00004d80       0xdc c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-strlen.o)
+                0x00004d80                strlen
+ .text.strncmp  0x00004e5c       0xa0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-strncmp.o)
+                0x00004e5c                strncmp
  .text._vasnprintf_r
-                0x00004e3c       0x60 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-vasnprintf.o)
-                0x00004e3c                _vasnprintf_r
+                0x00004efc       0x60 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-vasnprintf.o)
+                0x00004efc                _vasnprintf_r
  .text.__ascii_wctomb
-                0x00004e9c       0x1c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-wctomb_r.o)
-                0x00004e9c                __ascii_wctomb
+                0x00004f5c       0x1c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-wctomb_r.o)
+                0x00004f5c                __ascii_wctomb
  .text._calloc_r
-                0x00004eb8       0x60 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-callocr.o)
-                0x00004eb8                _calloc_r
- .text.quorem   0x00004f18      0x128 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-dtoa.o)
- .text._dtoa_r  0x00005040      0xe34 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-dtoa.o)
-                0x00005040                _dtoa_r
- .text.memmove  0x00005e74       0xc8 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-memmove.o)
-                0x00005e74                memmove
- *fill*         0x00005f3c        0x4 ff
+                0x00004f78       0x60 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-callocr.o)
+                0x00004f78                _calloc_r
+ .text.quorem   0x00004fd8      0x128 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-dtoa.o)
+ .text._dtoa_r  0x00005100      0xe34 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-dtoa.o)
+                0x00005100                _dtoa_r
+ .text.memmove  0x00005f34       0xc8 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-memmove.o)
+                0x00005f34                memmove
+ *fill*         0x00005ffc        0x4 ff
  .text._svfprintf_r
-                0x00005f40     0x16e4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-svfprintf.o)
-                0x00005f40                _svfprintf_r
- *fill*         0x00007624        0xc ff
- .text          0x00007630       0xa0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-memchr.o)
-                0x00007630                memchr
+                0x00006000     0x16e4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-svfprintf.o)
+                0x00006000                _svfprintf_r
+ *fill*         0x000076e4        0xc ff
+ .text          0x000076f0       0xa0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-memchr.o)
+                0x000076f0                memchr
  .text.__ssprint_r
-                0x000076d0      0x100 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-svfiprintf.o)
-                0x000076d0                __ssprint_r
- .text          0x000077d0      0x370 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
-                0x000077d0                __aeabi_drsub
-                0x000077d8                __aeabi_dsub
-                0x000077d8                __subdf3
-                0x000077dc                __aeabi_dadd
-                0x000077dc                __adddf3
-                0x00007a54                __floatunsidf
-                0x00007a54                __aeabi_ui2d
-                0x00007a74                __floatsidf
-                0x00007a74                __aeabi_i2d
-                0x00007a98                __aeabi_f2d
-                0x00007a98                __extendsfdf2
-                0x00007ad4                __floatundidf
-                0x00007ad4                __aeabi_ul2d
-                0x00007ae4                __floatdidf
-                0x00007ae4                __aeabi_l2d
- .text          0x00007b40      0x424 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_muldivdf3.o)
-                0x00007b40                __aeabi_dmul
-                0x00007b40                __muldf3
-                0x00007d94                __divdf3
-                0x00007d94                __aeabi_ddiv
- .text          0x00007f64      0x110 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
-                0x00007f64                __gtdf2
-                0x00007f64                __gedf2
-                0x00007f6c                __ltdf2
-                0x00007f6c                __ledf2
-                0x00007f74                __nedf2
-                0x00007f74                __eqdf2
-                0x00007f74                __cmpdf2
-                0x00007ff0                __aeabi_cdrcmple
-                0x00008000                __aeabi_cdcmpeq
-                0x00008000                __aeabi_cdcmple
-                0x00008010                __aeabi_dcmpeq
-                0x00008024                __aeabi_dcmplt
-                0x00008038                __aeabi_dcmple
-                0x0000804c                __aeabi_dcmpge
-                0x00008060                __aeabi_dcmpgt
- .text          0x00008074       0x2c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_unorddf2.o)
-                0x00008074                __unorddf2
-                0x00008074                __aeabi_dcmpun
- .text          0x000080a0       0x50 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_fixdfsi.o)
-                0x000080a0                __aeabi_d2iz
-                0x000080a0                __fixdfsi
- .text          0x000080f0       0x30 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_aeabi_uldivmod.o)
-                0x000080f0                __aeabi_uldivmod
- .text          0x00008120      0x2e4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_udivmoddi4.o)
-                0x00008120                __udivmoddi4
- .text          0x00008404        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_dvmd_tls.o)
-                0x00008404                __aeabi_idiv0
-                0x00008404                __aeabi_ldiv0
- .text.malloc   0x00008408       0x10 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-malloc.o)
-                0x00008408                malloc
- .text.free     0x00008418       0x10 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-malloc.o)
-                0x00008418                free
+                0x00007790      0x100 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-svfiprintf.o)
+                0x00007790                __ssprint_r
+ .text          0x00007890      0x370 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_addsubdf3.o)
+                0x00007890                __aeabi_drsub
+                0x00007898                __aeabi_dsub
+                0x00007898                __subdf3
+                0x0000789c                __aeabi_dadd
+                0x0000789c                __adddf3
+                0x00007b14                __floatunsidf
+                0x00007b14                __aeabi_ui2d
+                0x00007b34                __floatsidf
+                0x00007b34                __aeabi_i2d
+                0x00007b58                __aeabi_f2d
+                0x00007b58                __extendsfdf2
+                0x00007b94                __floatundidf
+                0x00007b94                __aeabi_ul2d
+                0x00007ba4                __floatdidf
+                0x00007ba4                __aeabi_l2d
+ .text          0x00007c00      0x424 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_muldivdf3.o)
+                0x00007c00                __aeabi_dmul
+                0x00007c00                __muldf3
+                0x00007e54                __divdf3
+                0x00007e54                __aeabi_ddiv
+ .text          0x00008024      0x110 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_cmpdf2.o)
+                0x00008024                __gtdf2
+                0x00008024                __gedf2
+                0x0000802c                __ltdf2
+                0x0000802c                __ledf2
+                0x00008034                __nedf2
+                0x00008034                __eqdf2
+                0x00008034                __cmpdf2
+                0x000080b0                __aeabi_cdrcmple
+                0x000080c0                __aeabi_cdcmpeq
+                0x000080c0                __aeabi_cdcmple
+                0x000080d0                __aeabi_dcmpeq
+                0x000080e4                __aeabi_dcmplt
+                0x000080f8                __aeabi_dcmple
+                0x0000810c                __aeabi_dcmpge
+                0x00008120                __aeabi_dcmpgt
+ .text          0x00008134       0x2c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_unorddf2.o)
+                0x00008134                __unorddf2
+                0x00008134                __aeabi_dcmpun
+ .text          0x00008160       0x50 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_arm_fixdfsi.o)
+                0x00008160                __aeabi_d2iz
+                0x00008160                __fixdfsi
+ .text          0x000081b0       0x30 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_aeabi_uldivmod.o)
+                0x000081b0                __aeabi_uldivmod
+ .text          0x000081e0      0x2e4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_udivmoddi4.o)
+                0x000081e0                __udivmoddi4
+ .text          0x000084c4        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_dvmd_tls.o)
+                0x000084c4                __aeabi_idiv0
+                0x000084c4                __aeabi_ldiv0
+ .text.malloc   0x000084c8       0x10 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-malloc.o)
+                0x000084c8                malloc
+ .text.free     0x000084d8       0x10 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-malloc.o)
+                0x000084d8                free
  .text.snprintf
-                0x00008428       0x9c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-snprintf.o)
-                0x00008428                snprintf
- .text.strncpy  0x000084c4       0x68 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-strncpy.o)
-                0x000084c4                strncpy
+                0x000084e8       0x9c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-snprintf.o)
+                0x000084e8                snprintf
+ .text.strncpy  0x00008584       0x68 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-strncpy.o)
+                0x00008584                strncpy
  .text._vsnprintf_r
-                0x0000852c       0x74 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-vsnprintf.o)
-                0x0000852c                _vsnprintf_r
+                0x000085ec       0x74 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-vsnprintf.o)
+                0x000085ec                _vsnprintf_r
  .text.vsnprintf
-                0x000085a0       0x20 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-vsnprintf.o)
-                0x000085a0                vsnprintf
+                0x00008660       0x20 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-vsnprintf.o)
+                0x00008660                vsnprintf
  *(.rodata*)
- .rodata        0x000085c0       0x20 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans1.ltrans.o
-                0x000085c8                vtable for MaintenanceComm
+ .rodata        0x00008680       0x54 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans0.ltrans.o
+ .rodata        0x000086d4       0x20 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans1.ltrans.o
+                0x000086dc                vtable for MaintenanceComm
  .rodata.str1.1
-                0x000085e0       0x1e C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans1.ltrans.o
- .rodata        0x000085fe       0x24 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans2.ltrans.o
-                0x0000861e                usb_endpoint_config_table
+                0x000086f4       0x1e C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans1.ltrans.o
+ *fill*         0x00008712        0x2 ff
+ .rodata        0x00008714      0x278 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans2.ltrans.o
+                0x00008714                vtable for Task
+                0x0000872c                digital_pin_to_info_PGM
  .rodata.str1.1
-                0x00008622       0x53 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans2.ltrans.o
-                                 0x5b (size before relaxing)
- .rodata.str1.1
-                0x00008675      0x19e C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans3.ltrans.o
-                                0x1a9 (size before relaxing)
- *fill*         0x00008813        0x1 ff
- .rodata        0x00008814       0x54 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans4.ltrans.o
- .rodata        0x00008868      0x278 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans5.ltrans.o
-                0x00008868                vtable for Task
-                0x00008880                digital_pin_to_info_PGM
- .rodata.str1.1
-                0x00008ae0        0x4 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans5.ltrans.o
+                0x0000898c       0x3d C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans2.ltrans.o
                                  0x40 (size before relaxing)
- .rodata        0x00008ae4      0x184 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans6.ltrans.o
-                0x00008ae4                vtable for AboutCommand
-                0x00008af8                vtable for LedModeCommand
-                0x00008b0c                vtable for StatCommand
-                0x00008b40                vtable for LedModeControl
-                0x00008b58                vtable for SMOff
-                0x00008b74                vtable for SMWhite
-                0x00008b90                vtable for SMColor
-                0x00008bac                vtable for SMColorPulse
-                0x00008bc8                vtable for SMRainbowCycle
-                0x00008be4                vtable for SMWhiteOverRainbow
-                0x00008c20                vtable for ConsoleCtrl
-                0x00008c38                vtable for Command
-                0x00008c4c                vtable for StateMachine
+ .rodata        0x000089c9       0x24 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans3.ltrans.o
+                0x000089e9                usb_endpoint_config_table
  .rodata.str1.1
-                0x00008c68       0x38 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans6.ltrans.o
+                0x000089ed       0xee C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans3.ltrans.o
+                                0x12f (size before relaxing)
+ .rodata.str1.1
+                0x00008adb      0x19e C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans5.ltrans.o
+                                0x1a9 (size before relaxing)
+ *fill*         0x00008c79        0x3 ff
+ .rodata        0x00008c7c      0x184 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans6.ltrans.o
+                0x00008c7c                vtable for AboutCommand
+                0x00008c90                vtable for LedModeCommand
+                0x00008ca4                vtable for StatCommand
+                0x00008cd8                vtable for LedModeControl
+                0x00008cf0                vtable for SMOff
+                0x00008d0c                vtable for SMWhite
+                0x00008d28                vtable for SMColor
+                0x00008d44                vtable for SMColorPulse
+                0x00008d60                vtable for SMRainbowCycle
+                0x00008d7c                vtable for SMWhiteOverRainbow
+                0x00008db8                vtable for ConsoleCtrl
+                0x00008dd0                vtable for Command
+                0x00008de4                vtable for StateMachine
+ .rodata.str1.1
+                0x00008e00       0x38 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans6.ltrans.o
  .rodata._global_impure_ptr
-                0x00008ca0        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-impure.o)
-                0x00008ca0                _global_impure_ptr
+                0x00008e38        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-impure.o)
+                0x00008e38                _global_impure_ptr
  .rodata.str1.4
-                0x00008ca4        0xe c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-locale.o)
+                0x00008e3c        0xe c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-locale.o)
                                  0x12 (size before relaxing)
- *fill*         0x00008cb2        0x6 ff
+ *fill*         0x00008e4a        0x6 ff
  .rodata.__mprec_tens
-                0x00008cb8       0xc8 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
-                0x00008cb8                __mprec_tens
+                0x00008e50       0xc8 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
+                0x00008e50                __mprec_tens
  .rodata.__mprec_bigtens
-                0x00008d80       0x28 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
-                0x00008d80                __mprec_bigtens
+                0x00008f18       0x28 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
+                0x00008f18                __mprec_bigtens
  .rodata.p05.6087
-                0x00008da8        0xc c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
+                0x00008f40        0xc c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mprec.o)
  .rodata._ctype_
-                0x00008db4      0x101 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-ctype_.o)
-                0x00008db4                _ctype_
- *fill*         0x00008eb5        0x3 ff
+                0x00008f4c      0x101 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-ctype_.o)
+                0x00008f4c                _ctype_
+ *fill*         0x0000904d        0x3 ff
  .rodata.str1.4
-                0x00008eb8       0x12 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-dtoa.o)
- *fill*         0x00008eca        0x2 ff
+                0x00009050       0x12 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-dtoa.o)
+ *fill*         0x00009062        0x2 ff
  .rodata.zeroes.7258
-                0x00008ecc       0x10 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-svfprintf.o)
+                0x00009064       0x10 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-svfprintf.o)
  .rodata.str1.4
-                0x00008edc       0x40 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-svfprintf.o)
+                0x00009074       0x40 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-svfprintf.o)
                                  0x42 (size before relaxing)
  .rodata.blanks.7257
-                0x00008f1c       0x10 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-svfprintf.o)
-                0x00008f2c                . = ALIGN (0x4)
+                0x000090b4       0x10 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-svfprintf.o)
+                0x000090c4                . = ALIGN (0x4)
  *(.init)
- .init          0x00008f2c        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crti.o
-                0x00008f2c                _init
- .init          0x00008f30        0x8 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtn.o
-                0x00008f38                . = ALIGN (0x4)
-                0x00008f38                __preinit_array_start = .
+ .init          0x000090c4        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crti.o
+                0x000090c4                _init
+ .init          0x000090c8        0x8 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtn.o
+                0x000090d0                . = ALIGN (0x4)
+                0x000090d0                __preinit_array_start = .
  *(.preinit_array)
-                0x00008f38                __preinit_array_end = .
-                0x00008f38                __init_array_start = .
+                0x000090d0                __preinit_array_end = .
+                0x000090d0                __init_array_start = .
  *(SORT(.init_array.*))
  .init_array.00000
-                0x00008f38        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-__call_atexit.o)
+                0x000090d0        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-__call_atexit.o)
  *(.init_array)
- .init_array    0x00008f3c        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
- .init_array    0x00008f40        0x4 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans6.ltrans.o
-                0x00008f44                __init_array_end = .
+ .init_array    0x000090d4        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
+ .init_array    0x000090d8        0x4 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans6.ltrans.o
+                0x000090dc                __init_array_end = .
 
-.glue_7         0x00008f44        0x0
- .glue_7        0x00008f44        0x0 linker stubs
+.glue_7         0x000090dc        0x0
+ .glue_7        0x000090dc        0x0 linker stubs
 
-.glue_7t        0x00008f44        0x0
- .glue_7t       0x00008f44        0x0 linker stubs
+.glue_7t        0x000090dc        0x0
+ .glue_7t       0x000090dc        0x0 linker stubs
 
-.vfp11_veneer   0x00008f44        0x0
- .vfp11_veneer  0x00008f44        0x0 linker stubs
+.vfp11_veneer   0x000090dc        0x0
+ .vfp11_veneer  0x000090dc        0x0 linker stubs
 
-.v4_bx          0x00008f44        0x0
- .v4_bx         0x00008f44        0x0 linker stubs
+.v4_bx          0x000090dc        0x0
+ .v4_bx         0x000090dc        0x0 linker stubs
 
-.fini           0x00008f44        0x4
- .fini          0x00008f44        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crti.o
-                0x00008f44                _fini
+.fini           0x000090dc        0x4
+ .fini          0x000090dc        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crti.o
+                0x000090dc                _fini
 
-.iplt           0x00008f48        0x0
- .iplt          0x00008f48        0x0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
+.iplt           0x000090e0        0x0
+ .iplt          0x000090e0        0x0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
 
-.eh_frame       0x00008f48        0x0
- .eh_frame      0x00008f48        0x0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
+.eh_frame       0x000090e0        0x0
+ .eh_frame      0x000090e0        0x0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
 
-.ARM.exidx      0x00008f48        0x8
-                0x00008f48                __exidx_start = .
+.ARM.exidx      0x000090e0        0x8
+                0x000090e0                __exidx_start = .
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x00008f48        0x8 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_udivmoddi4.o)
-                0x00008f50                __exidx_end = .
-                0x00008f50                _etext = .
+ .ARM.exidx     0x000090e0        0x8 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a(_udivmoddi4.o)
+                0x000090e8                __exidx_end = .
+                0x000090e8                _etext = .
 
-.rel.dyn        0x00008f50        0x0
- .rel.iplt      0x00008f50        0x0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
+.rel.dyn        0x000090e8        0x0
+ .rel.iplt      0x000090e8        0x0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
 
 .usbdescriptortable
                 0x1fff0000       0xa0
                 0x1fff0000                . = ALIGN (0x200)
  *(.usbdescriptortable*)
  .usbdescriptortable
-                0x1fff0000       0xa0 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans5.ltrans.o
-                0x1fff0000                table.lto_priv.101
+                0x1fff0000       0xa0 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans2.ltrans.o
+                0x1fff0000                table.lto_priv.120
 
 .dmabuffers     0x1fff0200      0x1d0
                 0x1fff0200                . = ALIGN (0x4)
  *(.dmabuffers*)
- .dmabuffers    0x1fff0200      0x1d0 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans4.ltrans.o
+ .dmabuffers    0x1fff0200      0x1d0 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans0.ltrans.o
                 0x1fff0200                _VectorsRam
 
 .usbbuffers     0x1fff03d0      0x360
                 0x1fff03d0                . = ALIGN (0x4)
  *(.usbbuffers*)
- .usbbuffers    0x1fff03d0      0x360 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans2.ltrans.o
+ .usbbuffers    0x1fff03d0      0x360 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans3.ltrans.o
                 0x1fff03d0                usb_buffer_memory
 
-.data           0x1fff0730      0xab0 load address 0x00008f50
+.data           0x1fff0730      0xaa8 load address 0x000090e8
                 0x1fff0730                . = ALIGN (0x4)
                 0x1fff0730                _sdata = .
  *(.fastrun*)
  *(.data*)
  .data          0x1fff0730        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
                 0x1fff0730                __dso_handle
- .data          0x1fff0734       0x10 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans0.ltrans.o
- .data          0x1fff0744        0x1 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans1.ltrans.o
- *fill*         0x1fff0745        0x3 
- .data          0x1fff0748       0x1c C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans2.ltrans.o
-                0x1fff0748                usb_string_serial_number
-                0x1fff0748                usb_string_serial_number_default
- .data          0x1fff0764       0x8f C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans4.ltrans.o
- *fill*         0x1fff07f3        0x1 
- .data          0x1fff07f4       0x11 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans5.ltrans.o
-                0x1fff07f4                Serial5
- *fill*         0x1fff0805        0x3 
- .data          0x1fff0808       0x30 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans6.ltrans.o
-                0x1fff0808                cmdList
+ .data          0x1fff0734       0xa3 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans0.ltrans.o
+ .data          0x1fff07d7        0x1 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans1.ltrans.o
+ .data          0x1fff07d8       0x21 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans2.ltrans.o
+                0x1fff07e8                Serial5
+ *fill*         0x1fff07f9        0x3 
+ .data          0x1fff07fc        0x4 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans3.ltrans.o
+ .data          0x1fff0800       0x30 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans6.ltrans.o
+                0x1fff0800                cmdList
  .data.impure_data
-                0x1fff0838      0x428 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-impure.o)
+                0x1fff0830      0x428 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-impure.o)
  .data._impure_ptr
-                0x1fff0c60        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-impure.o)
-                0x1fff0c60                _impure_ptr
+                0x1fff0c58        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-impure.o)
+                0x1fff0c58                _impure_ptr
  .data.__global_locale
-                0x1fff0c64      0x16c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-locale.o)
-                0x1fff0c64                __global_locale
+                0x1fff0c5c      0x16c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-locale.o)
+                0x1fff0c5c                __global_locale
  .data.__malloc_av_
-                0x1fff0dd0      0x408 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
-                0x1fff0dd0                __malloc_av_
+                0x1fff0dc8      0x408 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
+                0x1fff0dc8                __malloc_av_
  .data.__malloc_trim_threshold
-                0x1fff11d8        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
-                0x1fff11d8                __malloc_trim_threshold
+                0x1fff11d0        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
+                0x1fff11d0                __malloc_trim_threshold
  .data.__malloc_sbrk_base
-                0x1fff11dc        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
-                0x1fff11dc                __malloc_sbrk_base
-                0x1fff11e0                . = ALIGN (0x4)
-                0x1fff11e0                _edata = .
+                0x1fff11d4        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
+                0x1fff11d4                __malloc_sbrk_base
+                0x1fff11d8                . = ALIGN (0x4)
+                0x1fff11d8                _edata = .
 
-.jcr            0x1fff11e0        0x0 load address 0x00009a00
- .jcr           0x1fff11e0        0x0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
+.jcr            0x1fff11d8        0x0 load address 0x00009b90
+ .jcr           0x1fff11d8        0x0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
 
-.igot.plt       0x1fff11e0        0x0 load address 0x00009a00
- .igot.plt      0x1fff11e0        0x0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
+.igot.plt       0x1fff11d8        0x0 load address 0x00009b90
+ .igot.plt      0x1fff11d8        0x0 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
 
 .noinit
  *(.noinit*)
 
-.bss            0x1fff11e0      0x47c load address 0x00009a00
-                0x1fff11e0                . = ALIGN (0x4)
-                0x1fff11e0                _sbss = .
-                0x1fff11e0                __bss_start__ = .
+.bss            0x1fff11d8      0x47c load address 0x00009b90
+                0x1fff11d8                . = ALIGN (0x4)
+                0x1fff11d8                _sbss = .
+                0x1fff11d8                __bss_start__ = .
  *(.bss*)
- .bss           0x1fff11e0       0x1c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
- .bss           0x1fff11fc       0x76 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans0.ltrans.o
-                0x1fff1208                tx_buffer_head.lto_priv.112
-                0x1fff1209                tx_buffer_tail.lto_priv.109
-                0x1fff120a                rx_buffer_tail.lto_priv.96
-                0x1fff120b                rx_buffer_head.lto_priv.90
-                0x1fff120c                rts_pin.lto_priv.106
-                0x1fff1210                rx_buffer.lto_priv.103
-                0x1fff1250                transmitting.lto_priv.118
-                0x1fff1254                transmit_pin.lto_priv.121
-                0x1fff1259                rx_buffer_head.lto_priv.91
-                0x1fff125a                rx_buffer_tail.lto_priv.97
-                0x1fff125b                rx_buffer_head.lto_priv.87
-                0x1fff125c                rx_buffer_tail.lto_priv.93
-                0x1fff125d                rx_buffer_head.lto_priv.88
-                0x1fff125e                rx_buffer_tail.lto_priv.94
-                0x1fff125f                rx_buffer_head.lto_priv.89
-                0x1fff1260                rx_buffer_tail.lto_priv.95
-                0x1fff1261                rx_buffer_head.lto_priv.92
-                0x1fff1262                rx_buffer_tail.lto_priv.98
-                0x1fff126a                usb_rx_byte_count_data
- *fill*         0x1fff1272        0x2 
- .bss           0x1fff1274        0xb C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans1.ltrans.o
-                0x1fff1275                calibrating.lto_priv.102
- *fill*         0x1fff127f        0x1 
- .bss           0x1fff1280      0x126 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans2.ltrans.o
-                0x1fff136e                tx_buffer.lto_priv.115
-                0x1fff13a4                usb_rx_memory_needed
-                0x1fff13a5                usb_configuration
- *fill*         0x1fff13a6        0x2 
- .bss           0x1fff13a8      0x210 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans4.ltrans.o
- .bss           0x1fff15b8       0x2c C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans5.ltrans.o
-                0x1fff15ba                tx_state.lto_priv.125
-                0x1fff15c0                tx_first.lto_priv.124
-                0x1fff15d0                tx_last.lto_priv.126
-                0x1fff15e0                systick_millis_count
- .bss           0x1fff15e4       0x40 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans6.ltrans.o
-                0x1fff15ec                strips
-                0x1fff1610                taskList
+ .bss           0x1fff11d8       0x1c c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
+ .bss           0x1fff11f4      0x1e4 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans0.ltrans.o
+ .bss           0x1fff13d8        0xb C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans1.ltrans.o
+                0x1fff13d9                calibrating.lto_priv.121
+ *fill*         0x1fff13e3        0x1 
+ .bss           0x1fff13e4       0x4e C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans2.ltrans.o
+                0x1fff13e8                systick_millis_count
+                0x1fff13ec                MillisTimer::listActive
+                0x1fff13f4                tx_state.lto_priv.144
+                0x1fff13f8                tx_first.lto_priv.143
+                0x1fff1408                tx_last.lto_priv.145
+                0x1fff1419                rx_buffer_head.lto_priv.88
+                0x1fff141a                rx_buffer_tail.lto_priv.93
+                0x1fff141b                rx_buffer_head.lto_priv.87
+                0x1fff141c                rx_buffer_tail.lto_priv.92
+                0x1fff141d                rx_buffer_head.lto_priv.91
+                0x1fff141e                rx_buffer_tail.lto_priv.96
+                0x1fff141f                rx_buffer_head.lto_priv.90
+                0x1fff1420                rx_buffer_tail.lto_priv.95
+                0x1fff1421                rx_buffer_head.lto_priv.89
+                0x1fff1422                rx_buffer_tail.lto_priv.94
+                0x1fff142a                usb_rx_byte_count_data
+ *fill*         0x1fff1432        0x2 
+ .bss           0x1fff1434      0x152 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans3.ltrans.o
+                0x1fff1584                usb_rx_memory_needed
+                0x1fff1585                usb_configuration
+ *fill*         0x1fff1586        0x2 
+ .bss           0x1fff1588       0x54 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans4.ltrans.o
+                0x1fff158c                tx_buffer_head.lto_priv.129
+                0x1fff158d                tx_buffer_tail.lto_priv.132
+                0x1fff158e                rx_buffer_tail.lto_priv.147
+                0x1fff158f                rx_buffer_head.lto_priv.146
+                0x1fff1590                rts_pin.lto_priv.126
+                0x1fff1594                rx_buffer.lto_priv.123
+                0x1fff15d4                transmitting.lto_priv.138
+                0x1fff15d8                transmit_pin.lto_priv.141
+ .bss           0x1fff15dc       0x40 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans6.ltrans.o
+                0x1fff15e4                strips
+                0x1fff1608                taskList
  .bss.__malloc_max_total_mem
-                0x1fff1624        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
-                0x1fff1624                __malloc_max_total_mem
+                0x1fff161c        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
+                0x1fff161c                __malloc_max_total_mem
  .bss.__malloc_max_sbrked_mem
-                0x1fff1628        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
-                0x1fff1628                __malloc_max_sbrked_mem
+                0x1fff1620        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
+                0x1fff1620                __malloc_max_sbrked_mem
  .bss.__malloc_top_pad
-                0x1fff162c        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
-                0x1fff162c                __malloc_top_pad
+                0x1fff1624        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
+                0x1fff1624                __malloc_top_pad
  .bss.__malloc_current_mallinfo
-                0x1fff1630       0x28 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
-                0x1fff1630                __malloc_current_mallinfo
+                0x1fff1628       0x28 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
+                0x1fff1628                __malloc_current_mallinfo
  *(COMMON)
- COMMON         0x1fff1658        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-reent.o)
-                0x1fff1658                errno
-                0x1fff165c                . = ALIGN (0x4)
-                0x1fff165c                _ebss = .
-                0x1fff165c                __bss_end = .
-                0x1fff165c                __bss_end__ = .
+ COMMON         0x1fff1650        0x4 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-reent.o)
+                0x1fff1650                errno
+                0x1fff1654                . = ALIGN (0x4)
+                0x1fff1654                _ebss = .
+                0x1fff1654                __bss_end = .
+                0x1fff1654                __bss_end__ = .
                 0x20030000                _estack = (ORIGIN (RAM) + LENGTH (RAM))
 OUTPUT(bins/LEDBoard.elf elf32-littlearm)
 
@@ -1963,19 +1962,19 @@ OUTPUT(bins/LEDBoard.elf elf32-littlearm)
  .ARM.attributes
                 0x00000022       0x34 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu/crtbegin.o
  .ARM.attributes
-                0x00000056       0x37 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans0.ltrans.o
+                0x00000056       0x37 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans0.ltrans.o
  .ARM.attributes
-                0x0000008d       0x37 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans1.ltrans.o
+                0x0000008d       0x37 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans1.ltrans.o
  .ARM.attributes
-                0x000000c4       0x37 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans2.ltrans.o
+                0x000000c4       0x37 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans2.ltrans.o
  .ARM.attributes
-                0x000000fb       0x37 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans3.ltrans.o
+                0x000000fb       0x37 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans3.ltrans.o
  .ARM.attributes
-                0x00000132       0x37 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans4.ltrans.o
+                0x00000132       0x37 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans4.ltrans.o
  .ARM.attributes
-                0x00000169       0x37 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans5.ltrans.o
+                0x00000169       0x37 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans5.ltrans.o
  .ARM.attributes
-                0x000001a0       0x37 C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans6.ltrans.o
+                0x000001a0       0x37 C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans6.ltrans.o
  .ARM.attributes
                 0x000001d7       0x25 teensy3/memcpy-armv7m.o
  .ARM.attributes
@@ -2076,14 +2075,14 @@ OUTPUT(bins/LEDBoard.elf elf32-littlearm)
                 0x00000ac1       0x34 c:/arduino/hardware/tools/arm/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-vsnprintf.o)
 
 .comment        0x00000000       0x6e
- .comment       0x00000000       0x6e C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans0.ltrans.o
+ .comment       0x00000000       0x6e C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans0.ltrans.o
                                  0x6f (size before relaxing)
- .comment       0x0000006e       0x6f C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans1.ltrans.o
- .comment       0x0000006e       0x6f C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans2.ltrans.o
- .comment       0x0000006e       0x6f C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans3.ltrans.o
- .comment       0x0000006e       0x6f C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans4.ltrans.o
- .comment       0x0000006e       0x6f C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans5.ltrans.o
- .comment       0x0000006e       0x6f C:\Users\Max\AppData\Local\Temp\ccEtprEy.ltrans6.ltrans.o
+ .comment       0x0000006e       0x6f C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans1.ltrans.o
+ .comment       0x0000006e       0x6f C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans2.ltrans.o
+ .comment       0x0000006e       0x6f C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans3.ltrans.o
+ .comment       0x0000006e       0x6f C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans4.ltrans.o
+ .comment       0x0000006e       0x6f C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans5.ltrans.o
+ .comment       0x0000006e       0x6f C:\Users\Max\AppData\Local\Temp\ccSM7Hnd.ltrans6.ltrans.o
 
 .debug_line     0x00000000       0xeb
  .debug_line    0x00000000       0x93 teensy3/memcpy-armv7m.o
