@@ -41,6 +41,8 @@ MaintenanceComm::MaintenanceComm() :
 
 void MaintenanceComm::init(void)
 {
+    DEBUG_PORT.begin(DEBUG_BAUD);  // Teensy 3.6 USB always runs at 12 Mbit/sec
+
     COM_PORT.begin(COM_BAUD);
     COM_PORT.setRX(COM_RX_PIN);
     COM_PORT.setTX(COM_TX_PIN);
@@ -88,7 +90,7 @@ void MaintenanceComm::sendData(const S8* ptrVal, const bool newLine, const bool 
     else
     {
         // no buffering desired; output immediately
-        COM_PORT.printf(newLine ? "%s\n" : "%s", ptrVal);
+        DEBUG_PORT.printf(newLine ? "%s\n" : "%s", ptrVal);
     }
 }
 
@@ -136,7 +138,7 @@ void MaintenanceComm::send(void)
         }
         else
         {
-            COM_PORT.printf("%s", txBuf);
+            DEBUG_PORT.printf("%s", txBuf);
         }
     }
 }
@@ -152,9 +154,9 @@ void MaintenanceComm::receive(void)
     while (!readFinished)
     {
         // Check if there are bytes in the receive buffer.
-        if (COM_PORT.available() > 0)
+        if (DEBUG_PORT.available() > 0)
         {
-            byte = COM_PORT.read();
+            byte = DEBUG_PORT.read();
 
             // look for carriage return, line feed, or max line length
             if ((CARRIAGE_RETURN == byte) ||
@@ -184,7 +186,7 @@ void MaintenanceComm::receive(void)
 
                     for (U8 key = 0; key < sizeof(keystrokes); key++)
                     {
-                        COM_PORT.print((char)keystrokes[key]);
+                        DEBUG_PORT.print((char)keystrokes[key]);
                     }
                 }
             }
@@ -194,7 +196,7 @@ void MaintenanceComm::receive(void)
                 rxBuf[currLineLoc++] = byte;
 
                 // echo the input
-                COM_PORT.print((char)byte);
+                DEBUG_PORT.print((char)byte);
             }
         }
         else

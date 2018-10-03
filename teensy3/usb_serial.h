@@ -32,6 +32,7 @@
 #define USBserial_h_
 
 #include "usb_desc.h"
+#include "core_pins.h"
 
 #if (defined(CDC_STATUS_INTERFACE) && defined(CDC_DATA_INTERFACE)) || defined(USB_DISABLED)
 

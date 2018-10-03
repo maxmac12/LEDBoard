@@ -12,15 +12,18 @@
 
 #include <HardwareSerial.h>
 #include <pins_arduino.h>
+#include <usb_serial.h>
 
 //----------------------------------------------------------------------------
 //  Public Defines
 //----------------------------------------------------------------------------
 
-#define COM_PORT   Serial5
-#define COM_BAUD   115200
-#define COM_RX_PIN A15
-#define COM_TX_PIN A14
+#define DEBUG_PORT  Serial   // Uses the USB serial port.
+#define DEBUG_BAUD  9600     // Teensy 3.6 USB always run at 12 Mbit/sec.
+#define COM_PORT    Serial5
+#define COM_BAUD    500000
+#define COM_RX_PIN  A15
+#define COM_TX_PIN  A14
 
 static const U8 CARRIAGE_RETURN = 0x0D;     // Carriage return.
 static const U8 LINE_FEED       = 0x0A;     // Line Feed.
