@@ -6,6 +6,7 @@
 #include "LEDControl.hpp"
 #include "LedModeControl.hpp"
 #include "MaintenanceComm.hpp"
+#include "SerialComm.hpp"
 
 //----------------------------------------------------------------------------
 //  Local Defines
@@ -25,6 +26,7 @@
 Task* taskList[] =
 {
     ledModeCtrl,
+    serialComm,
     maintComm,
     consoleCtrl,
 

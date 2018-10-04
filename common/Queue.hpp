@@ -40,7 +40,7 @@ class Queue
 
     private:
 
-        U8*  ptrQueue;  // Pointer to the created queue buffer.
+        U8* ptrQueue;   // Pointer to the created queue buffer.
         U8* ptrFront;   // Pointer to the next item to be popped
         U8* ptrBack;    // Pointer to the last item to be pushed
 

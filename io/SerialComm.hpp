@@ -1,5 +1,5 @@
-#ifndef MAINTENANCE_COMM_H
-#define MAINTENANCE_COMM_H
+#ifndef SERIAL_COMM_H
+#define SERIAL_COMM_H
 
 //----------------------------------------------------------------------------
 //  Included Files 
@@ -18,13 +18,10 @@
 //  Public Defines
 //----------------------------------------------------------------------------
 
-#define DEBUG_PORT  Serial   // Uses the USB serial port.
-#define DEBUG_BAUD  9600     // Teensy 3.6 USB always run at 12 Mbit/sec.
-
-static const U8 CARRIAGE_RETURN = 0x0D;     // Carriage return.
-static const U8 LINE_FEED       = 0x0A;     // Line Feed.
-static const U8 BACKSPACE       = 0x08;     // Backspace.
-static const U8 SPACE           = 0x20;     // Space.
+#define COM_PORT    Serial5
+#define COM_BAUD    500000
+#define COM_RX_PIN  A15
+#define COM_TX_PIN  A14
 
 //----------------------------------------------------------------------------
 //  Public Data Prototypes
@@ -34,19 +31,18 @@ static const U8 SPACE           = 0x20;     // Space.
 //  Public Function Prototypes
 //----------------------------------------------------------------------------
 
-class MaintenanceComm : public Task
+class SerialComm : public Task
 {
     public:
 
-        // Maximum console line length.
-        static const U32 MAX_CONSOLE_LINE_LEN = 128;
+        // Maximum serial message length.
+        static const U32 MAX_SERIAL_MSG_LEN = 128;  // TODO: Determine actual length.
 
-        explicit MaintenanceComm();
+        explicit SerialComm();
 
         void init(void);
         void exec(void);
-        void sendData(const S8* ptrVal, const bool newLine = true, const bool immediate = false);
-        void sendData(const S32 size, const S8* const ptrFmt, ...);
+        void sendData(const U8* ptrData);
         ErrorCode receiveData(void* ptrBlockData);
 
     protected:
@@ -56,33 +52,30 @@ class MaintenanceComm : public Task
         // Queue Depths
         static const U32 RX_QUEUE_LEN = 64;  // RX queue depth.
         static const U32 TX_QUEUE_LEN = 64;  // TX queue depth.
-		
-		// Queue Data Lengths
-        static const U32 RX_DATA_LEN = MAX_CONSOLE_LINE_LEN;  // Rx queue data length
-		static const U32 TX_DATA_LEN = MAX_CONSOLE_LINE_LEN;  // Tx queue data length
+
+        // Queue Data Lengths
+        static const U32 RX_DATA_LEN = MAX_SERIAL_MSG_LEN;  // Rx queue data length
+        static const U32 TX_DATA_LEN = MAX_SERIAL_MSG_LEN;  // Tx queue data length
 
         void process(void);
         void send(void);
         void receive(void);
 
-        S8 rxBuf[MAX_CONSOLE_LINE_LEN];  // Buffer for receiving bytes.
-        S8 txBuf[MAX_CONSOLE_LINE_LEN];  // Buffer for sending bytes.
-        S8 buf[MAX_CONSOLE_LINE_LEN];    // General use buffer for constructing dynamic strings.
-
-        U32 currLineLoc;  // Keep track of console location.
+        U8 rxBuf[MAX_SERIAL_MSG_LEN];  // Buffer for receiving bytes.
+        U8 txBuf[MAX_SERIAL_MSG_LEN];  // Buffer for sending bytes.
 
         Queue* rxQueue;   // RX queue.
         Queue* txQueue;   // TX queue.
 
         // Unused and disabled.
-        ~MaintenanceComm() {}
-        MaintenanceComm(const MaintenanceComm&);
-        MaintenanceComm& operator=(const MaintenanceComm&);
+        ~SerialComm() {}
+        SerialComm(const SerialComm&);
+        SerialComm& operator=(const SerialComm&);
 };
 
 //----------------------------------------------------------------------------
 //  Global Definitions 
 //----------------------------------------------------------------------------
-#define maintComm Singleton<MaintenanceComm>::getInstance()
+#define serialComm Singleton<SerialComm>::getInstance()
 
 #endif

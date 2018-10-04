@@ -13,7 +13,7 @@
 //  Public Defines
 //----------------------------------------------------------------------------
 
-#define LED_PERIOD  1000  // 1 second
+#define HEARTBEAT_LEAD_PERIOD  1000  // 1 second
 
 //----------------------------------------------------------------------------
 //  Public Data Prototypes

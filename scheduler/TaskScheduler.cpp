@@ -18,19 +18,6 @@
 //  Private Data
 //----------------------------------------------------------------------------
 
-/////////////////////////////////////////////////////////
-// ADD TASKS HERE. Unused task slots must be NULL.
-/////////////////////////////////////////////////////////
-//tasks[] =
-//{
-//    ledModeCtrl,
-//    maintComm,
-//    consoleCtrl,
-//
-//    NULL
-//};
-
-
 //############################################################################
 //  Public Methods
 //############################################################################
@@ -46,9 +33,9 @@ TaskScheduler::TaskScheduler() :
 void TaskScheduler::init(void)
 {
     // Configure the LED heart beat.
-    pinMode(LED_BUILTIN, OUTPUT);     // Configure LED pin
-    digitalWrite(LED_BUILTIN, HIGH);  // Turn LED ON
-    ledTimer->start(LED_PERIOD);      // Initialize the LED timer
+    pinMode(LED_BUILTIN, OUTPUT);            // Configure LED pin
+    digitalWrite(LED_BUILTIN, HIGH);         // Turn LED ON
+    ledTimer->start(HEARTBEAT_LEAD_PERIOD);  // Initialize the LED timer
 }
 
 
@@ -112,6 +99,6 @@ void TaskScheduler::heartBeatLED(void)
         // Flash on board LED every second
         digitalWrite(13, LED_STATE);
         LED_STATE = (HIGH == LED_STATE) ? LOW : HIGH;
-        ledTimer->start(LED_PERIOD);  // Reset timer
+        ledTimer->start(HEARTBEAT_LEAD_PERIOD);  // Reset timer
     }
 }

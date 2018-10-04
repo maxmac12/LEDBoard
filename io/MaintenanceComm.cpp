@@ -43,12 +43,8 @@ void MaintenanceComm::init(void)
 {
     DEBUG_PORT.begin(DEBUG_BAUD);  // Teensy 3.6 USB always runs at 12 Mbit/sec
 
-    COM_PORT.begin(COM_BAUD);
-    COM_PORT.setRX(COM_RX_PIN);
-    COM_PORT.setTX(COM_TX_PIN);
-
-    while(!COM_PORT);
-    COM_PORT.println("Maintenance Port Initiated");
+    while(!DEBUG_PORT);
+    DEBUG_PORT.println("Maintenance Port Initiated");
 }
 
 
