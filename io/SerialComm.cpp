@@ -5,6 +5,7 @@
 #include "LEDControl.hpp"
 #include "MaintenanceComm.hpp"
 #include "appconfig.hpp"
+#include "crc.hpp"
 #include "dataTypes.h"
 #include "stringUtils.h"  // strncpy(), strnlen()
 #include "Queue.hpp"
@@ -52,7 +53,8 @@ void SerialComm::init(void)
 
 void SerialComm::exec(void)
 {
-    process();
+    receive();
+    send();
 }
 
 void SerialComm::sendData(const U8* ptrData)
@@ -74,13 +76,6 @@ ErrorCode SerialComm::receiveData(void* ptrBlockData)
 //  Private Methods
 //############################################################################
 
-void SerialComm::process(void)
-{
-    receive();
-    send();
-}
-
-
 void SerialComm::send(void)
 {
     // send out outgoing data
@@ -100,52 +95,114 @@ void SerialComm::send(void)
 
 void SerialComm::receive(void)
 {
-    // read incoming data
-    U8 byte = 0xFF;
-    bool readFinished = false;  // read one command at a time
+    // Read incoming data
+    static bool msgReceived = false;
+    static U8   msgDataEndIndex = 0;
+    static U16  bytesRead = 0;
 
-    // read characters until one complete command has been read
-    while (!readFinished)
+    U8 byte = 0x00;
+
+    while ((COM_PORT.available() > 0) && !msgReceived)
     {
-        // Check if there are bytes in the receive buffer.
-        if (COM_PORT.available() > 0)
-        {
-            byte = COM_PORT.read();
+        // buffer the incoming bytes
+        byte = (U8)COM_PORT.read();
 
-            // Look for different commands.
-            if (OFF == byte)
+        maintComm->sendData(MaintenanceComm::MAX_CONSOLE_LINE_LEN, "State: %d, RX: 0x%X, BRead: %d", rxState, byte, bytesRead, true);
+
+        switch(rxState)
+        {
+            case GET_PREAMBLE:
+                if (0xEE == byte)
+                {
+                    buf.data[bytesRead++] = byte;
+                    rxState = GET_LENGTH;
+                }
+                break;
+
+            case GET_LENGTH:
+                buf.data[bytesRead++] = byte;
+                msgDataEndIndex = bytesRead + byte;
+                maintComm->sendData(MaintenanceComm::MAX_CONSOLE_LINE_LEN, "msgDataEndIndex: %d", msgDataEndIndex, true);
+                rxState = GET_COMMAND;
+                break;
+
+            case GET_COMMAND:
+                buf.data[bytesRead++] = byte;
+                rxState = GET_DATA;
+                break;
+
+            case GET_DATA:
+                buf.data[bytesRead++] = byte;
+
+                if (bytesRead > msgDataEndIndex)
+                {
+                    rxState = GET_CRC_LSB;
+                }
+                break;
+
+            case GET_CRC_LSB:
+                buf.data[bytesRead++] = byte;
+                rxState = GET_CRC_MSB;
+                break;
+
+            case GET_CRC_MSB:
+                buf.data[bytesRead++] = byte;
+                rxState = GET_PREAMBLE;
+                msgDataEndIndex = 0;
+                msgReceived = true;
+                break;
+
+            default:
+                rxState = GET_PREAMBLE;
+                msgDataEndIndex = 0;
+                bytesRead = 0;
+                msgReceived = false;
+                break;
+        }
+
+        if (bytesRead > MAX_SERIAL_PACKET_LEN)
+        {
+            maintComm->sendData("Rx Message Length Invalid");
+            rxState = GET_PREAMBLE;
+            msgDataEndIndex = 0;
+            bytesRead = 0;
+            msgReceived = false;
+            break;
+        }
+    }
+
+    if (msgReceived)
+    {
+        maintComm->sendData("RX Message", true);
+
+        // Check CRC of the received data and put data into queue
+        if ((bytesRead > sizeof(U16)) && (bytesRead <= MAX_SERIAL_PACKET_LEN))
+        {
+            U16 expected_crc = *(reinterpret_cast<U16*>(&(buf.data[bytesRead - sizeof(U16)])));
+            U16 calculated_crc = crc16(buf.data, bytesRead - sizeof(U16));
+
+            maintComm->sendData(MaintenanceComm::MAX_CONSOLE_LINE_LEN,
+                               "RX Bytes = %d", bytesRead, true);
+
+            if (calculated_crc == expected_crc)
             {
-                ledCtrl->setLedMode(OFF);
-            }
-            else if (WHITE == byte)
-            {
-                ledCtrl->setLedMode(WHITE);
-            }
-            else if (COLOR == byte)
-            {
-                ledCtrl->setLedMode(COLOR);
-            }
-            else if (COLOR_PULSE == byte)
-            {
-                ledCtrl->setLedMode(COLOR_PULSE);
-            }
-            else if (RAINBOW_CYCLE == byte)
-            {
-                ledCtrl->setLedMode(RAINBOW_CYCLE);
-            }
-            else if (WHITE_OVER_RAINBOW == byte)
-            {
-                ledCtrl->setLedMode(WHITE_OVER_RAINBOW);
+                maintComm->sendData("RX Success", true);
+
+                // stuff the bytes into the queue
+                if (rxQueue->push(buf.data) != ER_SUCCESS)
+                {
+                    // TODO: Do something.
+                    maintComm->sendData("Rx Push Fail", true);
+                }
             }
             else
             {
-                maintComm->sendData("\r\nInvalid Serial Rx.");
+                maintComm->sendData(MaintenanceComm::MAX_CONSOLE_LINE_LEN,
+                                   "RX CRC Bad: 0x%X != 0x%X", calculated_crc, expected_crc, true);
             }
         }
-        else
-        {
-            // Receive buffer is empty.
-            readFinished = true;
-        }
+
+        msgReceived = false;
+        bytesRead = 0;
     }
 }

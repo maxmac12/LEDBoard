@@ -79,7 +79,7 @@ void MaintenanceComm::sendData(const S8* ptrVal, const bool newLine, const bool 
         // send the remaining bytes
         if (len > 0UL)
         {
-            snprintf(txBuf, MAX_CONSOLE_LINE_LEN, newLine ? "%s\n" : "%s", ptrVal);
+            snprintf(txBuf, MAX_CONSOLE_LINE_LEN, newLine ? "%s\r\n" : "%s", ptrVal);
             static_cast<void>(txQueue->push(txBuf));
         }
     }

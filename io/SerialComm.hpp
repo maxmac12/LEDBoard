@@ -8,6 +8,7 @@
 #include "error.hpp"
 #include "Queue.hpp"
 #include "Singleton.hpp"
+#include "SerialData.hpp"
 #include "Task.hpp"
 
 #include <HardwareSerial.h>
@@ -26,7 +27,7 @@
 //----------------------------------------------------------------------------
 //  Public Data Prototypes
 //----------------------------------------------------------------------------
- 
+
 //----------------------------------------------------------------------------
 //  Public Function Prototypes
 //----------------------------------------------------------------------------
@@ -34,9 +35,6 @@
 class SerialComm : public Task
 {
     public:
-
-        // Maximum serial message length.
-        static const U32 MAX_SERIAL_MSG_LEN = 128;  // TODO: Determine actual length.
 
         explicit SerialComm();
 
@@ -49,23 +47,40 @@ class SerialComm : public Task
 
     private:
 
+        enum RxState
+        {
+            GET_PREAMBLE = 0,
+            GET_LENGTH,
+            GET_COMMAND,
+            GET_DATA,
+            GET_CRC_LSB,
+            GET_CRC_MSB
+        } rxState = GET_PREAMBLE;
+
+        struct PacketData
+        {
+            U8 data[MAX_SERIAL_PACKET_LEN];  // raw packet data
+            U8 dataLen;                      // length of data
+        };
+
         // Queue Depths
-        static const U32 RX_QUEUE_LEN = 64;  // RX queue depth.
-        static const U32 TX_QUEUE_LEN = 64;  // TX queue depth.
+        static const U32 RX_QUEUE_LEN = 8;  // RX queue depth.
+        static const U32 TX_QUEUE_LEN = 8;  // TX queue depth.
 
         // Queue Data Lengths
-        static const U32 RX_DATA_LEN = MAX_SERIAL_MSG_LEN;  // Rx queue data length
-        static const U32 TX_DATA_LEN = MAX_SERIAL_MSG_LEN;  // Tx queue data length
+        static const U32 RX_DATA_LEN = MAX_SERIAL_PACKET_LEN;  // RX queue data length
+        static const U32 TX_DATA_LEN = MAX_SERIAL_PACKET_LEN;  // TX queue data length
 
-        void process(void);
         void send(void);
         void receive(void);
 
-        U8 rxBuf[MAX_SERIAL_MSG_LEN];  // Buffer for receiving bytes.
-        U8 txBuf[MAX_SERIAL_MSG_LEN];  // Buffer for sending bytes.
+        U8 rxBuf[MAX_SERIAL_PACKET_LEN];  // Buffer for receiving bytes.
+        U8 txBuf[MAX_SERIAL_PACKET_LEN];  // Buffer for sending bytes.
 
         Queue* rxQueue;   // RX queue.
         Queue* txQueue;   // TX queue.
+
+        PacketData buf;  // Local data packet buffer.
 
         // Unused and disabled.
         ~SerialComm() {}

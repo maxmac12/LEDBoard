@@ -31,7 +31,7 @@ class Queue
         U32 getNumItems(void) const;
         U32 getQueueDepth(void) const;
         ErrorCode pop(void* const ptrData);
-        ErrorCode push(const void* const ptrData);
+        ErrorCode push(const void* ptrData);
 
         // Unused and disabled.
         ~Queue() {}

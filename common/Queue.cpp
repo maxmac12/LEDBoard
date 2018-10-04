@@ -96,7 +96,7 @@ ErrorCode Queue::pop(void* const ptrData)
 }
 
 
-ErrorCode Queue::push(const void* const ptrData)
+ErrorCode Queue::push(const void* ptrData)
 {
     ErrorCode err = ER_SUCCESS;
 

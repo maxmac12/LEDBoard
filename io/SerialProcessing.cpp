@@ -1,13 +1,8 @@
 //----------------------------------------------------------------------------
 //  Included Files
 //----------------------------------------------------------------------------
-#include "TaskScheduler.hpp"
-#include "ConsoleCtrl.hpp"
-#include "LEDControl.hpp"
-#include "LedModeControl.hpp"
-#include "MaintenanceComm.hpp"
-#include "SerialComm.hpp"
 #include "SerialProcessing.hpp"
+#include "SerialComm.hpp"
 
 //----------------------------------------------------------------------------
 //  Local Defines
@@ -21,42 +16,30 @@
 //  Private Data
 //----------------------------------------------------------------------------
 
-/////////////////////////////////////////////////////////
-//  ADD TASKS HERE
-/////////////////////////////////////////////////////////
-Task* taskList[] =
-{
-    ledModeCtrl,
-    serialComm,
-    serialProc,
-    maintComm,
-    consoleCtrl,
-
-    NULL          // end of list - DO NOT REMOVE!!!
-};
-
 //############################################################################
 //  Public Methods
 //############################################################################
 
-void setup(void)
+SerialProcessing::SerialProcessing() :
+    Task(TASK_SERIAL_PROC_PERIOD,
+         TASK_SERIAL_PROC_NAME,
+         TID_SERIAL_PROC)
 {
-    ledCtrl->init();
-    taskScheduler->init();
-
-    // Add tasks to the scheduler.
-    for (U32 i = 0; taskList[i] != NULL; i++)
-    {
-        taskScheduler->addTask(taskList[i]);
-    }
+    // Do nothing
 }
 
 
-void loop(void)
+void SerialProcessing::init(void)
 {
-    // Execute tasks.
-    taskScheduler->exec();
+    // Do nothing.
 }
+
+
+void SerialProcessing::exec(void)
+{
+    // TODO: Implement.
+}
+
 
 //############################################################################
 //  Protected Methods
@@ -65,3 +48,4 @@ void loop(void)
 //############################################################################
 //  Private Methods
 //############################################################################
+
