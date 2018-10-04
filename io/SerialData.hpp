@@ -13,6 +13,12 @@
 
 // max length of data packets
 const U32 MAX_SERIAL_PACKET_LEN = 13;
+const U8  PREAMBLE = 0xEE;
+
+struct PacketData
+{
+    U8 data[MAX_SERIAL_PACKET_LEN];  // raw packet data
+};
 
 // turn byte-packing on
 #pragma pack(push, 1)
@@ -22,7 +28,7 @@ const U32 MAX_SERIAL_PACKET_LEN = 13;
 //----------------------------------------------------------------------------
 struct DataHeader
 {
-    const U8 PREAMBLE = 0xEE;
+    U8 preamble;
     U8 length;    // Length of packet payload (bytes)
 
     // LED command.

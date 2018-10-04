@@ -32,6 +32,7 @@ class SerialProcessing : public Task
     protected:
 
     private:
+        PacketData buf;  // Local data packet buffer.
 
         // Unused and disabled.
         ~SerialProcessing() {}

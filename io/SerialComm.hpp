@@ -57,12 +57,6 @@ class SerialComm : public Task
             GET_CRC_MSB
         } rxState = GET_PREAMBLE;
 
-        struct PacketData
-        {
-            U8 data[MAX_SERIAL_PACKET_LEN];  // raw packet data
-            U8 dataLen;                      // length of data
-        };
-
         // Queue Depths
         static const U32 RX_QUEUE_LEN = 8;  // RX queue depth.
         static const U32 TX_QUEUE_LEN = 8;  // TX queue depth.

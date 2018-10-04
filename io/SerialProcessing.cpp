@@ -37,7 +37,27 @@ void SerialProcessing::init(void)
 
 void SerialProcessing::exec(void)
 {
-    // TODO: Implement.
+    // Attempt to get new RX message to process. These message has already been CRC verified.
+    if (serialComm->receiveData(buf.data) == ER_SUCCESS)
+    {
+        DataHeader::Command command = (reinterpret_cast<const DataHeader* const>(buf.data)->command);
+
+        switch(command)
+        {
+            case DataHeader::MODE_CMD:
+                ledCtrl->setLedMode((reinterpret_cast<const ModeCommand* const>(buf.data)->mode));
+                break;
+
+            case DataHeader::COLOR_CMD:
+                break;
+
+            case DataHeader::SPECTRUM_CMD:
+                break;
+
+            default:
+                break;
+        }
+    }
 }
 
 

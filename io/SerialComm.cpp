@@ -57,6 +57,7 @@ void SerialComm::exec(void)
     send();
 }
 
+
 void SerialComm::sendData(const U8* ptrData)
 {
     // TODO: Implement.
@@ -107,12 +108,13 @@ void SerialComm::receive(void)
         // buffer the incoming bytes
         byte = (U8)COM_PORT.read();
 
-        maintComm->sendData(MaintenanceComm::MAX_CONSOLE_LINE_LEN, "State: %d, RX: 0x%X, BRead: %d", rxState, byte, bytesRead, true);
+        maintComm->sendData(MaintenanceComm::MAX_CONSOLE_LINE_LEN,
+                            "State: %d, RX: 0x%X, BRead: %d", rxState, byte, bytesRead, true);
 
         switch(rxState)
         {
             case GET_PREAMBLE:
-                if (0xEE == byte)
+                if (PREAMBLE == byte)
                 {
                     buf.data[bytesRead++] = byte;
                     rxState = GET_LENGTH;
@@ -122,7 +124,6 @@ void SerialComm::receive(void)
             case GET_LENGTH:
                 buf.data[bytesRead++] = byte;
                 msgDataEndIndex = bytesRead + byte;
-                maintComm->sendData(MaintenanceComm::MAX_CONSOLE_LINE_LEN, "msgDataEndIndex: %d", msgDataEndIndex, true);
                 rxState = GET_COMMAND;
                 break;
 
@@ -162,47 +163,47 @@ void SerialComm::receive(void)
 
         if (bytesRead > MAX_SERIAL_PACKET_LEN)
         {
-            maintComm->sendData("Rx Message Length Invalid");
+            maintComm->sendData("RX Message Length Invalid");
+
             rxState = GET_PREAMBLE;
             msgDataEndIndex = 0;
             bytesRead = 0;
             msgReceived = false;
             break;
         }
-    }
 
-    if (msgReceived)
-    {
-        maintComm->sendData("RX Message", true);
-
-        // Check CRC of the received data and put data into queue
-        if ((bytesRead > sizeof(U16)) && (bytesRead <= MAX_SERIAL_PACKET_LEN))
+        if (msgReceived)
         {
-            U16 expected_crc = *(reinterpret_cast<U16*>(&(buf.data[bytesRead - sizeof(U16)])));
-            U16 calculated_crc = crc16(buf.data, bytesRead - sizeof(U16));
+            maintComm->sendData("RX Message", true);
 
-            maintComm->sendData(MaintenanceComm::MAX_CONSOLE_LINE_LEN,
-                               "RX Bytes = %d", bytesRead, true);
-
-            if (calculated_crc == expected_crc)
+            // Check CRC of the received data and put data into queue
+            if ((bytesRead > sizeof(U16)) && (bytesRead <= MAX_SERIAL_PACKET_LEN))
             {
-                maintComm->sendData("RX Success", true);
+                U16 expected_crc = *(reinterpret_cast<U16*>(&(buf.data[bytesRead - sizeof(U16)])));
+                U16 calculated_crc = crc16(buf.data, bytesRead - sizeof(U16));
 
-                // stuff the bytes into the queue
-                if (rxQueue->push(buf.data) != ER_SUCCESS)
+                maintComm->sendData(MaintenanceComm::MAX_CONSOLE_LINE_LEN, "RX Bytes = %d", bytesRead, true);
+
+                if (calculated_crc == expected_crc)
                 {
-                    // TODO: Do something.
-                    maintComm->sendData("Rx Push Fail", true);
+                    maintComm->sendData("RX Success", true);
+
+                    // stuff the bytes into the queue
+                    if (rxQueue->push(buf.data) != ER_SUCCESS)
+                    {
+                        // TODO: Do something.
+                        maintComm->sendData("RX Push Fail", true);
+                    }
+                }
+                else
+                {
+                    maintComm->sendData(MaintenanceComm::MAX_CONSOLE_LINE_LEN,
+                                       "RX CRC Bad: 0x%X != 0x%X", calculated_crc, expected_crc, true);
                 }
             }
-            else
-            {
-                maintComm->sendData(MaintenanceComm::MAX_CONSOLE_LINE_LEN,
-                                   "RX CRC Bad: 0x%X != 0x%X", calculated_crc, expected_crc, true);
-            }
-        }
 
-        msgReceived = false;
-        bytesRead = 0;
+            msgReceived = false;
+            bytesRead = 0;
+        }
     }
 }
