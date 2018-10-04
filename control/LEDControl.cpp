@@ -235,6 +235,21 @@ void LEDControl::setCurrentColor(U8 r, U8 g, U8 b)
 }
 
 
+void LEDControl::setStripHeight(U8 stripId, U8 height)
+{
+    if (stripId < NUM_LED_STRIPS)
+    {
+        stripHeight[stripId] = height;
+    }
+}
+
+
+U8 LEDControl::getStripHeight(U8 stripId)
+{
+    return (stripId < NUM_LED_STRIPS) ? stripHeight[stripId] : 0;
+}
+
+
 U32 LEDControl::getNumPixels(U32 stripId)
 {
     return (stripId < NUM_LED_STRIPS) ? strips[stripId]->numPixels() : 0;

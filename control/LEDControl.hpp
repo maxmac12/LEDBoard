@@ -37,6 +37,7 @@ enum LEDModes
     COLOR_PULSE,
     RAINBOW_CYCLE,
     WHITE_OVER_RAINBOW,
+    SPECTRUM,
 
     NUM_LED_MODES
 };
@@ -70,6 +71,8 @@ class LEDControl
         U32 getCurrentColor(void);
         void setCurrentColor(U32 c);
         void setCurrentColor(U8 r, U8 g, U8 b);
+        void setStripHeight(U8 stripId, U8 height);
+        U8 getStripHeight(U8 stripId);
         U32 getNumPixels(U32 stripId);
         void setPixelColor(U32 stripId, U32 pixelId, U32 color);
         void updateStrip(U32 stripId);
@@ -94,6 +97,7 @@ class LEDControl
         Msec colorPulseSpeed;
         U8 currentBrightness;
         U32 currentColor;
+        U8 stripHeight[NUM_LED_STRIPS];
 };
 
 //----------------------------------------------------------------------------
