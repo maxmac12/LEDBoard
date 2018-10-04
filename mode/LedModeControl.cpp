@@ -8,6 +8,7 @@
 #include "SMColorPulse.hpp"
 #include "SMOff.hpp"
 #include "SMRainbowCycle.hpp"
+#include "SMSpectrum.hpp"
 #include "SMWhite.hpp"
 #include "SMWhiteOverRainbow.hpp"
 #include "MaintenanceComm.hpp"
@@ -51,6 +52,7 @@ LedModeControl::LedModeControl() :
     ptrLedStateMachines[COLOR_PULSE]        = new SMColorPulse();
     ptrLedStateMachines[RAINBOW_CYCLE]      = new SMRainbowCycle();
     ptrLedStateMachines[WHITE_OVER_RAINBOW] = new SMWhiteOverRainbow();
+    ptrLedStateMachines[SPECTRUM]           = new SMSpectrum();
 
     ptrBrightnessTimer->start(ANALOG_READ_DELAY);
 }

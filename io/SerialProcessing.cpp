@@ -3,6 +3,7 @@
 //----------------------------------------------------------------------------
 #include "SerialProcessing.hpp"
 #include "SerialComm.hpp"
+#include "MaintenanceComm.hpp"
 
 //----------------------------------------------------------------------------
 //  Local Defines
@@ -42,20 +43,34 @@ void SerialProcessing::exec(void)
     {
         DataHeader::Command command = (reinterpret_cast<const DataHeader* const>(buf.data)->command);
 
-        switch(command)
+        switch (command)
         {
             case DataHeader::MODE_CMD:
+            {
                 ledCtrl->setLedMode((reinterpret_cast<const ModeCommand* const>(buf.data)->mode));
                 break;
+            }
 
             case DataHeader::COLOR_CMD:
-                ColorCommand* msg = (reinterpret_cast<const ColorCommand* const>(buf.data));
+            {
+                const ColorCommand* msg = (reinterpret_cast<const ColorCommand* const>(buf.data));
                 ledCtrl->setCurrentColor(msg->red, msg->green, msg->blue);
                 ledCtrl->setLedMode(COLOR);
                 break;
+            }
 
             case DataHeader::SPECTRUM_CMD:
+            {
+                const SpectrumCommand* msg = (reinterpret_cast<const SpectrumCommand* const>(buf.data));
+
+                for (U8 i = 0; i < NUM_LED_STRIPS; i++)
+                {
+                    ledCtrl->setStripHeight(i, msg->ledHeight[i]);
+                }
+
+                ledCtrl->setLedMode(SPECTRUM);
                 break;
+            }
 
             default:
                 break;

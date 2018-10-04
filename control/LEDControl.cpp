@@ -109,6 +109,10 @@ void LEDControl::setLedMode(LEDModes newMode)
             maintComm->sendData("LED Mode -> White Over Rainbow\r\n");
             break;
 
+        case SPECTRUM:
+            maintComm->sendData("LED Mode -> Spectrum\r\n");
+            break;
+
         default:
             break;  // Do nothing.
     }
