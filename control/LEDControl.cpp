@@ -223,7 +223,7 @@ U32 LEDControl::getCurrentColor(void)
 }
 
 
-void LEDControl::setCurrentColor(U8 c)
+void LEDControl::setCurrentColor(U32 c)
 {
     currentColor = c;
 }

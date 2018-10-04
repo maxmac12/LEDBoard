@@ -49,6 +49,9 @@ void SerialProcessing::exec(void)
                 break;
 
             case DataHeader::COLOR_CMD:
+                ColorCommand* msg = (reinterpret_cast<const ColorCommand* const>(buf.data));
+                ledCtrl->setCurrentColor(msg->red, msg->green, msg->blue);
+                ledCtrl->setLedMode(COLOR);
                 break;
 
             case DataHeader::SPECTRUM_CMD:

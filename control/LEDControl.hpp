@@ -68,7 +68,7 @@ class LEDControl
         U32 getColorValue(U8 r, U8 g, U8 b);
         void getColorChannels(U32 color, U8& r, U8& g, U8& b);
         U32 getCurrentColor(void);
-        void setCurrentColor(U8 c);
+        void setCurrentColor(U32 c);
         void setCurrentColor(U8 r, U8 g, U8 b);
         U32 getNumPixels(U32 stripId);
         void setPixelColor(U32 stripId, U32 pixelId, U32 color);
