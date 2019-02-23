@@ -29,6 +29,11 @@ AboutCommand::AboutCommand()
 ErrorCode AboutCommand::exec(const CStr subject, const CStr value1, const CStr value2, const CStr value3)
 {
     maintComm->sendData("LEDBoard Software\r\n");
+
+    S8 buf[MaintenanceComm::MAX_CONSOLE_LINE_LEN];  // Buffer for formatting strings.
+    snprintf(buf, MaintenanceComm::MAX_CONSOLE_LINE_LEN, "Build: %s %s\r\n", __DATE__, __TIME__);
+
+    maintComm->sendData(MaintenanceComm::MAX_CONSOLE_LINE_LEN, "%s", buf);
     maintComm->sendData("Developed by Max MacCamy, 2018\r\n");
     maintComm->sendData("Supported Commands:\r\n");
     maintComm->sendData("   mode off\r\n");
