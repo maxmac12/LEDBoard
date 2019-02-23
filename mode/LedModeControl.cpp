@@ -22,7 +22,7 @@
 #define MOM_SW_DEBOUNCE  40  // Debounce time (Msec) for momentary switch.
 
 #define BRIGHTNESS_PIN        A1  // Brightness potentiometer pin.
-#define BRIGHTNESS_TOLERANCE  2   // +/- tolerance of change for brightness.
+#define BRIGHTNESS_TOLERANCE  2U  // +/- tolerance of change for brightness.
 
 #define ANALOG_READ_DELAY  60  // TODO: Update to get a better ADC average (128Hz, 32Hz, ...)
 
